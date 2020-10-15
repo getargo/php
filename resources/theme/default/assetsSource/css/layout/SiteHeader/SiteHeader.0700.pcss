@@ -1,0 +1,22 @@
+.SiteHeader__BackgroundImage {
+    height: 280px;
+}
+
+.SiteHeader--HasBackgroundImage .SiteHeader__HeadingArea {
+    height: 140px;
+    top: 280px;
+    max-width: 600px;
+    transform: translate(0, -100%);
+    width: 50%;
+}
+
+.SiteHeader--HasBackgroundImage .SiteHeader__HeadingArea:before {
+    background: linear-gradient(0deg, rgba(243,243,243,1) 0%, rgba(255,255,255,0) 100%);
+    bottom: 0;
+    content: ' ';
+    display: block;
+    height: 80%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}

@@ -1,0 +1,32 @@
+.Pagination {
+    list-style: none;
+    margin: 0;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.Pagination__Item {
+    display: inline-block;
+    margin: 2px;
+}
+
+.Pagination__Link,
+.Pagination__Inactive {
+    background-color: var(--designPrimaryColor);
+    border-radius: 2px;
+    color: var(--primaryLightBaseColor);
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.Pagination__Link:hover {
+    background-color: var(--designAccentColor);
+    color: var(--primaryLightBaseColor);
+    text-decoration: none;
+}
+
+.Pagination__Inactive {
+    background-color: var(--grayBackgroundOffsetColor);
+    color: var(--primaryDarkBaseColor);
+}

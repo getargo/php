@@ -1,0 +1,26 @@
+textarea {
+    width: 50em;
+    height: 25em;
+    font-family: "Menlo";
+    font-size: 90%;
+}
+
+input {
+    font-size: 90%;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+#submit-failure {
+    width: 50em;
+    overflow: auto;
+}
+
+#process-stream {
+    width: 50em;
+    overflow: wrap;
+    border: 2px black;
+}

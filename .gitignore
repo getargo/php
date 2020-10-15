@@ -1,0 +1,5 @@
+/.phpunit.result.cache
+/composer.lock
+/tests/tmp/
+!/tests/tmp/.gitkeep
+/vendor/

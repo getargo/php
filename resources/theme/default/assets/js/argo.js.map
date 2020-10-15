@@ -1,0 +1,1 @@
+{"version":3,"sources":["assetsSource/js/argo.js"],"names":["Argo","shtml","href","id","fetch","then","response","text","html","document","getElementById","innerHTML","catch","error","console","warn"],"mappings":"AAEA,IAAIA,KAAO,CACPC,MAAO,SAAUC,EAAMC,GACnBC,MAAMF,GACDG,KACIC,GAAaA,EAASC,QAE1BF,KACIG,IACGC,SAASC,eAAeP,GAAIQ,UAAYH,IAG/CI,MACIC,IACGC,QAAQC,KAAKF"}

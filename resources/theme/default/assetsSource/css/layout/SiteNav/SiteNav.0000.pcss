@@ -1,0 +1,29 @@
+.SiteNav {
+    text-align: center;
+}
+
+.SiteNav__Item {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    position: relative;
+}
+
+.SiteNav__Item:hover {
+    text-decoration: none;
+    background-color: var(--lightGrayBackgroundOffsetColor);
+}
+
+.SiteNav__Item:hover:after,
+.SiteNav__Item--IsActive:after {
+    background-color: var(--designAccentColor);
+    bottom: 6px;
+    content: ' ';
+    display: block;
+    height: 1px;
+    left: 10px;
+    position: absolute;
+    width: 20px;
+}

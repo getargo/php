@@ -1,0 +1,27 @@
+{
+    "scripts": {
+        "fab": "node fab.js"
+    },
+    "name": "paul-jones-blog-template",
+    "version": "1.0.0",
+    "license": "UNLICENSED",
+    "author": "BuzzingPixel",
+    "dependencies": {
+        "@babel/core": "^7.4.4",
+        "@babel/preset-env": "^7.4.4",
+        "babel-eslint": "^10.0.1",
+        "eslint": "^5.15.3",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-plugin-import": "^2.16.0",
+        "eslint-plugin-jsx-a11y": "^6.2.1",
+        "eslint-plugin-react": "^7.12.4",
+        "eslint-plugin-vue": "^5.2.2",
+        "fab-build-next": "^1.9.0",
+        "fabcss.forms-and-buttons": "^1.3.1",
+        "fabcss.lists": "^1.3.0",
+        "fabcss.reset": "^1.3.0",
+        "fabcss.typography": "^1.3.0",
+        "fabmixins": "^2.3.0"
+    }
+}

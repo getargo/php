@@ -1,0 +1,34 @@
+{
+    "name": "getargo/php",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Paul M. Jones",
+            "email": "pmjones@pmjones.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Argo\\": ["src/", "tests/"]
+        }
+    },
+    "require": {
+        "aura/html": "~2.0",
+        "aura/view": "~2.0",
+        "capsule/di": "~2.0",
+        "league/commonmark": "~1.0",
+        "payload-interop/payload-interop": "~1.0",
+        "pmjones/auto-route": "~1.0",
+        "psr/log": "~1.0",
+        "seld/jsonlint": "~1.0",
+        "pmjones/request": "~2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~8.0"
+    },
+    "extra": {
+        "version": "0.0.0",
+        "release": "0000-00-00 00:00:00 UTC"
+    }
+}

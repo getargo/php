@@ -1,0 +1,26 @@
+.SidebarLayout__Sidebar {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.SidebarLayout__SidebarModule {
+    margin-bottom: 20px;
+    padding: 30px 20px 30px;
+    position: relative;
+}
+
+.SidebarLayout__SidebarModule:after {
+    bottom: 0;
+    background-color: var(--grayBackgroundOffsetColor);
+    content: ' ';
+    display: block;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0);
+    width: 100%;
+}
+
+.SidebarLayout__SidebarModule:last-child:after {
+    display: none;
+}
