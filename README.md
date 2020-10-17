@@ -38,7 +38,7 @@ That will open Argo in your client browser.
 ### Normal Well-Adjusted People
 
 Download and double-click the Mac- or Linux-based desktop appliction from
-[getargo/app](https://github.com/getargo).
+[getargo/app](https://github.com/getargo/app).
 
 Linux users may need to install PHP first, if it is not already present.
 
