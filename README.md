@@ -29,7 +29,7 @@ First,  get [Composer](https://getcomposer.org), then issue
 the following commands:
 
 ```
-$ composer create-project getargo/php argo
+$ composer create-project -s dev --keep-vcs getargo/php argo
 $ php ./argo/bin/admin.php
 ```
 
