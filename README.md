@@ -6,8 +6,8 @@ using Git or rsync.
 
 Because Argo keeps all your content on your computer, no hosting service can
 ever deprive you of your content by shutting down your account. The content you
-create is always on your own computer. This makes Argo sites censorship-
-resistant. Further, because Argo is a flat-file static-site system, remove
+create is always on your own computer. This makes Argo sites more resistant to
+censorship. Further, because Argo is a flat-file static-site system, remote
 hosting requirements are minimal. Only a web server is needed.
 
 ## Warnings
@@ -29,7 +29,7 @@ First,  get [Composer](https://getcomposer.org), then issue
 the following commands:
 
 ```
-$ composer create-project getargo/php argo
+$ composer create-project -s dev --keep-vcs getargo/php argo
 $ php ./argo/bin/admin.php
 ```
 
@@ -38,7 +38,7 @@ That will open Argo in your client browser.
 ### Normal Well-Adjusted People
 
 Download and double-click the Mac- or Linux-based desktop appliction from
-[getargo/app](https://github.com/getargo).
+[getargo/app](https://github.com/getargo/app).
 
 Linux users may need to install PHP first, if it is not already present.
 
