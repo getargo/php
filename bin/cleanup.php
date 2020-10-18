@@ -1,7 +1,7 @@
 <?php
 foreach (['8080', '8081'] as $port) {
     exec(
-        "ps -o command=COMMAND---------------,pid | grep '^php -S 127.0.0.1:{$port}'",
+        "ps -x -o command=COMMAND---------------,pid | grep '^php -S 127.0.0.1:{$port}'",
         $output
     );
 
