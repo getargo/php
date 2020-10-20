@@ -23,17 +23,22 @@ product, not as a set of libraries.
 
 ## Installation
 
-### Tech Nerd
+### Techy Nerds
 
-First,  get [Composer](https://getcomposer.org), then issue
-the following commands:
+First, [get Composer](https://getcomposer.org), then issue the following commands:
 
 ```
-$ composer create-project -s dev --keep-vcs getargo/php argo
-$ php ./argo/bin/admin.php
+% git clone git@github.com:getargo/php argo
+% cd argo
+% composer install
+% php ./bin/admin.php
 ```
 
-That will open Argo in your client browser.
+That will open Argo in your client browser. Use `Ctrl-C` to stop the Argo app.
+
+To update the Argo code, change to the `argo` directory, then issue
+`git pull && composer update`.
+
 
 ### Normal Well-Adjusted People
 
@@ -41,6 +46,11 @@ Download and double-click the Mac- or Linux-based desktop appliction from
 [getargo/app](https://github.com/getargo/app).
 
 Linux users may need to install PHP first, if it is not already present.
+
+Mac users may find that OS X will not launch Argo, because it is not from the
+App Store. To get around this, open `System Preferences` -> `Security & Privacy`
+-> `General`, and allow apps downloaded from `App Store and identified
+developers`. Then try to launch Argo again.
 
 ## Getting Started
 
