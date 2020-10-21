@@ -75,13 +75,13 @@ class Sync
         ]);
     }
 
-    protected function git(Sync $sync) : string
+    protected function git(SyncValues $sync) : string
     {
         return implode(" \\" . PHP_EOL, [
             "cd " . $this->storage->path(),
             "&& git add .",
             "&& git commit -a --message='sync site'",
-            "&& git push"
+            "&& git push -u origin `git branch --show-current`"
         ]);
     }
 }
