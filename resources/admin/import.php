@@ -18,3 +18,5 @@ use Argo\Http\Action\Import\PostImport;
         PostImport::CLASS
     ); ?></p>
 </form>
+
+<pre id="submit-stream"></pre>

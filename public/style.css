@@ -14,12 +14,18 @@ form {
     padding: 0;
 }
 
+#process-stream {
+    width: 50em;
+    overflow: wrap;
+    border: 2px black;
+}
+
 #submit-failure {
     width: 50em;
     overflow: auto;
 }
 
-#process-stream {
+#submit-stream {
     width: 50em;
     overflow: wrap;
     border: 2px black;

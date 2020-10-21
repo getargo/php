@@ -35,14 +35,16 @@ class Import extends UseCase
             ]);
         }
 
-        $old = ini_get('max_execution_time');
-        ini_set('max_execution_time', '0');
+        return Payload::processing([
+            'callable' => function () use ($upload) {
+                $old = ini_get('max_execution_time');
+                ini_set('max_execution_time', '0');
 
-        ($this->import)($upload->tmpName);
-        $this->buildFactory->new()->all();
+                ($this->import)($upload->tmpName);
+                $this->buildFactory->new('echo')->all();
 
-        ini_set('max_execution_time', $old);
-
-        return Payload::success();
+                ini_set('max_execution_time', $old);
+            },
+        ]);
     }
 }

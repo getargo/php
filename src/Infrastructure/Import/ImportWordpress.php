@@ -55,7 +55,7 @@ class ImportWordpress
         }
 
         if ($this->storage->exists($id)) {
-            $this->log->info("SKIP {$id} (already exists)");
+            $this->log->echo("SKIP {$id} (already exists)");
             return;
         }
 
@@ -85,7 +85,7 @@ class ImportWordpress
 
         $body = (string) $content->encoded;
 
-        $this->log->info("save {$id}");
+        $this->log->echo("save {$id}");
         $repo = "{$type}s";
         $this->content->$repo->save($item, $body);
 
@@ -159,7 +159,7 @@ class ImportWordpress
             $data = $this->fileGetContents($remote);
 
             if ($data === false) {
-                $this->log->info("FAIL image {$remote}");
+                $this->log->echo("FAIL image {$remote}");
                 continue;
             }
 
@@ -170,7 +170,7 @@ class ImportWordpress
             $file = $this->storage->path($local);
 
             file_put_contents($file, $data);
-            $this->log->info('save image ' . $local);
+            $this->log->echo('save image ' . $local);
             return;
         }
     }

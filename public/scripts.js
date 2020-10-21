@@ -33,23 +33,45 @@ function xhrSubmit(method, form, action) {
         }
     }
 
-    /** @todo disable the form or gray the screen while working */
+    let failure = document.getElementById("submit-failure");
+    if (failure) {
+        failure.innerHTML = "";
+    }
 
     document.body.style.cursor = "wait";
-    document.getElementById("submit-failure").innerHTML = "";
-    var xhr = new XMLHttpRequest();
+
+    let xhr = new XMLHttpRequest();
     xhr.open(method, action);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.send(new FormData(form));
-    xhr.onload = function() {
-        document.body.style.cursor = "default";
-        // alert(xhr.status);
-        // alert(xhr.getResponseHeader("X-Argo-Forward"));
-        // alert(xhr.response);
-        if (xhr.status < 400) {
-            window.location.href = xhr.getResponseHeader("X-Argo-Forward");
-        } else {
-            document.getElementById("submit-failure").innerHTML = xhr.response;
+
+    let element = document.getElementById('submit-stream');
+    if (element) {
+        xhr.onprogress = function (event) {
+            if (xhr.status === 200) {
+                let text = event.currentTarget.responseText;
+                element.innerHTML = text;
+            }
         }
-    };
+
+        xhr.onload = function () {
+            document.body.style.cursor = "default";
+        }
+    } else {
+        /** @todo disable the form or gray the screen while working */
+
+        xhr.onload = function () {
+            document.body.style.cursor = "default";
+
+            // alert(xhr.status);
+            // alert(xhr.getResponseHeader("X-Argo-Forward"));
+            // alert(xhr.response);
+
+            if (xhr.status < 400) {
+                window.location.href = xhr.getResponseHeader("X-Argo-Forward");
+            } else if (failure) {
+                failure.innerHTML = xhr.response;
+            }
+        };
+    }
 }
