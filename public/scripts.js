@@ -33,9 +33,9 @@ function xhrSubmit(method, form, action) {
         }
     }
 
-    let failure = document.getElementById("submit-failure");
-    if (failure) {
-        failure.innerHTML = "";
+    let submitFailure = document.getElementById("submit-failure");
+    if (submitFailure) {
+        submitFailure.innerHTML = "";
     }
 
     document.body.style.cursor = "wait";
@@ -43,14 +43,14 @@ function xhrSubmit(method, form, action) {
     let xhr = new XMLHttpRequest();
     xhr.open(method, action);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-    xhr.send(new FormData(form));
 
-    let element = document.getElementById('submit-stream');
-    if (element) {
+    let submitStream = document.getElementById('submit-stream');
+    if (submitStream) {
+        submitStream.innerHTML = "";
+
         xhr.onprogress = function (event) {
             if (xhr.status === 200) {
-                let text = event.currentTarget.responseText;
-                element.innerHTML = text;
+                submitStream.innerHTML = event.currentTarget.responseText;
             }
         }
 
@@ -69,9 +69,11 @@ function xhrSubmit(method, form, action) {
 
             if (xhr.status < 400) {
                 window.location.href = xhr.getResponseHeader("X-Argo-Forward");
-            } else if (failure) {
-                failure.innerHTML = xhr.response;
+            } else if (submitFailure) {
+                submitFailure.innerHTML = xhr.response;
             }
         };
     }
+
+    xhr.send(new FormData(form));
 }

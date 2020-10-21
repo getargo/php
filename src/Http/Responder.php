@@ -105,6 +105,7 @@ class Responder
                 break;
 
             case Status::PROCESSING:
+                $response->setHeader('Content-Type', 'text/plain');
                 $response->setCode(200);
                 $response->setContent($result->callable);
                 break;
@@ -130,6 +131,7 @@ class Responder
         ?string $layoutTemplate = null
     ) : void
     {
+        $response->setHeader('Content-Type', 'text/html');
         $this->view->setData($payload->getResult());
         $this->view->setView($viewTemplate);
         $this->view->setLayout($layoutTemplate);
