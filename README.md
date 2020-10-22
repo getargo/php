@@ -51,4 +51,4 @@ To update the Argo code, change to the `argo-php` directory, then issue
 
 ## Getting Started
 
-Watch this video.
+Watch this 5-minute video: <https://vimeo.com/471028569>
