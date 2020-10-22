@@ -1,6 +1,7 @@
 {
     "name": "getargo/php",
     "type": "project",
+    "description": "The core PHP code for Argo.",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
