@@ -40,6 +40,6 @@ class ImportTest extends \Argo\UseCase\TestCase
         );
 
         $payload = $this->invoke($upload);
-        $this->assertSuccess($payload);
+        $this->assertProcessing($payload);
     }
 }

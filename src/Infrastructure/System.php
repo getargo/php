@@ -33,7 +33,7 @@ class System
         pclose($handle);
     }
 
-    public function open(string $file) : string
+    public function open(string $file) : void
     {
         $cmd = $this->call(__FUNCTION__, $file);
         $this->exec($cmd);
