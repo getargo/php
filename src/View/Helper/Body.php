@@ -17,7 +17,7 @@ class Body
         $this->storage = $storage;
     }
 
-    public function __invoke(Item $item) : string
+    public function __invoke(Item $item, string $base = '') : string
     {
         $body = $this->storage->read($item->getBodyFile());
 
@@ -31,10 +31,10 @@ class Body
         $convert = new $class();
         $html = $convert->toHtml($body);
 
-        return $this->expandImgSrc($item, $html);
+        return $this->expandImgSrc($item, $html, $base);
     }
 
-    protected function expandImgSrc(Item $item, string $html) : string
+    protected function expandImgSrc(Item $item, string $html, string $base) : string
     {
         $doc = new DomDocument();
         $doc->formatOutput = true;
@@ -54,13 +54,15 @@ class Body
                 continue;
             }
 
+            $href = $base . $item->href;
+
             if (substr($src->nodeValue, 0, 2) === './') {
-                $src->nodeValue = $item->href . substr($src->nodeValue, 2);
+                $src->nodeValue = $href . substr($src->nodeValue, 2);
                 continue;
             }
 
             if (substr($src->nodeValue, 0, 1) !== '/') {
-                $src->nodeValue = $item->href . $src->nodeValue;
+                $src->nodeValue = $href . $src->nodeValue;
                 continue;
             }
         }

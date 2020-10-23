@@ -81,4 +81,4 @@ use Argo\Http\Action\Draft\Publish\PostDraftPublish;
 <hr />
 
 <h2><?= $this->draft->title ?? '---' ?></h2>
-<?= $this->body($this->draft); ?>
+<?= $this->body($this->draft, 'http://127.0.0.1:8081'); ?>
