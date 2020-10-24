@@ -31,6 +31,20 @@ use Argo\Http\Action\Draft\Publish\PostDraftPublish;
         </tr>
 
         <tr>
+            <th align="right" valign="top">Markup</th>
+            <td><?= $this->input([
+                'type' => 'select',
+                'name' => 'markup',
+                'value' => $this->draft->markup,
+                'options' => [
+                    'html' => 'HTML',
+                    'markdown' => 'Markdown',
+                    'wordpress' => 'WordPress',
+                ],
+            ]); ?></td>
+        </tr>
+
+        <tr>
             <th align="right" valign="top">Tags</th>
             <td><?= $this->input([
                 'type' => 'text',

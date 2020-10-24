@@ -31,6 +31,20 @@ use Argo\Http\Action\Post\PostPost;
         </tr>
 
         <tr>
+            <th align="right" valign="top">Markup</th>
+            <td><?= $this->input([
+                'type' => 'select',
+                'name' => 'markup',
+                'value' => $this->post->markup,
+                'options' => [
+                    'html' => 'HTML',
+                    'markdown' => 'Markdown',
+                    'wordpress' => 'WordPress',
+                ],
+            ]); ?></td>
+        </tr>
+
+        <tr>
             <th align="right" valign="top">Tags</th>
             <td><?= $this->input([
                 'type' => 'text',
@@ -75,4 +89,4 @@ use Argo\Http\Action\Post\PostPost;
 <hr />
 
 <h2><?= $this->post->title ?></h2>
-<?= $this->body($this->post); ?>
+<?= $this->body($this->post, 'http://127.0.0.1:8081'); ?>

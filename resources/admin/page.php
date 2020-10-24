@@ -31,6 +31,20 @@ use Argo\Http\Action\Page\PostPage;
         </tr>
 
         <tr>
+            <th align="right" valign="top">Markup</th>
+            <td><?= $this->input([
+                'type' => 'select',
+                'name' => 'markup',
+                'value' => $this->page->markup,
+                'options' => [
+                    'html' => 'HTML',
+                    'markdown' => 'Markdown',
+                    'wordpress' => 'WordPress',
+                ],
+            ]); ?></td>
+        </tr>
+
+        <tr>
             <th align="right" valign="top">Author</th>
             <td><?= $this->input([
                 'type' => 'text',
@@ -63,4 +77,4 @@ use Argo\Http\Action\Page\PostPage;
 <hr />
 
 <h2><?= $this->page->title ?></h2>
-<?= $this->body($this->page); ?>
+<?= $this->body($this->page, 'http://127.0.0.1:8081'); ?>

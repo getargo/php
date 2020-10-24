@@ -15,6 +15,7 @@ class PostTag extends Action
             $relId,
             [
                 'title' => $this->request->input['title'],
+                'markup' => $this->request->input['markup'] ?? 'markdown',
             ],
             $this->request->input['body'] ?? ''
         );

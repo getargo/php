@@ -30,6 +30,20 @@ use Argo\Http\Action\Tag\PostTag;
         </tr>
 
         <tr>
+            <th align="right" valign="top">Markup</th>
+            <td><?= $this->input([
+                'type' => 'select',
+                'name' => 'markup',
+                'value' => $this->tag->markup,
+                'options' => [
+                    'html' => 'HTML',
+                    'markdown' => 'Markdown',
+                    'wordpress' => 'WordPress',
+                ],
+            ]); ?></td>
+        </tr>
+
+        <tr>
             <th align="right" valign="top"></th>
             <td>
                 <?= $this->routeSubmit(
@@ -47,4 +61,4 @@ use Argo\Http\Action\Tag\PostTag;
 <hr />
 
 <h2><?= $this->tag->title ?></h2>
-<?= $this->body($this->tag); ?>
+<?= $this->body($this->tag, 'http://127.0.0.1:8081'); ?>
