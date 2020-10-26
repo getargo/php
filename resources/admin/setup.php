@@ -3,90 +3,176 @@ use Argo\Http\Action\Setup\PostSetup;
 
 $this->setLayout(null);
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Argo Setup</title>
-    <link rel="stylesheet" type="text/css" href="/style.css" />
-    <script src="/scripts.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <?= $this->title("Argo : Setup"); ?>
+
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.css">
+  <link rel="stylesheet" href="/dist/css/adminlte.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
+  <link rel="stylesheet" href="/style.css">
+
+  <script src="/scripts.js"></script>
+
 </head>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
 
-<h1>Welcome to Argo!</h1>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
 
-<p>
-    Setup is a breeze: just enter a few pieces of information, and your local
-    site will be working in no time!
-</p>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-lg-12">
+            <h1 class="m-0 text-dark">Welcome to Argo!</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
-<form onsubmit="return false;">
-    <div id="submit-failure"></div>
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
 
-    <table>
-        <tr align="left">
-            <th align="right">Folder Name</th>
-            <td><?= $this->input([
-                'type' => 'text',
-                'name' => 'name',
-                'value' => $this->name,
-                'attribs' => [
-                    'style' => 'width: 40em;',
-                ],
-            ]); ?></td>
-        </tr>
+            <p>
+                Setup is a breeze: just enter a few pieces of information, and your local
+                site will be working in no time!
+            </p>
 
-        <tr align="left">
-            <th align="right" valign="top">Blog Title</th>
-            <td><?= $this->input([
-                'type' => 'text',
-                'name' => 'title',
-                'value' => $this->title,
-                'attribs' => [
-                    'style' => 'width: 40em;',
-                ],
-            ]); ?></td>
-        </tr>
+            <form onsubmit="return false;">
+                <div class="row mb-1 align-items-start">
+                    <div class="col col-2 text-right">
+                        <label for="name">Folder Name</label>
+                    </div>
+                    <div class="col">
+                        <?= $this->input([
+                            'type' => 'text',
+                            'name' => 'name',
+                            'value' => '',
+                            'attribs' => [
+                                'class' => 'form-control',
+                            ],
+                        ]); ?>
+                    </div>
+                </div>
 
-        <tr>
-            <th align="right" valign="top">Blog Tagline</th>
-            <td><?= $this->input([
-                'type' => 'text',
-                'name' => 'tagline',
-                'value' => $this->tagline,
-                'attribs' => [
-                    'style' => 'width: 40em;',
-                ],
-            ]); ?></td>
-        </tr>
+                <div class="row mb-1 align-items-start">
+                    <div class="col col-2 text-right">
+                        <label for="title">Blog Title</label>
+                    </div>
+                    <div class="col">
+                        <?= $this->input([
+                            'type' => 'text',
+                            'name' => 'title',
+                            'value' => '',
+                            'attribs' => [
+                                'class' => 'form-control',
+                            ],
+                        ]); ?>
+                    </div>
+                </div>
 
-        <tr>
-            <th align="right" valign="top">Author Name</th>
-            <td><?= $this->input([
-                'type' => 'text',
-                'name' => 'author',
-                'value' => $this->author,
-                'attribs' => [
-                    'style' => 'width: 40em;',
-                ],
-            ]); ?></td>
-        </tr>
+                <div class="row mb-1 align-items-start">
+                    <div class="col col-2 text-right">
+                        <label for="tagline">Blog Tagline</label>
+                    </div>
+                    <div class="col">
+                        <?= $this->input([
+                            'type' => 'text',
+                            'name' => 'tagline',
+                            'value' => '',
+                            'attribs' => [
+                                'class' => 'form-control',
+                            ],
+                        ]); ?>
+                    </div>
+                </div>
 
-        <tr>
-            <th align="right" valign="top">Site URL</th>
-            <td><?= $this->input([
-                'type' => 'text',
-                'name' => 'url',
-                'value' => $this->url,
-                'attribs' => [
-                    'style' => 'width: 40em;',
-                ],
-            ]); ?></td>
-        </tr>
+                <div class="row mb-1 align-items-start">
+                    <div class="col col-2 text-right">
+                        <label for="author">Author Name</label>
+                    </div>
+                    <div class="col">
+                        <?= $this->input([
+                            'type' => 'text',
+                            'name' => 'author',
+                            'value' => $this->author,
+                            'attribs' => [
+                                'class' => 'form-control',
+                            ],
+                        ]); ?>
+                    </div>
+                </div>
 
-        <tr>
-            <th align="right" valign="top"></th>
-            <td><?= $this->routeSubmit(
-                'Get Started!',
-                PostSetup::CLASS
-            ); ?></td>
-        </tr>
-    </table>
-</form>
+                <div class="row mb-1 align-items-start">
+                    <div class="col col-2 text-right">
+                        <label for="url">Site URL</label>
+                    </div>
+                    <div class="col">
+                        <?= $this->input([
+                            'type' => 'text',
+                            'name' => 'url',
+                            'value' => '',
+                            'attribs' => [
+                                'class' => 'form-control',
+                            ],
+                        ]); ?>
+                    </div>
+                </div>
+
+                <div class="row mb-1 align-items-start">
+                    <div class="col col-2 text-right">
+                    </div>
+                    <div class="col">
+                        <?= $this->routeSubmit(
+                            'Create',
+                            PostSetup::CLASS
+                        ); ?>
+                        &nbsp;
+                        <span id="submit-failure"></span>
+                    </div>
+                </div>
+            </form>
+
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div><!-- /.content -->
+  </div><!-- /.content-wrapper -->
+
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      Keep your content cancel-resistant.
+    </div>
+    <!-- Default to the left -->
+    Copyright &copy; 2019-2020, Paul M. Jones. All rights reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap 4 -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>
