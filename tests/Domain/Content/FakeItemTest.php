@@ -26,7 +26,7 @@ class FakeItemTest extends \Argo\Domain\TestCase
     {
         return [
             ['', 'FakeItem ID cannot be blank'],
-            ['foo_bar/baz.dib', 'FakeItem ID uses invalid characters'],
+            ['foo_bar/baz.dib', 'FakeItem ID has invalid characters; use only a-z, 0-9, and dashes'],
             ['/foo/bar/', 'FakeItem ID cannot begin or end with slashes'],
             ['foo//bar', 'FakeItem ID cannot have contiguous slashes'],
             ['fake/foo/bar', 'FakeItem ID is not valid'],

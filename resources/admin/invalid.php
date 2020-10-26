@@ -1,1 +1,1 @@
-<pre><?= $this->escape()->html($this->invalid) ?></pre>
+<?= $this->escape()->html($this->invalid) ?>

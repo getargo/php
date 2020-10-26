@@ -1,46 +1,62 @@
 <?php
 use Argo\Http\Action\Tag\GetTag;
 use Argo\Http\Action\Tag\Add\PostTagAdd;
+
+$this->header = 'Tags';
 ?>
-<h1>Tags</h1>
+<div class="card card-outline">
+    <div class="card-body">
 
-<h2>Create New Tag</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->tags as $tag): ?>
+                <tr>
+                    <td><?= $this->escape()->html($tag->relId); ?></td>
+                    <td><?= $this->escape()->html($tag->title); ?></td>
+                    <td>
+                        <?= $this->anchorLocal($tag->href, 'View', ['target' => '_blank']); ?>
 
-<form onsubmit="return false;">
-    <p>
-        <label>Name: <?= $this->input([
-            'type' => 'text',
-            'name' => 'relId',
-            'value' => '',
-            'attribs' => [
-                'size' => 60,
-            ],
-        ]); ?></label>
+                        &nbsp;
 
-        <?= $this->routeSubmit(
-            'Create',
-            PostTagAdd::CLASS
-        ); ?>
-    </p>
+                        <?= $this->anchor(
+                            $this->route(GetTag::CLASS, $tag->relId),
+                            'Edit'
+                        ); ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    <div id="submit-failure"></div>
-</form>
+<div class="card card-outline">
+    <div class="card-body">
+        <form onsubmit="return false;">
+            <p>
+                <label>Create New Tag Named: <?= $this->input([
+                    'type' => 'text',
+                    'name' => 'relId',
+                    'value' => '',
+                    'attribs' => [
+                        'size' => 60,
+                    ],
+                ]); ?></label>
 
-<h3>Existing Tags</h3>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Title</th>
-        <th></th>
-    </tr>
-    <?php foreach ($this->tags as $tag): ?>
-    <tr valign="top">
-        <td><?= $this->escape()->html($tag->relId); ?></td>
-        <td><?= $this->escape()->html($tag->title); ?></td>
-        <td><?= $this->anchor(
-            $this->route(GetTag::CLASS, $tag->relId),
-            'Edit'
-        ); ?></td>
-    </tr>
-    <?php endforeach; ?>
-</table>
+                <?= $this->routeSubmit(
+                    'Create',
+                    PostTagAdd::CLASS
+                ); ?>
+            </p>
+
+            <div id="submit-failure"></div>
+        </form>
+    </div>
+</div>

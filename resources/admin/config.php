@@ -1,17 +1,26 @@
 <?php
 use Argo\Http\Action\Config\PostConfig;
+
+$this->header = ucfirst($this->name) . ' Config';
 ?>
-<h1>Config</h1>
-<h2><?= $this->escape()->html(ucfirst($this->name)); ?></h2>
 
-<form onsubmit="return false;">
-    <div id="submit-failure"></div>
+<div class="card card-outline">
+    <div class="card-body">
+        <form onsubmit="return false;">
+            <p><?= $this->input([
+                'type' => 'textarea',
+                'name' => 'text',
+                'value' => $this->text,
+                'attribs' => [
+                    'class' => 'form-control h-100',
+                    'style' => 'font-size: 85%;',
+                    'rows' => '18',
+                ],
+            ]); ?></p>
 
-    <p><?= $this->input([
-        'type' => 'textarea',
-        'name' => 'text',
-        'value' => $this->text,
-    ]); ?></p>
+            <p><?= $this->routeSubmit('Save', PostConfig::CLASS, $this->name); ?></p>
 
-    <p><?= $this->routeSubmit('Save', PostConfig::CLASS, $this->name); ?></p>
-</form>
+            <pre id="submit-failure"></pre>
+        </form>
+      </div>
+</div>

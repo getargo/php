@@ -61,13 +61,13 @@ class AddSite extends UseCase
 
         if ($name === '') {
             return Payload::invalid([
-                'invalid' => 'The site name may not be blank.'
+                'invalid' => 'The folder name may not be blank.'
             ]);
         }
 
         if (! preg_match('/^[a-z0-9-]+$/', $name)) {
             return Payload::invalid([
-                'invalid' => "The site name may use only a-z, 0-9, and dashes.",
+                'invalid' => "The folder name may use only a-z, 0-9, and dashes.",
             ]);
         }
 
@@ -75,7 +75,7 @@ class AddSite extends UseCase
 
         if (is_dir($docroot)) {
             return Payload::invalid([
-                'invalid' => "A site with the name '$name' already exists."
+                'invalid' => "A folder with the name '$name' already exists."
             ]);
         }
 

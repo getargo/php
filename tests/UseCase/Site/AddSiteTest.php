@@ -22,17 +22,17 @@ class AddSiteTest extends \Argo\UseCase\TestCase
     {
         $input = ['name' => '   '];
         $payload = $this->invoke($input);
-        $this->assertInvalid($payload, 'The site name may not be blank.');
+        $this->assertInvalid($payload, 'The folder name may not be blank.');
 
         $input['name'] = '!!!';
         $payload = $this->invoke($input);
-        $this->assertInvalid($payload, 'The site name may use only a-z, 0-9, and dashes.');
+        $this->assertInvalid($payload, 'The folder name may use only a-z, 0-9, and dashes.');
 
         mkdir($this->system->sitesDir() . '/argo-test-prior');
 
         $input['name'] = 'argo-test-prior';
         $payload = $this->invoke($input);
-        $this->assertInvalid($payload, "A site with the name 'argo-test-prior' already exists.");
+        $this->assertInvalid($payload, "A folder with the name 'argo-test-prior' already exists.");
 
         $input['name'] = 'argo-test';
 

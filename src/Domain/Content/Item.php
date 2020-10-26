@@ -21,7 +21,7 @@ abstract class Item implements JsonSerializable
         }
 
         if (! preg_match('/^[\/a-z0-9-]+$/', $id)) {
-            throw new Exception\InvalidData("{$type} ID uses invalid characters: {$id}");
+            throw new Exception\InvalidData("{$type} ID has invalid characters; use only a-z, 0-9, and dashes.");
         }
 
         if (trim($id, '/') !== $id) {

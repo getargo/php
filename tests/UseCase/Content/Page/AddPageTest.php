@@ -14,7 +14,7 @@ class AddPageTest extends \Argo\UseCase\TestCase
     public function testInvalid() : void
     {
         $payload = $this->invoke('!@#$');
-        $this->assertInvalid($payload, 'Page ID uses invalid characters: !@#$');
+        $this->assertInvalid($payload, 'Page ID has invalid characters; use only a-z, 0-9, and dashes.');
 
         $payload = $this->invoke('foo/bar/baz/dib');
         $this->assertInvalid(

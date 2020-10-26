@@ -1,32 +1,19 @@
 textarea {
-    width: 50em;
-    height: 25em;
-    font-family: "Menlo";
-    font-size: 90%;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-input {
-    font-size: 90%;
-}
-
-form {
-    margin: 0;
-    padding: 0;
+code {
+  color: black;
 }
 
 #process-stream {
-    width: 50em;
     overflow: wrap;
-    border: 2px black;
 }
 
 #submit-failure {
-    width: 50em;
     overflow: auto;
 }
 
 #submit-stream {
-    width: 50em;
     overflow: wrap;
-    border: 2px black;
 }

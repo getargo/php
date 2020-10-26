@@ -17,7 +17,7 @@ class AddTagTest extends \Argo\UseCase\TestCase
         $this->assertInvalid($payload, "Tag name cannot be blank.");
 
         $payload = $this->invoke('!@#$');
-        $this->assertInvalid($payload, 'Tag ID uses invalid characters: !@#$');
+        $this->assertInvalid($payload, 'Tag ID has invalid characters; use only a-z, 0-9, and dashes.');
 
         $payload = $this->invoke(' general ');
         $this->assertInvalid($payload, "Tag 'general' already exists.");

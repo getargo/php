@@ -1,64 +1,24 @@
 <?php
 use Argo\Http\Action\Tag\PostTag;
+
+$this->header = 'Tag';
 ?>
-<h1>Tag</h1>
-<h2><?= $this->escape()->html($this->tag->relId); ?></h2>
+<div class="card card-outline">
+    <div class="card-header">
+        <h4><?= $this->escape()->html($this->tag->relId); ?></h4>
+    </div>
+    <div class="card-body">
+        <?= $this->render('item', [
+            'item' => $this->tag,
+            'routeSubmitPost' => PostTag::CLASS,
+            // 'routeSubmitDelete' => DeleteTag::CLASS,
+        ]); ?>
+    </div>
+</div>
 
-<form onsubmit="return false;">
-    <div id="submit-failure"></div>
-
-    <table>
-        <tr>
-            <th align="right" valign="top">Title</th>
-            <td><?= $this->input([
-                'type' => 'text',
-                'name' => 'title',
-                'value' => $this->tag->title,
-                'attribs' => [
-                    'style' => 'width: 100%;',
-                ],
-            ]); ?></td>
-        </tr>
-
-        <tr>
-            <th align="right" valign="top">Body</th>
-            <td><?= $this->input([
-                'type' => 'textarea',
-                'name' => 'body',
-                'value' => $this->body,
-            ]); ?></td>
-        </tr>
-
-        <tr>
-            <th align="right" valign="top">Markup</th>
-            <td><?= $this->input([
-                'type' => 'select',
-                'name' => 'markup',
-                'value' => $this->tag->markup,
-                'options' => [
-                    'html' => 'HTML',
-                    'markdown' => 'Markdown',
-                    'wordpress' => 'WordPress',
-                ],
-            ]); ?></td>
-        </tr>
-
-        <tr>
-            <th align="right" valign="top"></th>
-            <td>
-                <?= $this->routeSubmit(
-                    'Save',
-                    PostTag::CLASS,
-                    $this->tag->relId
-                ); ?>
-
-                <?= $this->anchorOpenFolder($this->tag->id); ?>
-            </td>
-        </tr>
-    </table>
-</form>
-
-<hr />
-
-<h2><?= $this->tag->title ?></h2>
-<?= $this->body($this->tag, 'http://127.0.0.1:8081'); ?>
+<div class="card card-outline">
+    <div class="card-body">
+        <h4><?= $this->tag->title ?></h4>
+        <?= $this->body($this->tag, 'http://127.0.0.1:8081'); ?>
+    </div>
+</div>

@@ -15,7 +15,7 @@ class TagTest extends \Argo\Domain\TestCase
 
     public function testAssertIdException() : void
     {
-        $this->expectInvalidData('Tag ID uses invalid characters');
+        $this->expectInvalidData('Tag ID has invalid characters; use only a-z, 0-9, and dashes');
         Tag::assertId('foo space bar');
     }
 
