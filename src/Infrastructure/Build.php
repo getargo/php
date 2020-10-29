@@ -295,7 +295,7 @@ class Build
         $this->postIndexes();
     }
 
-    protected function post(Post $post) : void
+    public function post(Post $post) : void
     {
         $this->write("{$post->href}/index.html", 'post/index.html', [
             'post' => $post,
@@ -325,6 +325,21 @@ class Build
         ]);
 
         $this->tagsShtml();
+    }
+
+    public function trashedTag(Tag $tag, array $posts) : void
+    {
+        $this->tags();
+
+        if (empty($posts)) {
+            return;
+        }
+
+        foreach ($posts as $post) {
+            $this->post($post);
+        }
+
+        $this->postIndexes();
     }
 
     protected function tag(Tag $tag) : void

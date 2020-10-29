@@ -120,15 +120,12 @@ use Argo\Http\Action\Draft\Publish\PostDraftPublish;
 
             <?= $this->anchorOpenFolder($item->id); ?>
 
-            <?php if (isset($routeSubmitDelete)): ?>
-
             <span style="float: right;"><?= $this->routeSubmit(
                 'Trash',
                 $routeSubmitDelete,
                 $item->relId
             ); ?></span>
 
-            <?php endif; ?>
         </div>
     </div>
 </form>

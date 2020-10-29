@@ -1,5 +1,6 @@
 <?php
 use Argo\Http\Action\Tag\PostTag;
+use Argo\Http\Action\Tag\DeleteTag;
 
 $this->header = 'Tag';
 ?>
@@ -11,7 +12,7 @@ $this->header = 'Tag';
         <?= $this->render('item', [
             'item' => $this->tag,
             'routeSubmitPost' => PostTag::CLASS,
-            // 'routeSubmitDelete' => DeleteTag::CLASS,
+            'routeSubmitDelete' => DeleteTag::CLASS,
         ]); ?>
     </div>
 </div>
