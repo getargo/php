@@ -9,6 +9,13 @@ use Argo\Http\Action\Draft\Publish\PostDraftPublish;
 
     <div class="row mb-1 align-items-start">
         <div class="col col-1 text-right">
+            <label>URL</label>
+        </div>
+        <div class="col"><?= $this->escape()->html($item->href) ?></div>
+    </div>
+
+    <div class="row mb-1 align-items-start">
+        <div class="col col-1 text-right">
             <label for="title">Title</label>
         </div>
         <div class="col">
