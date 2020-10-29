@@ -24,19 +24,11 @@ class PostRepository extends ItemRepository
     public function getItems(?int $pageNum = null) : array
     {
         $perPage = $this->config->general->perPage;
-
         $metas = parent::getItems($pageNum);
 
         uasort($metas, function (Post $a, Post $b) {
             return $b->created <=> $a->created;
         });
-
-        $list = array_values($metas);
-
-        foreach ($list as $i => $meta) {
-            $meta->setPrev($list[$i - 1] ?? null);
-            $meta->setNext($list[$i + 1] ?? null);
-        }
 
         return $metas;
     }

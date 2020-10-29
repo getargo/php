@@ -24,25 +24,11 @@ class Post extends Item
         return "post/{$relId}";
     }
 
-    protected $prev;
-
-    protected $next;
-
     protected $lastUpdated;
 
     public function __construct(string $id, array $data = [])
     {
         parent::__construct($id, $data);
         $this->lastUpdated = end($this->data->updated);
-    }
-
-    public function setPrev(?Post $prev) : void
-    {
-        $this->prev = $prev;
-    }
-
-    public function setNext(?Post $next) : void
-    {
-        $this->next = $next;
     }
 }

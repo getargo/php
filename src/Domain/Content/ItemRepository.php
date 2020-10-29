@@ -96,8 +96,9 @@ abstract class ItemRepository
         }
 
         $class = $this->type;
-        $metas = [];
+        $items = [];
 
+        $prev = null;
         foreach ($this->glob() as $i => $file) {
             if ($first !== null && $i < $first) {
                 continue;
@@ -110,10 +111,18 @@ abstract class ItemRepository
             $id = $this->getIdFromFile($file);
             $text = $this->read($id, 'argo.json');
             $data = Json::decode($text, true);
-            $metas[$id] = new $class($id, $data);
+            $item = new $class($id, $data);
+            $item->setPrev($prev);
+
+            if ($prev !== null) {
+                $prev->setNext($item);
+            }
+
+            $items[$id] = $item;
+            $prev = $item;
         }
 
-        return $metas;
+        return $items;
     }
 
     public function trash(Item $item) : void

@@ -61,6 +61,10 @@ abstract class Item implements JsonSerializable
 
     protected $data;
 
+    protected $prev;
+
+    protected $next;
+
     public function __construct(string $id, array $data = [])
     {
         static::assertId($id);
@@ -180,6 +184,16 @@ abstract class Item implements JsonSerializable
         $encoded = Json::encode($this);
         $decoded = Json::decode($encoded, true);
         return Json::encode($decoded + $extra);
+    }
+
+    public function setPrev(?Item $prev) : void
+    {
+        $this->prev = $prev;
+    }
+
+    public function setNext(?Item $next) : void
+    {
+        $this->next = $next;
     }
 
     protected function getRelId() : string

@@ -16,10 +16,6 @@ class Tag extends Item
 
     protected $posts = [];
 
-    protected $prev;
-
-    protected $next;
-
     public function fill(array $data) : void
     {
         parent::fill($data);
@@ -29,15 +25,5 @@ class Tag extends Item
     public function attachPost(Post $post)
     {
         $this->posts[] = $post;
-    }
-
-    public function setPrev(?Tag $prev) : void
-    {
-        $this->prev = $prev;
-    }
-
-    public function setNext(?Tag $next) : void
-    {
-        $this->next = $next;
     }
 }

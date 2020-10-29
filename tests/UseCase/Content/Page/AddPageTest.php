@@ -42,6 +42,8 @@ class AddPageTest extends \Argo\UseCase\TestCase
                 ],
                 'markup' => 'markdown',
             ],
+            'prev' => null,
+            'next' => null,
         ];
         $this->assertEquals($expect, $actual);
 
@@ -65,6 +67,8 @@ class AddPageTest extends \Argo\UseCase\TestCase
                 ],
                 'markup' => 'markdown',
             ],
+            'prev' => null,
+            'next' => null,
         ];
         $this->assertEquals($expect, $actual);
     }

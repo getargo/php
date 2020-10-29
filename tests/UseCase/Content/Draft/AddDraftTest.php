@@ -33,6 +33,8 @@ class AddDraftTest extends \Argo\UseCase\TestCase
                 ],
                 'markup' => 'markdown',
             ],
+            'prev' => null,
+            'next' => null,
         ];
         $this->assertEquals($expect, $actual);
     }
@@ -59,6 +61,8 @@ class AddDraftTest extends \Argo\UseCase\TestCase
                 ],
                 'markup' => 'markdown',
             ],
+            'prev' => null,
+            'next' => null,
         ];
         $this->assertEquals($expect, $actual);
     }

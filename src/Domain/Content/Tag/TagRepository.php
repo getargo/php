@@ -44,12 +44,6 @@ class TagRepository extends ItemRepository
             }
         }
 
-        $list = array_values($tags);
-        foreach ($list as $i => $tag) {
-            $tag->setPrev($list[$i - 1] ?? null);
-            $tag->setNext($list[$i + 1] ?? null);
-        }
-
         return $tags;
     }
 }
