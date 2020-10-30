@@ -31,7 +31,7 @@
                             -->
                         </header>
                         <section class="Article__Body">
-                            <?= $this->body($post) ?>
+                            <?= $this->bodyLess($post) ?>
                         </section>
                     </div>
                 </article>

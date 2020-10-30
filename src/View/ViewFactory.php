@@ -51,6 +51,18 @@ class ViewFactory
             );
         });
 
+        $helpers->set('bodyLess', function () {
+            return new Helper\BodyLess(
+                $this->container->get(Storage::CLASS)
+            );
+        });
+
+        $helpers->set('bodyPreview', function () {
+            return new Helper\BodyPreview(
+                $this->container->get(Storage::CLASS)
+            );
+        });
+
         $helpers->set('dateTime', function () use ($helpers) {
             return new Helper\DateTime(
                 $helpers->get('escape'),

@@ -17,7 +17,7 @@ class Body
         $this->storage = $storage;
     }
 
-    public function __invoke(Item $item, string $base = '') : string
+    public function __invoke(Item $item) : string
     {
         $body = $this->storage->read($item->getBodyFile());
 
@@ -30,11 +30,27 @@ class Body
         $class = 'Argo\View\Helper\Body\\' . ucfirst($markup);
         $convert = new $class();
         $html = $convert->toHtml($body);
-
-        return $this->expandImgSrc($item, $html, $base);
+        $html = $this->expandImgSrc($item, $html);
+        $html = $this->retargetAnchor($item, $html);
+        $html = $this->moreOrLess($item, $html);
+        return $html;
     }
 
-    protected function expandImgSrc(Item $item, string $html, string $base) : string
+    protected function moreOrLess(Item $item, string $html) : string
+    {
+        $found = preg_match('/(.*)\n+\s*\<\!--\s*more\s*--\>\s*\n+(.*)/ms', $html, $matches);
+        if ($found) {
+            $html = $matches[1] . "\n\n<a id=\"more\"</a>\n\n" . $matches[2];
+        }
+        return $html;
+    }
+
+    protected function retargetAnchor(Item $item, string $html) : string
+    {
+        return $html;
+    }
+
+    protected function expandImgSrc(Item $item, string $html) : string
     {
         $doc = new DomDocument();
         $doc->formatOutput = true;
@@ -48,21 +64,19 @@ class Body
         $imgNodes = $xpath->query($query);
 
         foreach ($imgNodes as $imgNode) {
-            $src = $imgNode->attributes->getNamedItem('src');
+            $src = $imgNode->getAttribute('src');
 
-            if (strpos($src->nodeValue, '://') !== false) {
+            if (strpos($src, '://') !== false) {
                 continue;
             }
 
-            $href = $base . $item->href;
-
-            if (substr($src->nodeValue, 0, 2) === './') {
-                $src->nodeValue = $href . substr($src->nodeValue, 2);
+            if (substr($src, 0, 2) === './') {
+                $imgNode->setAttribute('src', $this->href($item->href, substr($src, 2)));
                 continue;
             }
 
-            if (substr($src->nodeValue, 0, 1) !== '/') {
-                $src->nodeValue = $href . $src->nodeValue;
+            if (substr($src, 0, 1) !== '/') {
+                $imgNode->setAttribute('src', $this->href($item->href, $src));
                 continue;
             }
         }
@@ -79,5 +93,10 @@ class Body
 
         // still may be whitespace all about
         return trim($html) . PHP_EOL;
+    }
+
+    protected function href(string $href, string $append) : string
+    {
+        return $href . $append;
     }
 }

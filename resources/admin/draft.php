@@ -17,6 +17,6 @@ $this->header = 'Draft';
 <div class="card card-outline">
     <div class="card-body">
         <h2><?= $this->draft->title ?? '---' ?></h2>
-        <?= $this->body($this->draft, 'http://127.0.0.1:8081'); ?>
+        <?= $this->bodyPreview($this->draft); ?>
     </div>
 </div>

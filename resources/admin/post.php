@@ -17,6 +17,6 @@ $this->header = 'Post';
 <div class="card card-outline">
     <div class="card-body">
         <h4><?= $this->post->title ?></h4>
-        <?= $this->body($this->post, 'http://127.0.0.1:8081'); ?>
+        <?= $this->bodyPreview($this->post); ?>
     </div>
 </div>

@@ -20,6 +20,6 @@ $this->header = 'Tag';
 <div class="card card-outline">
     <div class="card-body">
         <h4><?= $this->tag->title ?></h4>
-        <?= $this->body($this->tag, 'http://127.0.0.1:8081'); ?>
+        <?= $this->bodyPreview($this->tag); ?>
     </div>
 </div>
