@@ -71,12 +71,17 @@ class Body
             }
 
             if (substr($src, 0, 2) === './') {
-                $imgNode->setAttribute('src', $this->href($item->href, substr($src, 2)));
+                $imgNode->setAttribute('src', $this->href($item->href . substr($src, 2)));
+                continue;
+            }
+
+            if (substr($src, 0, 1) === '/') {
+                $imgNode->setAttribute('src', $this->href($src));
                 continue;
             }
 
             if (substr($src, 0, 1) !== '/') {
-                $imgNode->setAttribute('src', $this->href($item->href, $src));
+                $imgNode->setAttribute('src', $this->href($item->href . $src));
                 continue;
             }
         }
@@ -95,8 +100,8 @@ class Body
         return trim($html) . PHP_EOL;
     }
 
-    protected function href(string $href, string $append) : string
+    protected function href(string $href) : string
     {
-        return $href . $append;
+        return $href;
     }
 }

@@ -23,14 +23,13 @@ class PostRepository extends ItemRepository
 
     public function getItems(?int $pageNum = null) : array
     {
-        $perPage = $this->config->general->perPage;
-        $metas = parent::getItems($pageNum);
+        $items = parent::getItems($pageNum);
 
-        uasort($metas, function (Post $a, Post $b) {
+        uasort($items, function (Post $a, Post $b) {
             return $b->created <=> $a->created;
         });
 
-        return $metas;
+        return $items;
     }
 
     public function save(Item $post, string $body = null) : void

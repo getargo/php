@@ -77,9 +77,6 @@ class Build
         $this->configGateway->saveValues($this->config->admin);
     }
 
-    /**
-     * Build one already-published post in place.
-     */
     public function onePost(Post $post) : void
     {
         $post = $this->folio->posts[$post->id];
@@ -123,15 +120,9 @@ class Build
         //
         // this is a candidate for optimization:
         //
-        // - a new post should add only to the home index
-        //   to keep from having to rebuild all indexes,
-        //   even if it goes over the per-page limit;
+        // - a newly published post has to build all indexes
         //
-        // - an existing post should rebuild only its index;
-        //
-        // - a deleted post only needs to rebuild its index
-        //   (but note that deleting the last one for an index
-        //   needs to rebuild all indexes after that)
+        // - an existing post should rebuild only its own index
         //
         $this->postIndexes();
     }
@@ -163,7 +154,8 @@ class Build
         // and the share months html
         $this->monthsShtml();
 
-        // now all the post indexes.
+        // @todo a deleted post only needs to rebuild its own index
+        // and all others after that
         $this->postIndexes();
     }
 
@@ -295,7 +287,7 @@ class Build
         $this->postIndexes();
     }
 
-    public function post(Post $post) : void
+    protected function post(Post $post) : void
     {
         $this->write("{$post->href}/index.html", 'post/index.html', [
             'post' => $post,
