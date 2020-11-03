@@ -90,7 +90,7 @@ class System
         $sites = [];
 
         foreach ($dirs as $dir) {
-            $sites[basename(dirname($dir))] = dirname($dir);
+            $sites[basename(dirname($dir))] = dirname($dir) . '/';
         }
 
         return $sites;

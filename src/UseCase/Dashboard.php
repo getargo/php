@@ -33,7 +33,6 @@ class Dashboard extends UseCase
             'drafts' => $this->content->drafts->getItems(),
             'posts' => $this->content->posts->getItems(1, $this->config->general->perPage),
             'remote' => trim((string) $this->config->general->url),
-            'local' => $this->storage->path(),
         ]);
     }
 }

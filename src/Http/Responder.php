@@ -12,15 +12,16 @@ use SapiResponse;
 
 class Responder
 {
-    protected $view;
+    protected $viewFactory;
+
+    protected $storage;
 
     public function __construct(
         ViewFactory $viewFactory,
         Storage $storage
     ) {
-        $this->view = $viewFactory->new([
-            $storage->app('resources/admin'),
-        ]);
+        $this->viewFactory = $viewFactory;
+        $this->storage = $storage;
     }
 
     public function respond(
@@ -132,10 +133,14 @@ class Responder
     ) : void
     {
         $response->setHeader('Content-Type', 'text/html');
-        $this->view->setData($payload->getResult());
-        $this->view->setView($viewTemplate);
-        $this->view->setLayout($layoutTemplate);
-        $content = ($this->view)();
+        $view = $this->viewFactory->new([
+            $this->storage->app('resources/admin'),
+        ]);
+        $view->setData($payload->getResult());
+        $view->addData(['docroot' => $this->storage->path()]);
+        $view->setView($viewTemplate);
+        $view->setLayout($layoutTemplate);
+        $content = $view();
         $response->setContent($content);
     }
 }

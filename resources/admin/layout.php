@@ -122,8 +122,14 @@ use Argo\Http\Action\Sites\GetSites;
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-lg-12">
+          <div class="col-sm-6">
             <h1 class="m-0 text-dark"><?= $this->header ?? ''; ?></h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <p class="float-right"><?= $this->anchor(
+                "javascript:openFolder('{$this->docroot}');",
+                $this->docroot
+            ); ?></p>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

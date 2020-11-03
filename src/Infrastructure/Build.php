@@ -56,7 +56,9 @@ class Build
     {
         $start = microtime(true);
         $this->theme();
+        $this->index();
         $this->posts();
+        $this->postIndexes();
         $this->months();
         $this->tags();
         $this->blogrollShtml();
@@ -124,6 +126,7 @@ class Build
         //
         // - an existing post should rebuild only its own index
         //
+        $this->index();
         $this->postIndexes();
     }
 
@@ -156,6 +159,7 @@ class Build
 
         // @todo a deleted post only needs to rebuild its own index
         // and all others after that
+        $this->index();
         $this->postIndexes();
     }
 
@@ -188,7 +192,7 @@ class Build
             : (object) [
                 'title' => 'Newer Posts',
                 'href' => ($pageNum === 2
-                    ? '/'
+                    ? '/posts/'
                     : '/posts/' . ($pageNum - 1) . '/'
                 ),
             ];
@@ -206,7 +210,7 @@ class Build
         ];
 
         $file = ($pageNum == 1)
-            ? "/index.html"
+            ? "/posts/index.html"
             : "/posts/{$pageNum}/index.html";
 
         $this->write($file, 'index.html', [
@@ -217,7 +221,7 @@ class Build
         ]);
 
         if ($pageNum === 1) {
-            $this->write('/atom.xml', 'atom.xml', [
+            $this->write('/posts/atom.xml', 'atom.xml', [
                 'posts' => $posts,
             ]);
         }
@@ -278,13 +282,48 @@ class Build
         ]);
     }
 
+    protected function index() : void
+    {
+        $perPage = $this->config->general->perPage;
+
+        $chunks = array_chunk(
+            $this->folio->posts,
+            $perPage
+        );
+
+        $pages = count($chunks);
+
+        $prev = null;
+
+        $next = $pages == 1
+            ? null
+            : (object) [
+                'title' => 'Older Posts',
+                'href' => '/posts/2/',
+            ];
+
+        $item = (object) [
+            'prev' => $prev,
+            'next' => $next,
+        ];
+
+        $this->write('/index.html', 'index.html', [
+            'item' => $item,
+            'posts' => $chunks[0],
+            'hasAtom' => true,
+            'hasJson' => true,
+        ]);
+
+        $this->write('/atom.xml', 'atom.xml', [
+            'posts' => $chunks[0],
+        ]);
+    }
+
     protected function posts() : void
     {
         foreach ($this->folio->posts as $post) {
             $this->post($post);
         }
-
-        $this->postIndexes();
     }
 
     protected function post(Post $post) : void
@@ -331,6 +370,7 @@ class Build
             $this->post($post);
         }
 
+        $this->index();
         $this->postIndexes();
     }
 

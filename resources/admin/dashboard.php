@@ -29,11 +29,6 @@ $this->header = 'Dashboard';
             <div class="col"><?=
                 $this->anchorLocal('/', 'View Local', ['target' => '_blank']);
             ?></div>
-
-            <div class="col"><code><?= $this->anchor(
-                "javascript:openFolder('{$this->local}');",
-                $this->local
-            ); ?> </code></div>
         </div>
 
         <?php if ($this->remote !== ''): ?>
@@ -57,10 +52,6 @@ $this->header = 'Dashboard';
             <div class="col"><?=
                 $this->anchor($this->remote, 'View Remote', ['target' => '_blank']);
             ?></div>
-
-            <div class="col"><code><?=
-                $this->escape()->html($this->remote);
-            ?></code></div>
 
         </div>
 

@@ -21,7 +21,6 @@ class FetchSites extends UseCase
     {
         return Payload::found([
             'sites' => $this->system->sites(),
-            'docroot' => rtrim($this->system->docroot(), '/'),
             'author' => $this->system->whoami(),
         ]);
     }
