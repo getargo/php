@@ -56,7 +56,7 @@ class BuildFactory
             $this->log,
             $level,
             $this->viewFactory,
-            Folio::new($this->content, $this->dateTime)
+            Folio::new($this->config, $this->content, $this->dateTime)
         );
     }
 }

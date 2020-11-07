@@ -75,7 +75,7 @@ class PublishDraft extends UseCase
         $this->storage->move($draft->id, $post->id);
         $this->content->posts->save($post, null);
 
-        $this->buildFactory->new()->onePost($post);
+        $this->buildFactory->new()->onePost($post, true);
 
         return Payload::created(['item' => $post]);
     }

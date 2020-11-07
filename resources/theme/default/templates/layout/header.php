@@ -18,6 +18,7 @@
             </picture>
         </div>
         <!-- /Exclude markup -->
+
         <div class="SiteHeader__HeadingArea">
             <div class="SiteHeader__HeadingAreaInner">
                 <h1 class="SiteHeader__Heading"><?= $this->config->general->title ?></h1>

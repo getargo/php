@@ -1,4 +1,4 @@
-                <?php foreach ($this->posts as $post): ?>
+                <?php foreach ($this->postIndex->posts as $post): ?>
 
                 <!-- Repeating article content -->
 

@@ -5,7 +5,7 @@
     <link href="<?= $this->config->general->url ?>" />
     <updated><?= $this->dateTime()->html('now', DATE_ATOM) ?></updated>
 
-    <?php foreach ($this->posts as $post): ?>
+    <?php foreach ($this->postIndex->posts as $post): ?>
     <entry>
         <title><?= $post->title ?></title>
         <link href="<?= $this->config->general->url . $post->href ?>" />

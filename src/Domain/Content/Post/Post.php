@@ -24,11 +24,18 @@ class Post extends Item
         return "post/{$relId}";
     }
 
+    protected $postIndexKey;
+
     protected $lastUpdated;
 
     public function __construct(string $id, array $data = [])
     {
         parent::__construct($id, $data);
         $this->lastUpdated = end($this->data->updated);
+    }
+
+    public function setPostIndexKey(int $postIndexKey) : void
+    {
+        $this->postIndexKey = $postIndexKey;
     }
 }

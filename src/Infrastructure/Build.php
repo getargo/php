@@ -10,6 +10,7 @@ use Argo\Domain\Content\Folio;
 use Argo\Domain\Content\Month;
 use Argo\Domain\Content\Page\Page;
 use Argo\Domain\Content\Post\Post;
+use Argo\Domain\Content\PostIndex;
 use Argo\Domain\Content\Tag\Tag;
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
@@ -79,7 +80,7 @@ class Build
         $this->configGateway->saveValues($this->config->admin);
     }
 
-    public function onePost(Post $post) : void
+    public function onePost(Post $post, bool $new = true) : void
     {
         $post = $this->folio->posts[$post->id];
 
@@ -117,17 +118,23 @@ class Build
             $this->post($post->next);
         }
 
-        //
-        // build all the indexes.
-        //
-        // this is a candidate for optimization:
-        //
-        // - a newly published post has to build all indexes
-        //
-        // - an existing post should rebuild only its own index
-        //
-        $this->index();
-        $this->postIndexes();
+        // a newly published post has to build all indexes
+        if ($new) {
+            $this->index();
+            $this->postIndexes();
+            return;
+        }
+
+        // an existing post should rebuild only its own index, including
+        // the home index if it is the first one
+        $i = $post->postIndexKey;
+        if ($i === 0) {
+            $this->index();
+        }
+
+        $postIndex = $this->folio->postIndexes[$i];
+        $pageNum = $i + 1;
+        $this->postIndex($postIndex, "Posts ({$pageNum})", $pageNum === 1);
     }
 
     public function trashedPost(Post $post) : void
@@ -146,7 +153,7 @@ class Build
         if ($month !== null)  {
             $this->month($month);
         } else {
-            // unless it was the only remaining post in that month;
+            // ... unless it was the only remaining post in that month;
             // delete the month listing, and rebuild the listing of
             // all months.
             $sourceId = "posts/month/" . str_replace($ym, '-', '/');
@@ -171,58 +178,34 @@ class Build
 
     protected function postIndexes() : void
     {
-        $perPage = $this->config->general->perPage;
-
-        $chunks = array_chunk(
-            $this->folio->posts,
-            $perPage
-        );
-
-        $pages = count($chunks);
-
-        foreach ($chunks as $i => $posts) {
-            $this->postIndex($i + 1, $pages, $posts);
+        foreach ($this->folio->postIndexes as $i => $postIndex) {
+            $pageNum = $i + 1;
+            $this->postIndex($postIndex, "Posts ({$pageNum})", $pageNum === 1);
         }
     }
 
-    protected function postIndex(int $pageNum, int $pages, array $posts) : void
+    protected function postIndex(PostIndex $postIndex, string $title, bool $hasAtom) : void
     {
-        $prev = $pageNum === 1
-            ? null
-            : (object) [
-                'title' => 'Newer Posts',
-                'href' => ($pageNum === 2
-                    ? '/posts/'
-                    : '/posts/' . ($pageNum - 1) . '/'
-                ),
-            ];
+        $postIndex->setTitle($title);
 
-        $next = $pageNum === $pages
-            ? null
-            : (object) [
-                'title' => 'Older Posts',
-                'href' => '/posts/' . ($pageNum + 1) . '/',
-            ];
+        if ($postIndex->prev !== null) {
+            $postIndex->prev->setTitle('Newer Posts');
+        }
 
-        $item = (object) [
-            'prev' => $prev,
-            'next' => $next,
-        ];
+        if ($postIndex->next !== null) {
+            $postIndex->next->setTitle('Older Posts');
+        }
 
-        $file = ($pageNum == 1)
-            ? "/posts/index.html"
-            : "/posts/{$pageNum}/index.html";
-
-        $this->write($file, 'index.html', [
-            'item' => $item,
-            'posts' => $posts,
-            'hasAtom' => $pageNum == 1,
+        $this->write("{$postIndex->href}/index.html", 'posts/index.html', [
+            'item' => $postIndex,
+            'postIndex' => $postIndex,
+            'hasAtom' => $hasAtom,
             'hasJson' => true,
         ]);
 
-        if ($pageNum === 1) {
+        if ($hasAtom) {
             $this->write('/posts/atom.xml', 'atom.xml', [
-                'posts' => $posts,
+                'postIndex' => $postIndex,
             ]);
         }
     }
@@ -284,38 +267,23 @@ class Build
 
     protected function index() : void
     {
-        $perPage = $this->config->general->perPage;
+        $postIndex = new PostIndex($this->folio->postIndexes[0]->posts, '/');
+        $postIndex->setTitle('Home');
 
-        $chunks = array_chunk(
-            $this->folio->posts,
-            $perPage
-        );
-
-        $pages = count($chunks);
-
-        $prev = null;
-
-        $next = $pages == 1
-            ? null
-            : (object) [
-                'title' => 'Older Posts',
-                'href' => '/posts/2/',
-            ];
-
-        $item = (object) [
-            'prev' => $prev,
-            'next' => $next,
-        ];
+        if (isset($this->folio->postIndexes[1])) {
+            $postIndex->setNext($this->folio->postIndexes[1]);
+            $postIndex->next->setTitle('Older Posts');
+        }
 
         $this->write('/index.html', 'index.html', [
-            'item' => $item,
-            'posts' => $chunks[0],
+            'item' => $postIndex,
+            'postIndex' => $postIndex,
             'hasAtom' => true,
             'hasJson' => true,
         ]);
 
         $this->write('/atom.xml', 'atom.xml', [
-            'posts' => $chunks[0],
+            'postIndex' => $postIndex,
         ]);
     }
 

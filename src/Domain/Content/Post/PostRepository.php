@@ -29,6 +29,20 @@ class PostRepository extends ItemRepository
             return $b->created <=> $a->created;
         });
 
+        if ($pageNum === null) {
+            foreach ($items as $item) {
+                $item->setPostIndexKey($pageNum - 1);
+            }
+        } else {
+            $i = 0;
+            $perPage = $this->config->general->perPage;
+
+            foreach ($items as $item) {
+                $item->setPostIndexKey((int) ($i / $perPage));
+                $i += 1;
+            }
+        }
+
         return $items;
     }
 
