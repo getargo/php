@@ -57,13 +57,14 @@ class Build
     {
         $start = microtime(true);
         $this->theme();
+        $this->menuShtml();
+        $this->blogrollShtml();
+        $this->featuredShtml();
         $this->index();
-        $this->posts();
         $this->postIndexes();
+        $this->posts();
         $this->months();
         $this->tags();
-        $this->blogrollShtml();
-        $this->menuShtml();
         $this->pages();
         $time = number_format(microtime(true) - $start, 2);
 
@@ -249,6 +250,11 @@ class Build
     public function menuShtml() : void
     {
         $this->write('/menu.shtml', 'menu.shtml');
+    }
+
+    public function featuredShtml() : void
+    {
+        $this->write('/featured.shtml', 'featured.shtml');
     }
 
     public function monthsShtml() : void
@@ -452,7 +458,7 @@ class Build
         $isHtml = strrchr($id, '.') === '.html';
 
         if ($isHtml) {
-            $view->setLayout('layout/main');
+            $view->setLayout('layout/html');
         }
 
         // php seems to dump the entire buffer to output if there

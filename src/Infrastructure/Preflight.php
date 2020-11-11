@@ -109,6 +109,8 @@ class Preflight
 
         $this->config('blogroll', []);
 
+        $this->config('featured', []);
+
         $this->config('general', [
             'title' => '',
             'tagline' => '',

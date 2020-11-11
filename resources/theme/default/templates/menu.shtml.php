@@ -1,12 +1,9 @@
-
-            <?php foreach ($this->config->menu as $title => $href): ?>
-
-                <?= $this->anchor(
-                    $href,
-                    $title,
-                    [
-                        'class' => 'SiteNav__Item'
-                    ]
-                ); ?>
-
-            <?php endforeach; ?>
+<?php foreach ($this->config->menu as $title => $href): ?>
+    <li class="nav-item"><?= $this->anchorRaw(
+        $href,
+        $title,
+        [
+            'class' => 'nav-link'
+        ]
+    ); ?></li>
+<?php endforeach; ?>

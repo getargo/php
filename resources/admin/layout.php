@@ -93,6 +93,12 @@ use Argo\Http\Action\Sites\GetSites;
           </li>
 
           <li class="nav-item">
+            <a href="<?= $this->route(GetConfig::CLASS, 'featured'); ?>" class="nav-link">
+              <p>Featured Config</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="<?= $this->route(GetConfig::CLASS, 'sync'); ?>" class="nav-link">
               <p>Sync Config</p>
             </a>

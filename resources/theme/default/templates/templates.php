@@ -1,4 +1,3 @@
-<?php
-foreach ($__VARS__ as $name) {
+<?php foreach ($__VARS__ as $name) {
     echo $this->render($name);
 }

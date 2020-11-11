@@ -12,7 +12,7 @@ class BodyLess extends Body
         $found = preg_match('/(.*)\n+\s*\<\!--\s*more\s*--\>\s*\n+(.*)/ms', $html, $matches);
         if ($found) {
             $html = $matches[1];
-            $html .= "\n<span><a href=\"{$item->href}#more\">Read more</a></span>\n";
+            $html .= "\n<p class=\"read-more\"><a class=\"read-more\" href=\"{$item->href}#more\">Read more</a></p>\n";
         }
 
         return $html;
