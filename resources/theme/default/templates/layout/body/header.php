@@ -1,9 +1,9 @@
 <?php
 $style = '';
-if ($this->config->theme->layout_header_image) {
+if ($this->config->theme->layout_header_image ?? false) {
     $style .= "background-image: url('{$this->config->theme->layout_header_image}'); ";
 }
-if ($this->config->theme->layout_header_color) {
+if ($this->config->theme->layout_header_color ?? false) {
     $style .= "color: {$this->config->theme->layout_header_color}; ";
 }
 $style .= $this->config->theme->layout_header_style ?? '';
