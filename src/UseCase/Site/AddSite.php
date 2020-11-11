@@ -138,6 +138,21 @@ class AddSite extends UseCase
             Json::encode($this->general)
         );
 
+        file_put_contents(
+            "{$this->docroot}/_argo/theme.json",
+            Json::encode([
+                'layout_header_image' => "/theme/default/beach-sky.jpg",
+                'layout_header_color' => "white",
+                'layout_header_style' => '',
+                'layout_header_class' => '',
+                'sidebar' => [
+                    'widgets/search',
+                    'widgets/months',
+                    'widgets/tags',
+                ],
+            ])
+        );
+
         file_put_contents("{$this->docroot}/_argo/admin.json", Json::encode([
             'initialize' => true,
         ]));

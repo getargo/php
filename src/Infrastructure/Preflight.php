@@ -131,14 +131,6 @@ class Preflight
 
         $this->config('theme', [
             'name' => 'default',
-            'layout_header_img_src' => '/theme/default/img/bay-beach-blue.jpg',
-            'layout_header_img_alt' => $this->config->general->title,
-            'sidebar' => [
-                'widgets/search',
-                'widgets/months',
-                'widgets/tags',
-                'widgets/blogroll',
-            ],
         ]);
     }
 

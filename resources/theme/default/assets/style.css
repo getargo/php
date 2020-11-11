@@ -40,12 +40,10 @@ body>footer {
 
 body>header {
     background-color: #f7f7f7;
-    background-image: url("/theme/default/img/bay-beach-blue.jpg");
     background-position: center top;
     background-repeat: no-repeat;
-    background-size: 100%;
-    color: white;
-    height: 12rem;
+    background-size: cover;
+    color: #205d5f;
     margin: 0;
     padding: 1.5rem;
     text-align: center;
