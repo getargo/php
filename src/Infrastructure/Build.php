@@ -225,7 +225,7 @@ class Build
             $this->storage->app("resources/theme/{$name}/assets") => "theme/{$name}",
             $this->storage->path("_theme/default/assets") => "theme/default",
             $this->storage->path("_theme/{$name}/assets") => "theme/{$name}",
-            $this->storage->path("_theme/custom/assets") => "theme/custom",
+            $this->storage->path("_theme/{$name}-custom/assets") => "theme/{$name}-custom",
         ];
 
         foreach ($dirs as $sourceDir => $targetDir) {
@@ -447,7 +447,7 @@ class Build
         }
 
         $view = $this->viewFactory->new([
-            $this->storage->path("_theme/custom/templates"),
+            $this->storage->path("_theme/{$name}-custom/templates"),
             $this->storage->path("_theme/{$name}/templates"),
             $this->storage->app("resources/theme/{$name}/templates"),
             $this->storage->app("resources/theme/default/templates"),
