@@ -147,11 +147,19 @@ abstract class Item implements JsonSerializable
                 $tags = $data['tags'];
             }
 
-            foreach ($tags as &$tag) {
+            foreach ($tags as $key => $tag) {
                 $tag = trim($tag);
+
+                if ($tag === '') {
+                    unset($tags[$key]);
+                    continue;
+                }
+
                 if (! preg_match('/^[a-z0-9-]+$/', $tag)) {
                     throw new Exception\InvalidData("Tag '{$tag}' has invalid characters; use only a-z, 0-9, and dashes.");
                 }
+
+                $tags[$key] = $tag;
             }
 
             $this->data->tags = $tags;

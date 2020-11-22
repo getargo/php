@@ -16,6 +16,7 @@ class PostPage extends Action
             [
                 'title' => $this->request->input['title'] ?? null,
                 'author' => $this->request->input['author'] ?? null,
+                'tags' => $this->request->input['tags'] ?? null,
                 'markup' => $this->request->input['markup'] ?? 'markdown',
             ],
             $this->request->input['body'] ?? '',
