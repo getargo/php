@@ -8,7 +8,6 @@ use Argo\Domain\Storage;
 use Argo\Domain\DateTime as DateTimeFormat;
 use Aura\Html\HelperLocatorFactory;
 use Aura\View\TemplateRegistry;
-use Aura\View\View;
 use AutoRoute\Generator;
 use Capsule\Di\Container;
 use League\CommonMark\CommonMarkConverter;

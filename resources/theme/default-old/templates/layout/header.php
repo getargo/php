@@ -5,7 +5,7 @@
     -->
     <header class="SiteHeader SiteHeader--HasBackgroundImage">
 
-        <?= $this->render('templates', $this->config->theme->layout_header_prepend ?? []) ?>
+        <?= $this->renderAll($this->config->theme->layout_header_prepend ?? []) ?>
 
         <!-- Exclude all markup starting here if no background image -->
         <div class="SiteHeader__BackgroundImage">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <?= $this->render('templates', $this->config->theme->layout_header_append ?? []) ?>
+        <?= $this->renderAll($this->config->theme->layout_header_append ?? []) ?>
 
         <div class="SiteHeader__NavWrapper">
             <nav id="menu-widget" class="SiteNav">

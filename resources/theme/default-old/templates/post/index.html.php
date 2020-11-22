@@ -1,7 +1,7 @@
                 <article class="Article Article--HasMeta">
                     <aside class="Article__Meta">
 
-                        <?= $this->render('templates', $this->config->theme->post_meta_prepend ?? []) ?>
+                        <?= $this->renderAll($this->config->theme->post_meta_prepend ?? []) ?>
 
                         <div class="Article__MetaSmall"><?= $this->dateTime()->html($this->post->created, 'l') ?></div>
                         <div class="Article__MetaLarge"><?= $this->dateTime()->html($this->post->created, 'd') ?></div>
@@ -15,13 +15,13 @@
                             <?php endforeach; ?>
                         </div>
 
-                        <?= $this->render('templates', $this->config->theme->post_meta_append ?? []) ?>
+                        <?= $this->renderAll($this->config->theme->post_meta_append ?? []) ?>
 
                     </aside>
                     <div class="Article__Main">
                         <header class="Article__Header">
 
-                            <?= $this->render('templates', $this->config->theme->post_header_prepend ?? []) ?>
+                            <?= $this->renderAll($this->config->theme->post_header_prepend ?? []) ?>
 
                             <h1 class="Article__Heading"><?= $this->anchor(
                                 $this->post->href,
@@ -36,17 +36,17 @@
                             </h2>
                             -->
 
-                            <?= $this->render('templates', $this->config->theme->post_header_append ?? []) ?>
+                            <?= $this->renderAll($this->config->theme->post_header_append ?? []) ?>
 
                         </header>
                         <section class="Article__Body">
-                            <?= $this->render('templates', $this->config->theme->post_body_prepend ?? []) ?>
+                            <?= $this->renderAll($this->config->theme->post_body_prepend ?? []) ?>
                             <?= $this->body($this->post) ?>
-                            <?= $this->render('templates', $this->config->theme->post_body_append ?? []) ?>
+                            <?= $this->renderAll($this->config->theme->post_body_append ?? []) ?>
                         </section>
                         <footer class="Article__Footer">
-                            <?= $this->render('templates', $this->config->theme->post_footer_prepend ?? []) ?>
-                            <?= $this->render('templates', $this->config->theme->post_footer_append ?? []) ?>
+                            <?= $this->renderAll($this->config->theme->post_footer_prepend ?? []) ?>
+                            <?= $this->renderAll($this->config->theme->post_footer_append ?? []) ?>
                         </footer>
 
                         <?= $this->render('prevnext') ?>
