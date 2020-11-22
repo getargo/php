@@ -61,6 +61,9 @@ class AddPage extends UseCase
         $data = [
             'title' => Page::titleize($id),
             'author' => $this->config->general->author,
+            'tags' => [
+                'general',
+            ],
         ];
 
         $page = new Page($id, $data);
