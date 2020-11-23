@@ -5,14 +5,19 @@ namespace Argo\View;
 
 class View extends \Aura\View\View
 {
-    protected function renderAll(array $names, array $vars = [])
+    protected function penders(string $type) : string
     {
         $html = '';
 
-        foreach ($names as $name) {
-            $html .= $this->render($name, $vars);
+        foreach ($this->penders[$type] ?? [] as $name) {
+            $html .= $this->render("penders/{$type}/{$name}");
         }
 
         return $html;
+    }
+
+    protected function widget(string $name) : string
+    {
+        return $this->render("widgets/{$name}");
     }
 }

@@ -13,7 +13,7 @@ $class = $this->config->theme->layout_header_class ?? '';
 ?>
 
 <header class="<?= $class; ?>" style="<?= $style; ?>">
-    <?= $this->renderAll($this->config->theme->layout_header_prepend ?? []) ?>
+    <?= $this->penders('layout-header-prepend') ?>
 
     <h1><?= $this->anchorRaw('/', $this->config->general->title, [
         'style' => $color,
@@ -21,7 +21,7 @@ $class = $this->config->theme->layout_header_class ?? '';
 
     <p><?= $this->config->general->tagline; ?></p>
 
-    <?= $this->renderAll($this->config->theme->layout_header_append ?? []) ?>
+    <?= $this->penders('layout-header-append') ?>
 </header>
 
 <?= $this->render('layout/body/nav'); ?>

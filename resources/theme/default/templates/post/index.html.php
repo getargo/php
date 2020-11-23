@@ -1,6 +1,6 @@
 <article class="row">
     <aside class="col-3 text-right pt-1">
-        <?= $this->renderAll($this->config->theme->post_meta_prepend ?? []) ?>
+        <?= $this->penders('post-meta-prepend') ?>
 
         <time datetime="<?= $this->dateTime()->attr($this->post->created); ?>">
             <?= $this->dateTime()->html($this->post->created, 'l') ?><br />
@@ -14,22 +14,22 @@
             <li class="small"><?= $this->anchor($tag->href, $tag->title); ?></li>
         <?php endforeach; ?></ul>
 
-        <?= $this->renderAll($this->config->theme->post_meta_append ?? []) ?>
+        <?= $this->penders('post-meta-append') ?>
     </aside>
     <section class="col-9">
         <header>
-            <?= $this->renderAll($this->config->theme->post_header_prepend ?? []) ?>
+            <?= $this->penders('post-header-prepend') ?>
 
             <h2><?= $this->anchor(
                 $this->post->href,
                 $this->post->title
             ) ?></h2>
 
-            <?= $this->renderAll($this->config->theme->post_header_append ?? []) ?>
+            <?= $this->penders('post-header-append') ?>
         </header>
-        <?= $this->renderAll($this->config->theme->post_body_prepend ?? []) ?>
+        <?= $this->penders('post-body-prepend') ?>
         <?= $this->body($this->post); ?>
-        <?= $this->renderAll($this->config->theme->post_body_append ?? []) ?>
+        <?= $this->penders('post-body-append') ?>
     </section>
 </article>
 

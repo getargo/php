@@ -436,6 +436,7 @@ class Build
             'config' => $this->config,
             'hasAtom' => false,
             'hasJson' => false,
+            'penders' => $this->folio->penders,
         ];
 
         $id = str_replace('//', '/', $id);
