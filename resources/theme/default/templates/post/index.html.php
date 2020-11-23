@@ -8,7 +8,7 @@
             <?= $this->dateTime()->html($this->post->created, 'M Y') ?><br />
         </time>
 
-        <address rel="author"><?= $this->escape()->html($this->post->author) ?></p>
+        <address rel="author"><?= $this->escape()->html($this->post->author) ?></address>
 
         <ul class="list-unstyled"><?php foreach ($this->post->tags as $k => $tag): ?>
             <li class="small"><?= $this->anchor($tag->href, $tag->title); ?></li>
