@@ -275,7 +275,7 @@ class Build
 
     protected function index() : void
     {
-        $postIndex = new PostIndex($this->folio->postIndexes[0]->posts, '/');
+        $postIndex = new PostIndex($this->folio->postIndexes[0]->posts ?? [], '/');
         $postIndex->setTitle('Home');
 
         if (isset($this->folio->postIndexes[1])) {

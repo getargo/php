@@ -69,7 +69,11 @@ class PublishDraftTest extends \Argo\UseCase\TestCase
                     0 => $now,
                 ],
                 'markup' => 'markdown',
+                'tags' => [
+                    'general'
+                ],
             ],
+            'postIndexKey' => null,
         ];
         $this->assertEquals($expect, $actual);
     }
