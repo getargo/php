@@ -1,11 +1,11 @@
-                <article>
-                    <header>
+                <article class="TagArticle">
+                    <header class="ArticleHeader">
                         <h1><?= $this->anchor(
                             $this->tag->href,
                             $this->tag->title
                         ) ?></h1>
                     </header>
-                    <section>
+                    <section class="ArticleBody">
                         <?= $this->body($this->tag) ?>
 
                         <dl><?php foreach ($this->tag->posts as $post): ?>

@@ -141,14 +141,22 @@ class AddSite extends UseCase
         file_put_contents(
             "{$this->docroot}/_argo/theme.json",
             Json::encode([
-                'layout_header_image' => "/theme/default/beach-sky.jpg",
-                'layout_header_color' => "white",
-                'layout_header_style' => '',
-                'layout_header_class' => '',
+                'name' => 'default',
                 'sidebar' => [
-                    'widgets/search',
-                    'widgets/months',
-                    'widgets/tags',
+                    'search',
+                    'months',
+                    'tags',
+                ],
+                'style' => [
+                    "sans_serif_fonts" => "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif",
+                    "serif_fonts" => "Georgia, 'Times New Roman', Times, serif",
+                    "link_color" => "#438287",
+                    "link_color_hover" => "#205d5f",
+                    "header_font_color" => "white",
+                    "header_background_color" => "#f7f7f7",
+                    "header_background_image" => "url('/theme/default/beach-sky.jpg')",
+                    "footer_font_color" => "black",
+                    "footer_background_color" => "#f7f7f7"
                 ],
             ])
         );

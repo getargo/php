@@ -1,24 +1,7 @@
-<?php
-$image = $this->config->theme->layout_header_image ?? '';
-if ($image !== '') {
-    $image = "background-image: url('{$image}'); ";
-}
-
-$color = $this->config->theme->layout_header_color ?? '';
-if ($color !== '') {
-    $color = "color: {$this->config->theme->layout_header_color}; ";
-}
-$style = "{$image} {$color} " . ($this->config->theme->layout_header_style ?? '');
-$class = $this->config->theme->layout_header_class ?? '';
-?>
-
-<header class="<?= $class; ?>" style="<?= $style; ?>">
+<header class="Header">
     <?= $this->penders('layout-header-prepend') ?>
 
-    <h1><?= $this->anchorRaw('/', $this->config->general->title, [
-        'style' => $color,
-    ]); ?></h1>
-
+    <h1><?= $this->anchorRaw('/', $this->config->general->title); ?></h1>
     <p><?= $this->config->general->tagline; ?></p>
 
     <?= $this->penders('layout-header-append') ?>

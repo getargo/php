@@ -211,7 +211,7 @@ class Build
         }
     }
 
-    protected function theme() : void
+    public function theme() : void
     {
         $path = $this->storage->app('resources/theme/default');
 
@@ -240,6 +240,8 @@ class Build
             exec($cmd, $output);
             $this->log($output);
         }
+
+        $this->write("/theme/{$name}/style.css", "theme/style.css");
     }
 
     public function blogrollShtml() : void

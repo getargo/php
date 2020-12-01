@@ -51,6 +51,9 @@ class SaveConfig extends UseCase
             case 'blogroll':
                 $this->buildFactory->new()->blogrollShtml();
                 break;
+            case 'theme':
+                $this->buildFactory->new()->theme();
+                break;
             default:
                 // @todo: $this->config->admin->needsBuild = true;
                 break;

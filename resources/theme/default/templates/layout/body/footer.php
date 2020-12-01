@@ -1,4 +1,4 @@
-<footer class="p-4">
+<footer class="Footer p-4">
     <?= $this->penders('layout-footer-prepend'); ?>
     <p class="m-0 text-center">Built with <?= $this->anchor(
         'https://github.com/getargo/app',

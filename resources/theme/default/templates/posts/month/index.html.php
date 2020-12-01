@@ -1,11 +1,11 @@
-                <article>
-                    <header>
+                <article class="MonthArticle">
+                    <header class="ArticleHeader">
                         <h1><?= $this->anchor(
                             $this->month->href,
                             $this->month->title
                         ) ?></h1>
                     </header>
-                    <section>
+                    <section class="ArticleBody">
                         <dl><?php foreach ($this->month->posts as $post): ?>
 
                             <dt><?= $this->dateTime()->html($post->created, 'Y-m-d') ?></dt>

@@ -1,5 +1,5 @@
-<article class="row">
-    <aside class="col-3 text-right pt-1">
+<article class="PostArticle row">
+    <aside class="ArticleMeta col-3 text-right pt-1">
         <?= $this->penders('post-meta-prepend') ?>
 
         <time datetime="<?= $this->dateTime()->attr($this->post->created); ?>">
@@ -16,8 +16,8 @@
 
         <?= $this->penders('post-meta-append') ?>
     </aside>
-    <section class="col-9">
-        <header>
+    <div class="col-9">
+        <header class="ArticleHeader">
             <?= $this->penders('post-header-prepend') ?>
 
             <h2><?= $this->anchor(
@@ -27,10 +27,12 @@
 
             <?= $this->penders('post-header-append') ?>
         </header>
-        <?= $this->penders('post-body-prepend') ?>
-        <?= $this->body($this->post); ?>
-        <?= $this->penders('post-body-append') ?>
-    </section>
+        <section class="ArticleBody">
+            <?= $this->penders('post-body-prepend') ?>
+            <?= $this->body($this->post); ?>
+            <?= $this->penders('post-body-append') ?>
+        </section>
+    </div>
 </article>
 
 <div class="row">
