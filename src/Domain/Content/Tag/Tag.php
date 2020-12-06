@@ -16,6 +16,13 @@ class Tag extends Item
 
     protected $posts = [];
 
+    protected function fixData(array $data) : array
+    {
+        $data = parent::fixData($data);
+        unset($data['tags']);
+        return $data;
+    }
+
     public function fill(array $data) : void
     {
         parent::fill($data);

@@ -72,17 +72,20 @@ abstract class Item implements JsonSerializable
         $this->relId = $this->getRelId();
         $this->type = strtolower(substr(strrchr(static::CLASS, '\\'), 1));
         $this->href = "/{$id}/";
+        $this->data = (object) $this->fixData($data);
+        $this->fill($data);
+    }
 
-        $data += [
+    protected function fixData(array $data) : array
+    {
+        return $data += [
             'title' => null,
             'author' => null,
+            'tags' => [],
             'created' => null,
             'updated' => [],
             'markup' => 'markdown',
         ];
-
-        $this->data = (object) $data;
-        $this->fill($data);
     }
 
     public function __get(string $key)
