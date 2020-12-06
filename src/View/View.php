@@ -15,9 +15,4 @@ class View extends \Aura\View\View
 
         return $html;
     }
-
-    protected function widget(string $name) : string
-    {
-        return $this->render("widgets/{$name}");
-    }
 }

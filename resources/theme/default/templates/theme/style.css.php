@@ -37,6 +37,7 @@ body {
 
 code {
     color: black;
+    font-family: var(--monospace-fonts, monospace);
 }
 
 h1,
@@ -46,6 +47,10 @@ h4,
 h5,
 h6 {
     font-family: var(--sans-serif-fonts, sans-serif);
+}
+
+pre {
+    font-fmaily: var(--monospace-fonts, monospace);
 }
 
 .Header {

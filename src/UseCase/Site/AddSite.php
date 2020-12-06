@@ -150,9 +150,10 @@ class AddSite extends UseCase
                 'style' => [
                     "sans_serif_fonts" => "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif",
                     "serif_fonts" => "Georgia, 'Times New Roman', Times, serif",
+                    "monospace_fonts" => "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
                     "link_color" => "#438287",
                     "link_color_hover" => "#205d5f",
-                    "header_font_color" => "white",
+                    "header_font_color" => "black",
                     "header_background_color" => "#f7f7f7",
                     "header_background_image" => "url('/theme/default/beach-sky.jpg')",
                     "footer_font_color" => "black",

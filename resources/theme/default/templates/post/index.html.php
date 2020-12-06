@@ -10,7 +10,7 @@
 
         <address rel="author"><?= $this->escape()->html($this->post->author) ?></address>
 
-        <ul class="list-unstyled"><?php foreach ($this->post->tags as $k => $tag): ?>
+        <ul class="list-unstyled"><?php foreach ($this->post->tags as $tag): ?>
             <li class="small"><?= $this->anchor($tag->href, $tag->title); ?></li>
         <?php endforeach; ?></ul>
 

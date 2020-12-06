@@ -12,7 +12,7 @@ class Page extends Item
     {
         parent::assertId($id);
 
-        $invalid = ['author', 'authors', 'post', 'posts', 'tag', 'tags', 'theme'];
+        $invalid = ['author', 'authors', 'category', 'categories', 'post', 'posts', 'tag', 'tags', 'theme'];
         if (in_array($id, $invalid)) {
             throw new Exception\InvalidData("Page ID disallowed: {$id}");
         }
