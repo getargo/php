@@ -3,27 +3,13 @@ declare(strict_types=1);
 
 namespace Argo;
 
-use Argo\ContainerFactory;
 use Argo\Domain\Config\Config;
 use Argo\Domain\Config\ConfigGateway;
-use Argo\Domain\Config\Values\General;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\DateTime;
-use Argo\Domain\Exception;
-use Argo\Domain\FakeDateTime;
 use Argo\Domain\Json;
-use Argo\Domain\Log;
 use Argo\Domain\Storage;
-use Argo\Infrastructure\BuildFactory;
-use Argo\Infrastructure\FakeFsio;
-use Argo\Infrastructure\FakeLog;
-use Argo\Infrastructure\FakeServer;
-use Argo\Infrastructure\FakeSystem;
-use Argo\Infrastructure\Fsio;
-use Argo\Infrastructure\Server;
-use Argo\Infrastructure\Stdlog;
 use Argo\Infrastructure\System;
-use Capsule\Di\Definitions;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -52,16 +38,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->stdout = fopen('php://memory', 'w+');
         $this->stderr = fopen('php://memory', 'w+');
 
-        $this->container = ContainerFactory::new(function (Definitions $def) {
-            $def->object(DateTime::CLASS, FakeDateTime::CLASS);
-
-            $def->object(System::CLASS, FakeSystem::CLASS);
-
-            $def->object(Server::CLASS, FakeServer::CLASS);
-
-            $def->object(Log::CLASS, FakeLog::CLASS);
-        });
-
+        $this->container = TestContainerFactory::new();
         $this->dateTime = $this->container->get(DateTime::CLASS);
         $this->storage = $this->container->get(Storage::CLASS);
         $this->content = $this->container->get(ContentLocator::CLASS);

@@ -2,9 +2,9 @@
 
 This package uses [Romantic Versioning](http://blog.legacyteam.info/2015/12/romver-romantic-versioning/).
 
-ADD MONOSPACE FONT: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-
 REFIEW PREFLIGHT DIFF; CONSIDER ADDING STYLE BLOCK.
+
+How to manage transition of existing users across new "default"? Tell them to change theme name from default to default-old.
 
 ## 1.2.0
 

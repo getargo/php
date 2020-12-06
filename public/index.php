@@ -4,11 +4,11 @@ ini_set('display_errors', 'stderr');
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-use Argo\ContainerFactory;
+use Argo\Http\HttpContainerFactory;
 use Argo\Infrastructure\Preflight;
 use AutoRoute\Router;
 
-$container = ContainerFactory::new();
+$container = HttpContainerFactory::new();
 $request = $container->get(SapiRequest::CLASS);
 $preflight = $container->get(Preflight::CLASS);
 $redirect = $preflight($request->url['path']);
