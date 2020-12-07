@@ -46,6 +46,7 @@ class FakeItemTest extends \Argo\Domain\TestCase
             'created' => null,
             'updated' => [],
             'markup' => 'markdown',
+            'tags' => [],
         ]);
         $this->assertEquals($expect, $fake->data);
     }
@@ -133,6 +134,7 @@ class FakeItemTest extends \Argo\Domain\TestCase
             'created' => null,
             'updated' => [],
             'markup' => 'markdown',
+            'tags' => [],
         ];
         $this->assertEquals((object) $data, $fake->data);
 
@@ -180,6 +182,7 @@ class FakeItemTest extends \Argo\Domain\TestCase
             'relId' => 'foo',
             'title' => 'Title Title',
             'author' => null,
+            'tags' => [],
             'created' => null,
             'updated' => [],
             'markup' => 'markdown',
@@ -199,6 +202,7 @@ class FakeItemTest extends \Argo\Domain\TestCase
             'relId' => 'foo',
             'title' => 'Title Title',
             'author' => null,
+            'tags' => [],
             'created' => null,
             'updated' => [],
             'markup' => 'markdown',
