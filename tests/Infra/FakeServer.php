@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Infrastructure;
+namespace Argo\Infra;
 
 class FakeServer extends Server
 {

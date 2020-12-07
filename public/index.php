@@ -5,7 +5,7 @@ ini_set('display_errors', 'stderr');
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 use Argo\Http\HttpContainerFactory;
-use Argo\Infrastructure\Preflight;
+use Argo\Infra\Preflight;
 use AutoRoute\Router;
 
 $container = HttpContainerFactory::new();

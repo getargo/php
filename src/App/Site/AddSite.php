@@ -6,8 +6,8 @@ namespace Argo\App\Site;
 use Argo\Domain\Content\Post\Post;
 use Argo\Domain\DateTime;
 use Argo\Domain\Json;
-use Argo\Infrastructure\Server;
-use Argo\Infrastructure\System;
+use Argo\Infra\Server;
+use Argo\Infra\System;
 use Argo\App\Payload;
 use Argo\App\UseCase;
 

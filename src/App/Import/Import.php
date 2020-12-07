@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Argo\App\Import;
 
-use Argo\Infrastructure\BuildFactory;
-use Argo\Infrastructure\Import\ImportWordpress;
+use Argo\Infra\BuildFactory;
+use Argo\Infra\Import\ImportWordpress;
 use Argo\App\Payload;
 use Argo\App\UseCase;
 use SapiUpload;

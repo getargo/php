@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\App\Site;
 
-use Argo\Infrastructure\System;
+use Argo\Infra\System;
 
 class SyncSiteTest extends \Argo\App\TestCase
 {

@@ -6,7 +6,7 @@ namespace Argo\App\Content\Post;
 use Argo\Domain\Config\Config;
 use Argo\Domain\DateTime;
 use Argo\Domain\Content\ContentLocator;
-use Argo\Infrastructure\BuildFactory;
+use Argo\Infra\BuildFactory;
 use Argo\App\Payload;
 use Argo\App\UseCase;
 

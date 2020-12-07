@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Infrastructure;
+namespace Argo\Infra;
 
 use Argo\Domain\Config\Config;
 use Argo\Domain\Config\ConfigGateway;
@@ -12,7 +12,7 @@ use Capsule\Di\Container;
 use Capsule\Di\Definitions;
 use Capsule\Di\Lazy;
 
-class InfrastructureContainerFactory extends DomainContainerFactory
+class InfraContainerFactory extends DomainContainerFactory
 {
     static protected function define() : Definitions
     {

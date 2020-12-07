@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\App\Content\Tag;
 
 use Argo\Domain\Content\ContentLocator;
-use Argo\Infrastructure\BuildFactory;
+use Argo\Infra\BuildFactory;
 use Argo\App\Payload;
 use Argo\App\UseCase;
 

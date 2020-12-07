@@ -5,9 +5,9 @@ namespace Argo\App;
 
 use Argo\Domain\FakeDateTime;
 use Argo\Domain\Json;
-use Argo\Infrastructure\BuildFactory;
-use Argo\Infrastructure\Preflight;
-use Argo\Infrastructure\System;
+use Argo\Infra\BuildFactory;
+use Argo\Infra\Preflight;
+use Argo\Infra\System;
 
 abstract class TestCase extends \Argo\TestCase
 {

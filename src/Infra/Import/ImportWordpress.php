@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Infrastructure\Import;
+namespace Argo\Infra\Import;
 
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\Log;

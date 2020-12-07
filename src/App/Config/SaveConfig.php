@@ -6,7 +6,7 @@ namespace Argo\App\Config;
 use Argo\Domain\Config\Config;
 use Argo\Domain\Config\ConfigGateway;
 use Argo\Domain\Json;
-use Argo\Infrastructure\BuildFactory;
+use Argo\Infra\BuildFactory;
 use Argo\App\Payload;
 use Argo\App\UseCase;
 

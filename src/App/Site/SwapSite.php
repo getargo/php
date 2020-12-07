@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Argo\App\Site;
 
-use Argo\Infrastructure\System;
-use Argo\Infrastructure\Server;
+use Argo\Infra\System;
+use Argo\Infra\Server;
 use Argo\App\Payload;
 use Argo\App\UseCase;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\App;
 
 use Argo\Domain\Storage;
-use Argo\Infrastructure\System;
+use Argo\Infra\System;
 use Argo\App\Payload;
 use Argo\App\UseCase;
 

@@ -9,7 +9,7 @@ use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\DateTime;
 use Argo\Domain\Json;
 use Argo\Domain\Storage;
-use Argo\Infrastructure\System;
+use Argo\Infra\System;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {

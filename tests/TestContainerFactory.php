@@ -7,11 +7,11 @@ use Argo\App\AppContainerFactory;
 use Argo\Domain\DateTime;
 use Argo\Domain\FakeDateTime;
 use Argo\Domain\Log;
-use Argo\Infrastructure\FakeLog;
-use Argo\Infrastructure\FakeServer;
-use Argo\Infrastructure\FakeSystem;
-use Argo\Infrastructure\Server;
-use Argo\Infrastructure\System;
+use Argo\Infra\FakeLog;
+use Argo\Infra\FakeServer;
+use Argo\Infra\FakeSystem;
+use Argo\Infra\Server;
+use Argo\Infra\System;
 use Capsule\Di\Container;
 use Capsule\Di\Definitions;
 

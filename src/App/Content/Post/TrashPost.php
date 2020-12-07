@@ -6,7 +6,7 @@ namespace Argo\App\Content\Post;
 use Argo\Domain\Content\ContentLocator;
 use Argo\App\Payload;
 use Argo\App\UseCase;
-use Argo\Infrastructure\BuildFactory;
+use Argo\Infra\BuildFactory;
 
 class TrashPost extends UseCase
 {

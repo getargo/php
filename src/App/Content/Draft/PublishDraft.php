@@ -10,7 +10,7 @@ use Argo\Domain\Content\Post\Post;
 use Argo\Domain\DateTime;
 use Argo\Domain\Exception;
 use Argo\Domain\Storage;
-use Argo\Infrastructure\BuildFactory;
+use Argo\Infra\BuildFactory;
 use Argo\App\Payload;
 use Argo\App\UseCase;
 

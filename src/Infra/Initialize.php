@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Infrastructure;
+namespace Argo\Infra;
 
 use Argo\Domain\Config\Config;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\Content\Post\Post;
 use Argo\Domain\DateTime;
 use Argo\Domain\Storage;
-use Argo\Infrastructure\BuildFactory;
+use Argo\Infra\BuildFactory;
 
 class Initialize
 {

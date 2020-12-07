@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\App\Content\Post;
 
 use Argo\Domain\Content\Post\Post;
-use Argo\Infrastructure\BuildFactory;
+use Argo\Infra\BuildFactory;
 
 class FetchPostsTest extends \Argo\App\TestCase
 {

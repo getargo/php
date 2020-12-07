@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\App\Site;
 
-use Argo\Infrastructure\Sync;
+use Argo\Infra\Sync;
 use Argo\App\Payload;
 use Argo\App\UseCase;
 

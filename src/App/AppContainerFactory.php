@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Argo\App;
 
-use Argo\Infrastructure\InfrastructureContainerFactory;
+use Argo\Infra\InfraContainerFactory;
 use Capsule\Di\Definitions;
 
-class AppContainerFactory extends InfrastructureContainerFactory
+class AppContainerFactory extends InfraContainerFactory
 {
     static protected function define() : Definitions
     {

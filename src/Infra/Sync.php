@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Infrastructure;
+namespace Argo\Infra;
 
 use Argo\Domain\Config\Config;
 use Argo\Domain\Config\Values\Sync as SyncValues;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
-use Argo\Infrastructure\System;
+use Argo\Infra\System;
 
 class Sync
 {
