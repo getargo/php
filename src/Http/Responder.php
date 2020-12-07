@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Argo\Http;
 
 use Argo\Domain\Storage;
-use Argo\UseCase\Payload;
-use Argo\UseCase\Status;
+use Argo\App\Payload;
+use Argo\App\Status;
 use Argo\View\ViewFactory;
 use SapiRequest;
 use SapiResponse;

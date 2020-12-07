@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http;
 
-use Argo\Infrastructure\InfrastructureContainerFactory;
+use Argo\App\AppContainerFactory;
 use AutoRoute\AutoRoute;
 use AutoRoute\Generator;
 use AutoRoute\Router;
@@ -11,7 +11,7 @@ use Capsule\Di\Container;
 use Capsule\Di\Definitions;
 use SapiRequest;
 
-class HttpContainerFactory extends InfrastructureContainerFactory
+class HttpContainerFactory extends AppContainerFactory
 {
     static protected function define() : Definitions
     {

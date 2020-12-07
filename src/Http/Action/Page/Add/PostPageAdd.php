@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Page\Add;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Page\AddPage;
+use Argo\App\Content\Page\AddPage;
 
 class PostPageAdd extends Action
 {

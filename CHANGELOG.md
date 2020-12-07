@@ -4,7 +4,7 @@ This package uses [Romantic Versioning](http://blog.legacyteam.info/2015/12/romv
 
 ## 1.2.0
 
-### IMPORTANT
+### UPGRADING
 
 This release has an entirely new "default" theme; the previous one is now called "default-old".
 

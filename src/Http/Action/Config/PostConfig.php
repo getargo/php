@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Config;
 
 use Argo\Http\Action;
-use Argo\UseCase\Config\SaveConfig;
+use Argo\App\Config\SaveConfig;
 
 class PostConfig extends Action
 {

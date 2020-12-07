@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Post;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Post\SavePost;
+use Argo\App\Content\Post\SavePost;
 
 class PostPost extends Action
 {

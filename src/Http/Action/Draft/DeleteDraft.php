@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Draft;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Draft\TrashDraft;
+use Argo\App\Content\Draft\TrashDraft;
 
 class DeleteDraft extends Action
 {

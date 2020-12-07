@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Tag;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Tag\TrashTag;
+use Argo\App\Content\Tag\TrashTag;
 
 class DeleteTag extends Action
 {

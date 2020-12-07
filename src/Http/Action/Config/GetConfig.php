@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Config;
 
 use Argo\Http\Action;
-use Argo\UseCase\Config\FetchConfig;
+use Argo\App\Config\FetchConfig;
 
 class GetConfig extends Action
 {

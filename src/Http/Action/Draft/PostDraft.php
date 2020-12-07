@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Draft;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Draft\SaveDraft;
+use Argo\App\Content\Draft\SaveDraft;
 
 /**
  * this should probably be `PATCH /draft/$relId`

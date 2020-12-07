@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Draft\Add;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Draft\AddDraft;
+use Argo\App\Content\Draft\AddDraft;
 
 class PostDraftAdd extends Action
 {

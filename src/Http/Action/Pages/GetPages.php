@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Pages;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Page\FetchPages;
+use Argo\App\Content\Page\FetchPages;
 
 class GetPages extends Action
 {

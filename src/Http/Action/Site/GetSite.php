@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Site;
 
 use Argo\Http\Action;
-use Argo\UseCase\Payload;
-use Argo\UseCase\Site\SwapSite;
+use Argo\App\Payload;
+use Argo\App\Site\SwapSite;
 
 class GetSite extends Action
 {

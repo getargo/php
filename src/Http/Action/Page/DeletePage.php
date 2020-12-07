@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Page;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Page\TrashPage;
+use Argo\App\Content\Page\TrashPage;
 
 class DeletePage extends Action
 {

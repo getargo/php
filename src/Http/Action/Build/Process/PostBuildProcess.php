@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Build\Process;
 
 use Argo\Http\Action;
-use Argo\UseCase\Site\BuildSite;
+use Argo\App\Site\BuildSite;
 
 class PostBuildProcess extends Action
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Post;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Post\TrashPost;
+use Argo\App\Content\Post\TrashPost;
 
 class DeletePost extends Action
 {

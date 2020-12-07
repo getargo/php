@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Import;
 
 use Argo\Http\Action;
-use Argo\UseCase\Payload;
-use Argo\UseCase\Import\Import;
+use Argo\App\Payload;
+use Argo\App\Import\Import;
 
 class PostImport extends Action
 {

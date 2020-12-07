@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Tag\Add;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Tag\AddTag;
+use Argo\App\Content\Tag\AddTag;
 
 class PostTagAdd extends Action
 {

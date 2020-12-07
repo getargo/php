@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Page;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Page\SavePage;
+use Argo\App\Content\Page\SavePage;
 
 class PostPage extends Action
 {

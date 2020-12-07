@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Draft;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Draft\FetchDraft;
+use Argo\App\Content\Draft\FetchDraft;
 
 class GetDraft extends Action
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Build;
 
 use Argo\Http\Action;
-use Argo\UseCase\Payload;
+use Argo\App\Payload;
 
 class GetBuild extends Action
 {

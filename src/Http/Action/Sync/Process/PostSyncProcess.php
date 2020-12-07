@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Sync\Process;
 
 use Argo\Http\Action;
-use Argo\UseCase\Site\SyncSite;
+use Argo\App\Site\SyncSite;
 
 class PostSyncProcess extends Action
 {

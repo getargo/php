@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Tags;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Tag\FetchTags;
+use Argo\App\Content\Tag\FetchTags;
 
 class GetTags extends Action
 {

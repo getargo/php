@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Draft\Publish;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Draft\PublishDraft;
+use Argo\App\Content\Draft\PublishDraft;
 
 class PostDraftPublish extends Action
 {

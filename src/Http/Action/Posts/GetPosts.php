@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Posts;
 
 use Argo\Http\Action;
-use Argo\UseCase\Content\Post\FetchPosts;
+use Argo\App\Content\Post\FetchPosts;
 
 class GetPosts extends Action
 {
