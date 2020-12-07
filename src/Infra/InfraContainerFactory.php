@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\Config\Config;
-use Argo\Domain\Config\ConfigGateway;
 use Argo\Domain\DomainContainerFactory;
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
@@ -25,12 +23,6 @@ class InfraContainerFactory extends DomainContainerFactory
                 'docroot',
                 Lazy::getCall(System::CLASS, 'docroot')
             );
-
-        $def->object(Config::CLASS)
-            ->factory(function (Container $container) {
-                $configGateway = $container->get(ConfigGateway::CLASS);
-                return $configGateway->getConfig();
-            });
 
         return $def;
     }
