@@ -3,15 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Page;
 
-use Argo\Http\Action;
 use Argo\App\Content\Page\TrashPage;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class DeletePage extends Action
 {
-    public function __invoke(string ...$idParts)
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        TrashPage $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke(string ...$idParts) : SapiResponse
     {
-        $domain = $this->container->new(TrashPage::CLASS);
-        $payload = $domain($this->implode($idParts));
-        return $this->responder->respond($this->request, $payload);
+        $payload = $this->domain($this->implode($idParts));
+        return $this->response($this->request, $payload);
     }
 }

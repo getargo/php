@@ -3,16 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Setup;
 
-use Argo\Http\Action;
-use Argo\App\Payload;
 use Argo\App\Site\AddSite;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class GetSetup extends Action
 {
-    public function __invoke()
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        AddSite $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke() : SapiResponse
     {
-        $domain = $this->container->get(AddSite::CLASS);
-        $payload = $domain();
-        return $this->responder->respond($this->request, $payload);
+        $payload = $this->domain();
+        return $this->response($this->request, $payload);
     }
 }

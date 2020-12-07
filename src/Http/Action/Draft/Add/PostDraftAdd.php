@@ -3,15 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Draft\Add;
 
-use Argo\Http\Action;
 use Argo\App\Content\Draft\AddDraft;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class PostDraftAdd extends Action
 {
-    public function __invoke()
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        AddDraft $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke() : SapiResponse
     {
-        $domain = $this->container->new(AddDraft::CLASS);
-        $payload = $domain($this->request->input['title'] ?? 'Untitled');
-        return $this->responder->respond($this->request, $payload);
+        $payload = $this->domain($this->request->input['title'] ?? 'Untitled');
+        return $this->response($this->request, $payload);
     }
 }

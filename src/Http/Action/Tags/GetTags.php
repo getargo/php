@@ -3,15 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Tags;
 
-use Argo\Http\Action;
 use Argo\App\Content\Tag\FetchTags;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class GetTags extends Action
 {
-    public function __invoke()
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        FetchTags $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke() : SapiResponse
     {
-        $domain = $this->container->new(FetchTags::CLASS);
-        $payload = $domain();
-        return $this->responder->respond($this->request, $payload);
+        $payload = $this->domain();
+        return $this->response($this->request, $payload);
     }
 }

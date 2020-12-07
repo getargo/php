@@ -3,15 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Sync\Process;
 
-use Argo\Http\Action;
 use Argo\App\Site\SyncSite;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class PostSyncProcess extends Action
 {
-    public function __invoke()
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        SyncSite $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke() : SapiResponse
     {
-        $domain = $this->container->new(SyncSite::CLASS);
-        $payload = $domain();
-        return $this->responder->respond($this->request, $payload);
+        $payload = $this->domain();
+        return $this->response($this->request, $payload);
     }
 }

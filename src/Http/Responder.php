@@ -26,13 +26,9 @@ class Responder
 
     public function respond(
         SapiRequest $request,
-        Payload $payload = null
+        Payload $payload
     ) : SapiResponse
     {
-        if ($payload === null) {
-            $payload = Payload::found();
-        }
-
         $response = new SapiResponse();
         $response->setHeader('Access-Control-Allow-Origin', '*');
 

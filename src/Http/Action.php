@@ -3,25 +3,44 @@ declare(strict_types=1);
 
 namespace Argo\Http;
 
-use Capsule\Di\Container;
+use Argo\App\Payload;
+use Argo\App\UseCase;
 use SapiRequest;
+use SapiResponse;
 
 abstract class Action
 {
-    protected $container;
-
     protected $request;
 
     protected $responder;
 
+    protected $domain;
+
     public function __construct(
-        Container $container,
         SapiRequest $request,
-        Responder $responder
+        Responder $responder,
+        ?UseCase $domain = null
     ) {
-        $this->container = $container;
         $this->request = $request;
         $this->responder = $responder;
+        $this->domain = $domain;
+    }
+
+    protected function domain(...$args) : Payload
+    {
+        return $this->domain->__invoke(...$args);
+    }
+
+    protected function response(
+        SapiRequest $request,
+        Payload $payload = null
+    ) : SapiResponse
+    {
+        if ($payload === null) {
+            $payload = Payload::found();
+        }
+
+        return $this->responder->respond($request, $payload);
     }
 
     protected function implode(array $parts) : string

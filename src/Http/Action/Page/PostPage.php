@@ -3,15 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Page;
 
-use Argo\Http\Action;
 use Argo\App\Content\Page\SavePage;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class PostPage extends Action
 {
-    public function __invoke(string ...$idParts)
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        SavePage $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke(string ...$idParts) : SapiResponse
     {
-        $domain = $this->container->new(SavePage::CLASS);
-        $payload = $domain(
+        $payload = $this->domain(
             $this->implode($idParts),
             [
                 'title' => $this->request->input['title'] ?? null,
@@ -22,6 +32,6 @@ class PostPage extends Action
             $this->request->input['body'] ?? '',
         );
 
-        return $this->responder->respond($this->request, $payload);
+        return $this->response($this->request, $payload);
     }
 }

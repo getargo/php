@@ -3,18 +3,28 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Draft;
 
-use Argo\Http\Action;
 use Argo\App\Content\Draft\SaveDraft;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 /**
  * this should probably be `PATCH /draft/$relId`
  */
 class PostDraft extends Action
 {
-    public function __invoke(string $relId)
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        SaveDraft $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke(string $relId) : SapiResponse
     {
-        $domain = $this->container->new(SaveDraft::CLASS);
-        $payload = $domain(
+        $payload = $this->domain(
             $relId,
             [
                 'title' => $this->request->input['title'] ?? null,
@@ -24,6 +34,6 @@ class PostDraft extends Action
             ],
             $this->request->input['body'] ?? '',
         );
-        return $this->responder->respond($this->request, $payload);
+        return $this->response($this->request, $payload);
     }
 }

@@ -3,15 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Config;
 
-use Argo\Http\Action;
 use Argo\App\Config\FetchConfig;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class GetConfig extends Action
 {
-    public function __invoke(string $name)
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        FetchConfig $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke(string $name) : SapiResponse
     {
-        $domain = $this->container->new(FetchConfig::CLASS);
-        $payload = $domain($name);
-        return $this->responder->respond($this->request, $payload);
+        $payload = $this->domain($name);
+        return $this->response($this->request, $payload);
     }
 }

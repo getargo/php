@@ -3,15 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Folder;
 
-use Argo\Http\Action;
 use Argo\App\OpenFolder;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class GetFolder extends Action
 {
-    public function __invoke(string ...$idParts)
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        OpenFolder $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke(string ...$idParts) : SapiResponse
     {
-        $domain = $this->container->new(OpenFolder::CLASS);
-        $payload = $domain($this->implode($idParts));
-        return $this->responder->respond($this->request, $payload);
+        $payload = $this->domain($this->implode($idParts));
+        return $this->response($this->request, $payload);
     }
 }

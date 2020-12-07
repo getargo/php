@@ -3,16 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Site;
 
-use Argo\Http\Action;
-use Argo\App\Payload;
 use Argo\App\Site\SwapSite;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class GetSite extends Action
 {
-    public function __invoke(string $name)
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        SwapSite $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke(string $name) : SapiResponse
     {
-        $domain = $this->container->get(SwapSite::CLASS);
-        $payload = $domain($name);
-        return $this->responder->respond($this->request, $payload);
+        $payload = $this->domain($name);
+        return $this->response($this->request, $payload);
     }
 }

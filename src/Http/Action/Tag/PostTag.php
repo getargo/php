@@ -3,15 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Tag;
 
-use Argo\Http\Action;
 use Argo\App\Content\Tag\SaveTag;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class PostTag extends Action
 {
-    public function __invoke(string $relId)
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        SaveTag $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
+
+    public function __invoke(string $relId) : SapiResponse
     {
-        $domain = $this->container->new(SaveTag::CLASS);
-        $payload = $domain(
+        $payload = $this->domain(
             $relId,
             [
                 'title' => $this->request->input['title'],
@@ -19,6 +29,6 @@ class PostTag extends Action
             ],
             $this->request->input['body'] ?? ''
         );
-        return $this->responder->respond($this->request, $payload);
+        return $this->response($this->request, $payload);
     }
 }

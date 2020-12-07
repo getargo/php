@@ -3,16 +3,26 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Post;
 
-use Argo\Http\Action;
 use Argo\App\Content\Post\SavePost;
+use Argo\Http\Action;
+use Argo\Http\Responder;
+use SapiRequest;
+use SapiResponse;
 
 class PostPost extends Action
 {
-    public function __invoke(string ...$relId)
-    {
-        $domain = $this->container->new(SavePost::CLASS);
+    public function __construct(
+        SapiRequest $request,
+        Responder $responder,
+        SavePost $domain
+    ) {
+        parent::__construct($request, $responder, $domain);
+    }
 
-        $payload = $domain(
+    public function __invoke(string ...$relId) : SapiResponse
+    {
+
+        $payload = $this->domain(
             $this->implode($relId),
             [
                 'title' => $this->request->input['title'] ?? null,
@@ -23,6 +33,6 @@ class PostPost extends Action
             $this->request->input['body'] ?? ''
         );
 
-        return $this->responder->respond($this->request, $payload);
+        return $this->response($this->request, $payload);
     }
 }
