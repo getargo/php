@@ -14,7 +14,7 @@ class GetDraft extends Action
     public function __construct(
         SapiRequest $request,
         Responder $responder,
-        GetDraft $domain
+        FetchDraft $domain
     ) {
         parent::__construct($request, $responder, $domain);
     }
