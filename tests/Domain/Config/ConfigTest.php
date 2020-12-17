@@ -3,13 +3,11 @@ declare(strict_types=1);
 
 namespace Argo\Domain\Config;
 
-use Argo\Domain\Config\Values\Fake;
-
 class ConfigTest extends \Argo\Domain\TestCase
 {
     public function test__magic()
     {
-        $fake = new Fake();
+        $fake = new Values('_argo/fake');
 
         $config = new Config([
             'fake' => $fake,
@@ -23,7 +21,7 @@ class ConfigTest extends \Argo\Domain\TestCase
 
     public function testAssertValues()
     {
-        $this->expectDomainException('Not an instance of Argo\Domain\Config\Values\Values');
+        $this->expectDomainException('Not an instance of Argo\Domain\Config\Values');
         $config = new Config([
             'fake' => null,
         ]);

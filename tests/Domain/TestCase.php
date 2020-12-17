@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Domain;
 
-use Argo\Domain\Config\Values\General;
+use Argo\Domain\Config\Values;
 
 abstract class TestCase extends \Argo\TestCase
 {
@@ -11,10 +11,13 @@ abstract class TestCase extends \Argo\TestCase
     {
         parent::setUp();
 
-        $this->config->general = new General((object) [
-            'perPage' => 10,
-            'author' => 'boshag',
-        ]);
+        $this->config->general = new Values(
+            '_argo/general',
+            (object) [
+                'perPage' => 10,
+                'author' => 'boshag',
+            ]
+        );
     }
 
     protected function expectDomainException(string $message) : void

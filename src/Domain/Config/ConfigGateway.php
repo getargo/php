@@ -5,7 +5,6 @@ namespace Argo\Domain\Config;
 
 use Argo\Domain\Json;
 use Argo\Domain\Storage;
-use Argo\Domain\Config\Values\Values;
 
 class ConfigGateway
 {
@@ -20,13 +19,23 @@ class ConfigGateway
     {
         $instances = [];
         $files = $this->storage->glob('_argo/*.json');
+
         foreach ($files as $file) {
             $file = basename($file);
             $name = substr($file, 0, strpos(basename($file), '.'));
-            $text = $this->storage->read("_argo/{$name}.json");
+            $id = "_argo/{$name}";
+            $text = $this->storage->read("{$id}.json");
             $data = Json::decode($text);
-            $instances[$name] = $this->newValues($name, $data);
+            $instances[$name] = $this->newValues($id, $data);
         }
+
+        // theme config is a special case, since there may be more than one
+        // file, but only one is ever active at a time.
+        $theme = $instances['general']->theme ?? 'bootstrap4';
+        $id = "_argo/theme/{$theme}";
+        $text = $this->storage->read("{$id}.json") ?? '{}';
+        $data = Json::decode($text);
+        $instances['theme'] = $this->newValues($id, $data);
 
         return $this->newConfig($instances);
     }
@@ -36,17 +45,16 @@ class ConfigGateway
         return new Config($instances);
     }
 
-    public function newValues(string $name, object $data) : Values
+    public function newValues(string $id, object $data) : Values
     {
-        $class = 'Argo\Domain\Config\Values\\' . ucfirst($name);
-        return new $class($data);
+        return new Values($id, $data);
     }
 
     public function saveValues(Values $values) : void
     {
-        $name = strtolower(substr(strrchr(get_class($values), '\\'), 1));
+        $id = $values->getId();
         $data = $values->getData();
         $text = Json::encode($data);
-        $this->storage->write("_argo/{$name}.json", $text);
+        $this->storage->write("{$id}.json", $text);
     }
 }

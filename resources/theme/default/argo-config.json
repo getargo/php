@@ -1,0 +1,10 @@
+{
+    "sidebar": [
+        "widgets/search",
+        "widgets/blogroll",
+        "widgets/months",
+        "widgets/tags"
+    ],
+    "layout_header_img_src": "/theme/original/img/bay-beach-blue.jpg",
+    "layout_header_img_alt": ""
+}

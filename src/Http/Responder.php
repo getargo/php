@@ -111,8 +111,12 @@ class Responder
         return $response;
     }
 
-    protected function getViewTemplate(SapiRequest $request)
+    protected function getViewTemplate(SapiRequest $request) : string
     {
+        if ($request->method === 'HEAD') {
+            return '';
+        }
+
         $path = trim($request->url['path'], '/');
         if (trim($path) === '') {
             return 'dashboard';
@@ -128,9 +132,13 @@ class Responder
         ?string $layoutTemplate = null
     ) : void
     {
+        if ($viewTemplate === '') {
+            return;
+        }
+
         $response->setHeader('Content-Type', 'text/html');
         $view = $this->viewFactory->new([
-            $this->storage->app('resources/admin'),
+            dirname(__DIR__, 2) . '/resources/admin',
         ]);
         $view->setData($payload->getResult());
         $view->addData(['docroot' => $this->storage->path()]);

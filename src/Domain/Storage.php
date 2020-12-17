@@ -5,8 +5,6 @@ namespace Argo\Domain;
 
 interface Storage
 {
-    public function app(string $id) : string;
-
     public function path(string $id = '') : string;
 
     public function glob(string $pattern) : array;
@@ -22,4 +20,6 @@ interface Storage
     public function trash(string $sourceId) : bool;
 
     public function exists(string $id) : bool;
+
+    public function copy(string $sourceDir, string $targetId) : void;
 }

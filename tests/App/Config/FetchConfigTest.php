@@ -35,6 +35,7 @@ class FetchConfigTest extends \Argo\App\TestCase
             'url' => 'http://example.com',
             'timezone' => 'UTC',
             'perPage' => 10,
+            'theme' => 'bootstrap4',
         ];
 
         $this->assertJsonEquals($expect, $result['text']);

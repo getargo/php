@@ -1,43 +1,56 @@
-<article class="PostArticle row">
-    <aside class="ArticleMeta col-3 text-right pt-1">
-        <?= $this->penders('post-meta-prepend') ?>
+                <article class="Article Article--HasMeta">
+                    <aside class="Article__Meta">
 
-        <time datetime="<?= $this->dateTime()->attr($this->post->created); ?>">
-            <?= $this->dateTime()->html($this->post->created, 'l') ?><br />
-            <span class="display-4"><?= $this->dateTime()->html($this->post->created, 'd') ?></span><br />
-            <?= $this->dateTime()->html($this->post->created, 'M Y') ?><br />
-        </time>
+                        <?= $this->render('templates', $this->config->theme->post_meta_prepend ?? []) ?>
 
-        <address rel="author"><?= $this->escape()->html($this->post->author) ?></address>
+                        <div class="Article__MetaSmall"><?= $this->dateTime()->html($this->post->created, 'l') ?></div>
+                        <div class="Article__MetaLarge"><?= $this->dateTime()->html($this->post->created, 'd') ?></div>
+                        <div class="Article__MetaSmall"><?= $this->dateTime()->html($this->post->created, 'F Y') ?></div>
+                        <div class="Article__MetaSmall"><?= $this->escape()->html($this->post->author) ?></div>
+                        <div class="Article__MetaSmall">
+                            <?php foreach ($this->post->tags as $k => $tag): ?>
+                                <?php if (isset($tag->href) && isset($tag->title)): ?>
+                                    <?= $this->anchor($tag->href, $tag->title) . ($k + 1 < count($this->post->tags) ? ', ' : '') ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </div>
 
-        <ul class="list-unstyled"><?php foreach ($this->post->tags as $tag): ?>
-            <li class="small"><?= $this->anchor($tag->href, $tag->title); ?></li>
-        <?php endforeach; ?></ul>
+                        <?= $this->render('templates', $this->config->theme->post_meta_append ?? []) ?>
 
-        <?= $this->penders('post-meta-append') ?>
-    </aside>
-    <div class="col-9">
-        <header class="ArticleHeader">
-            <?= $this->penders('post-header-prepend') ?>
+                    </aside>
+                    <div class="Article__Main">
+                        <header class="Article__Header">
 
-            <h2><?= $this->anchor(
-                $this->post->href,
-                $this->post->title
-            ) ?></h2>
+                            <?= $this->render('templates', $this->config->theme->post_header_prepend ?? []) ?>
 
-            <?= $this->penders('post-header-append') ?>
-        </header>
-        <section class="ArticleBody">
-            <?= $this->penders('post-body-prepend') ?>
-            <?= $this->body($this->post); ?>
-            <?= $this->penders('post-body-append') ?>
-        </section>
-    </div>
-</article>
+                            <h1 class="Article__Heading"><?= $this->anchor(
+                                $this->post->href,
+                                $this->post->title,
+                                [
+                                    'class' => 'Article__HeadingLink'
+                                ]
+                            ) ?></h1>
+                            <!-- Article subheading can be omitted
+                            <h2 class="Article__SubHeading">
+                                Pellentesque molestie nunc id sagittis venenatis. Curabitur non porttitor dolor.
+                            </h2>
+                            -->
 
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-9">
-        <?= $this->render('prevnext') ?>
-    </div>
-</div>
+                            <?= $this->render('templates', $this->config->theme->post_header_append ?? []) ?>
+
+                        </header>
+                        <section class="Article__Body">
+                            <?= $this->render('templates', $this->config->theme->post_body_prepend ?? []) ?>
+                            <?= $this->body($this->post) ?>
+                            <?= $this->render('templates', $this->config->theme->post_body_append ?? []) ?>
+                        </section>
+                        <footer class="Article__Footer">
+                            <?= $this->render('templates', $this->config->theme->post_footer_prepend ?? []) ?>
+                            <?= $this->render('templates', $this->config->theme->post_footer_append ?? []) ?>
+                        </footer>
+
+                        <?= $this->render('prevnext') ?>
+
+                    </div>
+
+                </article>

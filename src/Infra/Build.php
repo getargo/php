@@ -213,32 +213,27 @@ class Build
 
     public function theme() : void
     {
-        $path = $this->storage->app('resources/theme/default');
-
-        $name = trim($this->config->theme->name);
+        $name = trim($this->config->general->theme ?? '');
         if ($name === '') {
-            $name = 'default';
+            $name = 'bootstrap4';
         }
 
         $dirs = [
-            $this->storage->app("resources/theme/default/assets") => "theme/default",
-            $this->storage->app("resources/theme/{$name}/assets") => "theme/{$name}",
-            $this->storage->path("_theme/default/assets") => "theme/default",
+            $this->resources("theme/{$name}/assets") => "theme/{$name}",
             $this->storage->path("_theme/{$name}/assets") => "theme/{$name}",
             $this->storage->path("_theme/{$name}-custom/assets") => "theme/{$name}-custom",
         ];
 
-        foreach ($dirs as $sourceDir => $targetDir) {
+        foreach ($dirs as $sourceDir => $targetId) {
+
+            $this->log("Copy {$sourceDir} to {$targetId}");
 
             if (! is_dir($sourceDir)) {
+                $this->log("... {$sourceDir} does not exist.");
                 continue;
             }
 
-            $targetDir = $this->storage->forceDir($targetDir);
-            $cmd = "cp -rf $sourceDir/* {$targetDir}/";
-            $this->log($cmd);
-            exec($cmd, $output);
-            $this->log($output);
+            $this->storage->copy($sourceDir, $targetId);
         }
 
         $this->write("/theme/{$name}/style.css", "theme/style.css");
@@ -432,6 +427,11 @@ class Build
         ]);
     }
 
+    protected function resources(string $subdir) : string
+    {
+        return dirname(__DIR__, 2) . "/resources/{$subdir}";
+    }
+
     protected function write(string $id, string $template, $data = []) : void
     {
         $data += [
@@ -444,16 +444,18 @@ class Build
         $id = str_replace('//', '/', $id);
         $this->log($id);
 
-        $name = trim($this->config->theme->name ?? '');
+        $name = trim($this->config->general->theme ?? '');
         if ($name === '') {
-            $name = 'default';
+            $name = 'bootstrap4';
         }
+
+        $path = $this->resources("theme/{$name}/templates");
+        file_put_contents('/tmp/argo.dump', $path);
 
         $view = $this->viewFactory->new([
             $this->storage->path("_theme/{$name}-custom/templates"),
             $this->storage->path("_theme/{$name}/templates"),
-            $this->storage->app("resources/theme/{$name}/templates"),
-            $this->storage->app("resources/theme/default/templates"),
+            $this->resources("theme/{$name}/templates"),
         ]);
         $view->setData($data);
         $view->setView($template);

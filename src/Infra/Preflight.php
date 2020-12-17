@@ -101,40 +101,44 @@ class Preflight
 
     protected function configs() : void
     {
-        $this->config('admin', [
+        $this->config('admin', '_argo/admin', [
             'lastBuild' => null,
             'lastSync' => null,
             'version' => null,
         ]);
 
-        $this->config('blogroll', []);
+        $this->config('blogroll', '_argo/blogroll', []);
 
-        $this->config('featured', []);
+        $this->config('featured', '_argo/featured', []);
 
-        $this->config('general', [
+        $this->config('general', '_argo/general', [
             'title' => '',
             'tagline' => '',
             'author' => '',
             'url' => '',
             'timezone' => $this->system->timezone(),
             'perPage' => 10,
+            'theme' => 'bootstrap4'
         ]);
 
-        $this->config('menu', []);
+        $this->config('menu', '_argo/menu', []);
 
-        $this->config('sync', [
+        $this->config('sync', '_argo/sync', [
             'type' => 'git',
             'host' => '',
             'user' => '',
             'path' => '',
         ]);
 
-        $this->config('theme', [
-            'name' => 'default',
-        ]);
+        // load up the argo-config for the theme as default values
+        $theme = $this->config->general->theme;
+        $file = dirname(__DIR__, 2) . "/resources/theme/{$theme}/argo-config.json";
+        $json = file_exists($file) ? file_get_contents($file) : '{}';
+        $default = Json::decode($json, true);
+        $this->config('theme', "_argo/theme/{$theme}", $default);
     }
 
-    protected function config($name, array $default) : void
+    protected function config(string $name, string $id, array $default) : void
     {
         $old = isset($this->config->$name)
             ? $this->config->$name->getData()
@@ -143,7 +147,7 @@ class Preflight
         if ($old === null) {
             // no existing config, create from default
             $this->config->$name = $this->configGateway->newValues(
-                $name,
+                $id,
                 Json::recode($default)
             );
             $this->configGateway->saveValues($this->config->$name);
@@ -151,7 +155,7 @@ class Preflight
         }
 
         $old = Json::recode($old, true);
-        $new = array_replace($default, $old);
+        $new = array_replace_recursive($default, $old);
         if ($new !== $old) {
             // pre-existing config, write the changed values
             $this->config->$name->setData(Json::recode((object) $new));

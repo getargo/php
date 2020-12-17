@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Argo\Domain\Config;
 
-use Argo\Domain\Config\Values\Values;
 use Argo\Domain\Exception;
 
 class Config

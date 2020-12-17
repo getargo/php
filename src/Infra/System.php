@@ -6,6 +6,7 @@ namespace Argo\Infra;
 use Argo\Domain\Log;
 use Argo\Exception;
 use DateTimeImmutable;
+use RuntimeException;
 
 class System
 {
@@ -105,7 +106,7 @@ class System
     {
         $dir = $this->call(__FUNCTION__);
         if (! is_dir($dir)) {
-            Fsio::mkdir($dir);
+            $this->mkdir($dir);
         }
         return $dir;
     }
@@ -114,9 +115,23 @@ class System
     {
         $dir = $this->call(__FUNCTION__);
         if (! is_dir($dir)) {
-            Fsio::mkdir($dir);
+            $this->mkdir($dir);
         }
         return $dir;
+    }
+
+    public function mkdir(string $dir) : void
+    {
+        $level = error_reporting(0);
+        $result = mkdir($dir, 0755, true);
+        error_reporting($level);
+
+        if ($result !== false) {
+            return;
+        }
+
+        $error = error_get_last();
+        throw new RuntimeException($error['message'] . ": {$dir}");
     }
 
     public function whoami() : string

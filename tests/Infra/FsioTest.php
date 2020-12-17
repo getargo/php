@@ -14,7 +14,7 @@ class FsioTest extends \Argo\TestCase
     {
         parent::setUp();
         $this->root = dirname(__DIR__) . '/tmp';
-        $this->fsio = new Fsio(new DateTime(), $this->root);
+        $this->fsio = new Fsio(new System(), new DateTime(), $this->root);
     }
 
     public function testPath() : void

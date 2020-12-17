@@ -1,12 +1,7 @@
-                <section class="card my-4">
-                    <h5 class="card-header">Blogroll</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <ul class="list-unstyled mb-0">
-                                    <script async>Argo.shtml('/blogroll.shtml', document.currentScript)</script>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
+            <div class="SidebarLayout__SidebarWidget">
+                <h2 class="SidebarLayout__SidebarWidgetTitle">Blogroll</h2>
+                <ul id="blogroll-sidebar" class="LinkList">
+                    <script async>Argo.shtml('/blogroll.shtml', 'blogroll-sidebar')</script>
+                </ul>
+            </div>

@@ -25,7 +25,7 @@ class Folio
         $folio->time = number_format(microtime(true) - $start, 2);
 
         $penders = [];
-        $theme = $folio->config->theme->name;
+        $theme = $folio->config->general->theme;
         $dir = "_theme/{$theme}-custom/templates/penders";
         foreach ($storage->glob("$dir/*/*.php") as $path) {
             $parts = explode('/', $path);

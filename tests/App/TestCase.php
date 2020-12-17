@@ -24,16 +24,17 @@ abstract class TestCase extends \Argo\TestCase
 
         mkdir("{$docroot}/_argo", 0755, true);
 
-        $this->config->general = $this->configGateway->newValues('general', (object) [
+        $this->config->general = $this->configGateway->newValues('_argo/general', (object) [
             'title' => 'Argo Blog Title',
             'tagline' => 'Argo Blog Tagline',
             'author' => 'boshag',
             'url' => 'http://example.com',
+            'theme' => 'bootstrap4'
         ]);
 
         $this->configGateway->saveValues($this->config->general);
 
-        $this->config->admin = $this->configGateway->newValues('admin', (object) [
+        $this->config->admin = $this->configGateway->newValues('_argo/admin', (object) [
             'initialize' => true,
         ]);
 

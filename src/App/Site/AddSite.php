@@ -141,7 +141,7 @@ class AddSite extends UseCase
         file_put_contents(
             "{$this->docroot}/_argo/theme.json",
             Json::encode([
-                'name' => 'default',
+                'name' => 'bootstrap4',
                 'sidebar' => [
                     'search',
                     'months',

@@ -17,7 +17,7 @@ class ConfigGatewayTest extends \Argo\Domain\TestCase
 
     public function test() : void
     {
-        $fake = $this->configGateway->newValues('fake', (object) ['foo' => 'bar']);
+        $fake = $this->configGateway->newValues('_argo/fake', (object) ['foo' => 'bar']);
         $this->configGateway->saveValues($fake);
 
         $config = $this->configGateway->getConfig();

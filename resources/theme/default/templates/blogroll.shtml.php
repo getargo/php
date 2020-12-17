@@ -1,5 +1,12 @@
-<?php foreach ($this->config->blogroll as $title => $href): ?>
 
-<li><?= $this->anchor($href, $title) ?></li>
+                    <?php foreach ($this->config->blogroll as $title => $href): ?>
 
-<?php endforeach; ?>
+                    <li class="LinkList__Item"><?= $this->anchor(
+                        $href,
+                        $title,
+                        [
+                            'class' => 'LinkList__ItemLink'
+                        ]
+                    ) ?></li>
+
+                    <?php endforeach; ?>
