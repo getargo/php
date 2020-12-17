@@ -213,10 +213,7 @@ class Build
 
     public function theme() : void
     {
-        $name = trim($this->config->general->theme ?? '');
-        if ($name === '') {
-            $name = 'bootstrap4';
-        }
+        $name = trim($this->config->general->theme);
 
         $dirs = [
             $this->resources("theme/{$name}/assets") => "theme/{$name}",
@@ -444,11 +441,7 @@ class Build
         $id = str_replace('//', '/', $id);
         $this->log($id);
 
-        $name = trim($this->config->general->theme ?? '');
-        if ($name === '') {
-            $name = 'bootstrap4';
-        }
-
+        $name = trim($this->config->general->theme);
         $path = $this->resources("theme/{$name}/templates");
         file_put_contents('/tmp/argo.dump', $path);
 

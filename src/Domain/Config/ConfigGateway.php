@@ -31,7 +31,7 @@ class ConfigGateway
 
         // theme config is a special case, since there may be more than one
         // file, but only one is ever active at a time.
-        $theme = $instances['general']->theme ?? 'bootstrap4';
+        $theme = $instances['general']->theme;
         $id = "_argo/theme/{$theme}";
         $text = $this->storage->read("{$id}.json") ?? '{}';
         $data = Json::decode($text);

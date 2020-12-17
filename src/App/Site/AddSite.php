@@ -21,6 +21,8 @@ class AddSite extends UseCase
 
     protected $general = [];
 
+    protected $admin = ['initialize' => true];
+
     protected $docroot;
 
     public function __construct(
@@ -124,6 +126,7 @@ class AddSite extends UseCase
             'tagline' => $tagline,
             'author' => $author,
             'url' => $url,
+            'theme' => 'bootstrap4',
         ];
 
         return null;
@@ -139,32 +142,9 @@ class AddSite extends UseCase
         );
 
         file_put_contents(
-            "{$this->docroot}/_argo/theme.json",
-            Json::encode([
-                'name' => 'bootstrap4',
-                'sidebar' => [
-                    'search',
-                    'months',
-                    'tags',
-                ],
-                'style' => [
-                    "sans_serif_fonts" => "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif",
-                    "serif_fonts" => "Georgia, 'Times New Roman', Times, serif",
-                    "monospace_fonts" => "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-                    "link_color" => "#438287",
-                    "link_color_hover" => "#205d5f",
-                    "header_font_color" => "black",
-                    "header_background_color" => "#f7f7f7",
-                    "header_background_image" => "url('/theme/default/beach-sky.jpg')",
-                    "footer_font_color" => "black",
-                    "footer_background_color" => "#f7f7f7"
-                ],
-            ])
+            "{$this->docroot}/_argo/admin.json",
+            Json::encode($this->admin)
         );
-
-        file_put_contents("{$this->docroot}/_argo/admin.json", Json::encode([
-            'initialize' => true,
-        ]));
 
         $this->server->stop($this->docroot);
 

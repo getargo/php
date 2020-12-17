@@ -27,9 +27,5 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~8.0"
-    },
-    "extra": {
-        "version": "0.0.0",
-        "release": "0000-00-00 00:00:00 UTC"
     }
 }

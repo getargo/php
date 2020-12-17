@@ -68,7 +68,10 @@ class Preflight
         $this->storage->forceDir('_trash');
         $this->storage->forceDir('_theme');
 
+        $this->upgrade();
+
         $this->configs();
+
         $this->dateTime->setTimezone($this->config->general->timezone);
 
         if ($this->config->admin->initialize ?? false) {
@@ -118,7 +121,7 @@ class Preflight
             'url' => '',
             'timezone' => $this->system->timezone(),
             'perPage' => 10,
-            'theme' => 'bootstrap4'
+            'theme' => 'default'
         ]);
 
         $this->config('menu', '_argo/menu', []);
@@ -161,5 +164,9 @@ class Preflight
             $this->config->$name->setData(Json::recode((object) $new));
             $this->configGateway->saveValues($this->config->$name);
         }
+    }
+
+    protected function upgrade() : void
+    {
     }
 }
