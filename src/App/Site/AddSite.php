@@ -21,7 +21,10 @@ class AddSite extends UseCase
 
     protected $general = [];
 
-    protected $admin = ['initialize' => true];
+    protected $admin = [
+        'initialize' => true,
+        'version' => '1.2.0',
+    ];
 
     protected $docroot;
 
