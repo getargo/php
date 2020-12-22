@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace Argo\Infra;
 
 use Argo\Domain\Config\Config;
-use Argo\Domain\Config\Values\Sync as SyncValues;
+use Argo\Domain\Config\ConfigGateway;
+use Argo\Domain\Config\Values;
 use Argo\Domain\Content\ContentLocator;
+use Argo\Domain\DateTime;
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
 use Argo\Infra\System;
@@ -13,6 +15,12 @@ use Argo\Infra\System;
 class Sync
 {
     protected $config;
+
+    protected $dateTime;
+
+    protected $configGateway;
+
+    protected $log;
 
     protected $storage;
 
@@ -22,11 +30,15 @@ class Sync
         System $system,
         Storage $storage,
         Config $config,
+        ConfigGateway $configGateway,
+        DateTime $dateTime,
         Log $log
     ) {
         $this->system = $system;
         $this->storage = $storage;
         $this->config = $config;
+        $this->configGateway = $configGateway;
+        $this->dateTime = $dateTime;
         $this->log = $log;
     }
 
@@ -52,10 +64,14 @@ class Sync
 
         $cmd = $this->$type($sync);
         $this->system->exec("{$cmd} 2>&1", $this->log, 'echo');
+
+        $this->config->admin->lastSync = $this->dateTime->utc();
+        $this->configGateway->saveValues($this->config->admin);
+
         $this->log->echo('Done!');
     }
 
-    protected function rsync(SyncValues $sync) : string
+    protected function rsync(Values $sync) : string
     {
         return implode(" \\" . PHP_EOL . "  ", [
             "rsync",
@@ -75,7 +91,7 @@ class Sync
         ]);
     }
 
-    protected function git(SyncValues $sync) : string
+    protected function git(Values $sync) : string
     {
         return implode(" \\" . PHP_EOL, [
             "cd " . $this->storage->path(),
