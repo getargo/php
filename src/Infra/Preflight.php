@@ -68,14 +68,15 @@ class Preflight
         $this->storage->forceDir('_trash');
         $this->storage->forceDir('_theme');
 
+        $this->configs(); // before initialize, so build works
+
         if ($this->config->admin->initialize ?? false) {
             ($this->initialize)();
             unset($this->config->admin->initialize);
             $this->configGateway->saveValues($this->config->admin);
+        } else {
+            $this->upgrade();
         }
-
-        $this->configs();
-        $this->upgrade();
 
         $this->dateTime->setTimezone($this->config->general->timezone);
 

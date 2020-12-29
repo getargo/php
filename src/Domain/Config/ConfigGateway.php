@@ -29,13 +29,13 @@ class ConfigGateway
             $instances[$name] = $this->newValues($id, $data);
         }
 
-        // theme config is a special case, since there may be more than one
-        // file, but only one is ever active at a time.
-        $theme = $instances['general']->theme;
-        $id = "_argo/theme/{$theme}";
-        $text = $this->storage->read("{$id}.json") ?? '{}';
-        $data = Json::decode($text);
-        $instances['theme'] = $this->newValues($id, $data);
+        if (isset($intances['general'])) {
+            $theme = $instances['general']->theme ?? 'default';
+            $id = "_argo/theme/{$theme}";
+            $text = $this->storage->read("{$id}.json") ?? '{}';
+            $data = Json::decode($text);
+            $instances['theme'] = $this->newValues($id, $data);
+        }
 
         return $this->newConfig($instances);
     }
