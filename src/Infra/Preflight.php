@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
+use Argo\Domain\Content\ContentLocator;
+use Argo\Domain\Content\Post\Post;
 use Argo\Domain\Config\Config;
 use Argo\Domain\Config\ConfigGateway;
 use Argo\Domain\DateTime;
@@ -33,7 +35,9 @@ class Preflight
         Config $config,
         ConfigGateway $configGateway,
         Initialize $initialize,
-        Server $server
+        Server $server,
+        ContentLocator $content,
+        BuildFactory $buildFactory
     ) {
         $this->system = $system;
         $this->dateTime = $dateTime;
@@ -42,6 +46,8 @@ class Preflight
         $this->configGateway = $configGateway;
         $this->initialize = $initialize;
         $this->server = $server;
+        $this->content = $content;
+        $this->buildFactory = $buildFactory;
     }
 
     public function __invoke(string $path) : ?string
@@ -71,9 +77,7 @@ class Preflight
         $this->configs(); // before initialize, so build works
 
         if ($this->config->admin->initialize ?? false) {
-            ($this->initialize)();
-            unset($this->config->admin->initialize);
-            $this->configGateway->saveValues($this->config->admin);
+            $this->initialize();
         } else {
             $this->upgrade();
         }
@@ -133,9 +137,12 @@ class Preflight
             'path' => '',
         ]);
 
-        // load up the config for the theme as default values
+        // load up the config for the theme as default values.
+        // when the time comes for composer-based themes,
+        // change to _theme/vendor/{$theme}/config/theme.json.
+        // and: how to look for local themes?
         $theme = $this->config->general->theme;
-        $file = dirname(__DIR__, 2) . "/resources/theme/{$theme}/config/theme.json";
+        $file = $this->system->docroot("_theme/vendor/{$theme}/config/theme.json");
         $json = file_exists($file) ? file_get_contents($file) : '{}';
         $default = Json::decode($json, true);
         $this->config('theme', "_argo/theme/{$theme}", $default);
@@ -166,6 +173,35 @@ class Preflight
         }
     }
 
+    protected function initialize()
+    {
+        $text = [
+            'Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"',
+            'Header set Expires "0"',
+            'Header set Pragma "no-cache"',
+        ];
+
+        $this->storage->write('.htaccess', implode("\n", $text));
+
+        $date = $this->dateTime->ymd();
+        $relId = "{$date}/sample-post";
+        $post = new Post(
+            Post::absId($relId),
+            [
+                'title' => 'Sample Post',
+                'author' => $this->config->general->author,
+                'tags' => ['general'],
+            ]
+        );
+        $this->content->posts->save($post, 'Sample post body.');
+        $this->buildFactory->new()->all();
+
+        $this->initializeComposerThemes();
+
+        unset($this->config->admin->initialize);
+        $this->configGateway->saveValues($this->config->admin);
+    }
+
     protected function upgrade() : void
     {
         $version = $this->config->admin->version ?? '1.0.0';
@@ -173,6 +209,50 @@ class Preflight
         if (method_exists($this, $method)) {
             $this->$method();
         }
+    }
+
+    protected function composer(string $command) : void
+    {
+        $composer = $this->system->approot('bin/composer.phar');
+        $docroot = $this->system->docroot('_theme');
+        $command = "cd $docroot; php $composer $command";
+        $this->system->exec($command);
+    }
+
+    protected function initializeComposerThemes() : void
+    {
+        $source = $this->system->approot('resources/theme');
+        $target = $this->system->supportDir();
+        $command = "cp -rf '$source' '$target'";
+        $this->system->exec($command);
+
+        $this->storage->write('_theme/composer.json', Json::encode([
+            'name' => 'argo/themes',
+            'description' => 'Argo themes for this site.',
+            'license' => 'proprietary',
+            'repositories' => [
+                [
+                    'type' => 'path',
+                    'url' => $this->system->supportDir() . '/theme/default/',
+                    'options' => [
+                        'symlink' => true,
+                    ],
+                ],
+                [
+                    'type' => 'path',
+                    'url' => $this->system->supportDir() . '/theme/bootstrap4/',
+                    'options' => [
+                        'symlink' => true,
+                    ],
+                ],
+            ],
+            'require' => [
+                'argo/default' => 'dev-master',
+                'argo/bootstrap4' => 'dev-master',
+            ],
+        ]));
+
+        $this->composer('install');
     }
 
     protected function upgradeFrom_1_0_0() : void
@@ -192,6 +272,9 @@ class Preflight
         // remove the old _argo/theme.json file
         $file = $this->storage->path('_argo/theme.json');
         $this->system->exec("rm {$file}");
+
+        // use composer for themes
+        $this->initializeComposerThemes();
 
         // done
         $this->config->admin->version = '1.2.0';

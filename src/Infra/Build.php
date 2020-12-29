@@ -213,12 +213,11 @@ class Build
 
     public function theme() : void
     {
-        $name = trim($this->config->general->theme);
+        $theme = trim($this->config->general->theme);
 
         $dirs = [
-            $this->resources("theme/{$name}/public") => "theme/{$name}",
-            $this->storage->path("_theme/{$name}/public") => "theme/{$name}",
-            $this->storage->path("_theme/{$name}-custom/public") => "theme/{$name}-custom",
+            $this->storage->path("_theme/vendor/{$theme}/public") => "theme/{$theme}",
+            $this->storage->path("_theme/custom/{$theme}/public") => "theme/{$theme}",
         ];
 
         foreach ($dirs as $sourceDir => $targetId) {
@@ -233,7 +232,7 @@ class Build
             $this->storage->copy($sourceDir, $targetId);
         }
 
-        $this->write("/theme/{$name}/style.css", "theme/style.css");
+        $this->write("/theme/{$theme}/style.css", "theme/style.css");
     }
 
     public function blogrollShtml() : void
@@ -424,11 +423,6 @@ class Build
         ]);
     }
 
-    protected function resources(string $subdir) : string
-    {
-        return dirname(__DIR__, 2) . "/resources/{$subdir}";
-    }
-
     protected function write(string $id, string $template, $data = []) : void
     {
         $data += [
@@ -441,15 +435,13 @@ class Build
         $id = str_replace('//', '/', $id);
         $this->log($id);
 
-        $name = trim($this->config->general->theme);
-        $path = $this->resources("theme/{$name}/templates");
-        file_put_contents('/tmp/argo.dump', $path);
+        $theme = trim($this->config->general->theme);
 
         $view = $this->viewFactory->new([
-            $this->storage->path("_theme/{$name}-custom/templates"),
-            $this->storage->path("_theme/{$name}/templates"),
-            $this->resources("theme/{$name}/templates"),
+            $this->storage->path("_theme/custom/{$theme}/templates"),
+            $this->storage->path("_theme/vendor/{$theme}/templates"),
         ]);
+
         $view->setData($data);
         $view->setView($template);
 

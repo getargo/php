@@ -6,9 +6,16 @@ This package uses [Romantic Versioning](http://blog.legacyteam.info/2015/12/romv
 
 ### UPGRADING
 
-This release comes with a new theme, "bootstrap4". To try it, edit your General Config to set `"theme": "bootstrap4"`.
+This release comes with a new theme, "argo/bootstrap4". To try it, edit your
+General Config to set `"theme": "argo/bootstrap4"`.
 
-Custom theme work in your `_theme` directory should now be prefixed with theme name being customized. For example, you should use `default-custom` (instead of just `custom`). This allows you to switch between themes without having to re-edit your custom work each time you switch.
+The previous `default` theme has been renamed to `argo/original`.
+
+Custom theme work in your `_theme` directory should now be in
+`_theme/custom/{$theme}`. For example, you should use
+`_theme/custom/argo/default` (instead of just `custom`). This allows you to
+switch between themes without having to re-edit your custom work each time you
+switch.
 
 ### Added
 
@@ -24,7 +31,7 @@ Custom theme work in your `_theme` directory should now be prefixed with theme n
 
 - You can now open the local site storage folder from any admin screen; the link is at the top right of each screen.
 
-- Custom theme work is now done not in `custom/` but in `{$name}-custom/`; this allows you to switch between themes, and maintain the custom theme work in each one.
+- Custom theme work is now done not in `custom/` but in `_theme/custom/{$theme}`; this allows you to switch between themes, and maintain the custom theme work in each one.
 
 - Posts now "know" what index they are in, so that saving a post rebuilds only that index, not all indexes. This is a performance improvement.
 
