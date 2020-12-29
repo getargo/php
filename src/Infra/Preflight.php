@@ -72,11 +72,11 @@ class Preflight
             ($this->initialize)();
             unset($this->config->admin->initialize);
             $this->configGateway->saveValues($this->config->admin);
-        } else {
-            $this->upgrade();
         }
 
         $this->configs();
+        $this->upgrade();
+
         $this->dateTime->setTimezone($this->config->general->timezone);
 
         $this->server->start();
@@ -132,9 +132,9 @@ class Preflight
             'path' => '',
         ]);
 
-        // load up the argo-config for the theme as default values
+        // load up the config for the theme as default values
         $theme = $this->config->general->theme;
-        $file = dirname(__DIR__, 2) . "/resources/theme/{$theme}/argo-config.json";
+        $file = dirname(__DIR__, 2) . "/resources/theme/{$theme}/config/theme.json";
         $json = file_exists($file) ? file_get_contents($file) : '{}';
         $default = Json::decode($json, true);
         $this->config('theme', "_argo/theme/{$theme}", $default);

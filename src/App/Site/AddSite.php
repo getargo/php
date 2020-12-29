@@ -130,6 +130,7 @@ class AddSite extends UseCase
             'author' => $author,
             'url' => $url,
             'theme' => 'bootstrap4',
+            'perPage' => 10,
         ];
 
         return null;

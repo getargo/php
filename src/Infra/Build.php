@@ -216,9 +216,9 @@ class Build
         $name = trim($this->config->general->theme);
 
         $dirs = [
-            $this->resources("theme/{$name}/assets") => "theme/{$name}",
-            $this->storage->path("_theme/{$name}/assets") => "theme/{$name}",
-            $this->storage->path("_theme/{$name}-custom/assets") => "theme/{$name}-custom",
+            $this->resources("theme/{$name}/public") => "theme/{$name}",
+            $this->storage->path("_theme/{$name}/public") => "theme/{$name}",
+            $this->storage->path("_theme/{$name}-custom/public") => "theme/{$name}-custom",
         ];
 
         foreach ($dirs as $sourceDir => $targetId) {

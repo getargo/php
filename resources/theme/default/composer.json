@@ -1,0 +1,6 @@
+{
+    "name": "argo/default",
+    "description": "Default theme for Argo.",
+    "type": "argo-theme",
+    "license": "GPL-3.0-or-later"
+}

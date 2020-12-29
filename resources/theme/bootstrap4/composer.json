@@ -1,0 +1,6 @@
+{
+    "name": "argo/bootstrap4",
+    "description": "Bootstrap4 theme for Argo.",
+    "type": "argo-theme",
+    "license": "GPL-3.0-or-later"
+}

@@ -1,8 +1,0 @@
-{
-    "assets": "assets",
-    "enableESLint": true,
-    "enableJSCS": false,
-    "enableJSHint": false,
-    "jsOneToOneMode": true,
-    "proxy": false
-}
