@@ -10,4 +10,9 @@ $args = implode(' ', [
 
 $cmd = "php {$args}";
 echo $cmd . PHP_EOL;
-popen($cmd, 'r');
+
+$handle = popen($cmd, 'r');
+while (! feof($handle)) {
+    echo fread($handle, 8192);
+}
+pclose($handle);
