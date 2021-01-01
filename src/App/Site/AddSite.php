@@ -129,7 +129,7 @@ class AddSite extends UseCase
             'tagline' => $tagline,
             'author' => $author,
             'url' => $url,
-            'theme' => 'bootstrap4',
+            'theme' => 'argo/bootstrap4',
             'perPage' => 10,
         ];
 

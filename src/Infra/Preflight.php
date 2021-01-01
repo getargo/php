@@ -74,7 +74,6 @@ class Preflight
         $this->storage->forceDir('_trash');
         $this->storage->forceDir('_theme');
 
-        $this->configs(); // before initialize, so build works
 
         if ($this->config->admin->initialize ?? false) {
             $this->initialize();
@@ -125,7 +124,7 @@ class Preflight
             'url' => '',
             'timezone' => $this->system->timezone(),
             'perPage' => 10,
-            'theme' => 'default'
+            'theme' => 'argo/bootstrap4'
         ]);
 
         $this->config('menu', '_argo/menu', []);
@@ -175,6 +174,10 @@ class Preflight
 
     protected function initialize()
     {
+        $this->initializeComposerThemes();
+
+        $this->configs();
+
         $text = [
             'Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"',
             'Header set Expires "0"',
@@ -196,14 +199,13 @@ class Preflight
         $this->content->posts->save($post, 'Sample post body.');
         $this->buildFactory->new()->all();
 
-        $this->initializeComposerThemes();
-
         unset($this->config->admin->initialize);
         $this->configGateway->saveValues($this->config->admin);
     }
 
     protected function upgrade() : void
     {
+        $this->configs();
         $version = $this->config->admin->version ?? '1.0.0';
         $method = 'upgradeFrom_' . str_replace('.', '_', $version);
         if (method_exists($this, $method)) {
