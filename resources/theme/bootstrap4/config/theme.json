@@ -13,7 +13,7 @@
         "link_color_hover": "#205d5f",
         "header_font_color": "black",
         "header_background_color": "#f7f7f7",
-        "header_background_image": "url('/theme/default/beach-sky.jpg')",
+        "header_background_image": "url('/theme/argo/bootstrap4/beach-sky.jpg')",
         "footer_font_color": "black",
         "footer_background_color": "#f7f7f7"
     }

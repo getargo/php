@@ -74,7 +74,6 @@ class Preflight
         $this->storage->forceDir('_trash');
         $this->storage->forceDir('_theme');
 
-
         if ($this->config->admin->initialize ?? false) {
             $this->initialize();
         } else {
@@ -249,8 +248,8 @@ class Preflight
                 ],
             ],
             'require' => [
-                'argo/default' => 'dev-master',
                 'argo/bootstrap4' => 'dev-master',
+                'argo/original' => 'dev-master',
             ],
         ]));
 
@@ -260,14 +259,15 @@ class Preflight
     protected function upgradeFrom_1_0_0() : void
     {
         // get the current theme name, and move it from _theme to _general
-        $theme = $this->config->theme->name ?? 'default';
+        $theme = $this->config->theme->name ?? 'argo/original';
         unset($this->config->theme->name);
         $this->config->general->theme = $theme;
         $this->configGateway->saveValues($this->config->general);
         $this->configGateway->saveValues($this->config->theme);
 
-        // copy the _argo/theme.json file to the _theme dir
-        $this->storage->forceDir('_argo/theme');
+        // copy the _argo/theme.json file to _argo/{$theme}.json;
+        // e.g., from _argo/theme.json to _argo/theme/argo/original.json
+        $this->storage->forceDir("_argo/theme/{$theme}");
         $text = $this->storage->read('_argo/theme.json');
         $this->storage->write("_argo/theme/{$theme}.json", $text);
 

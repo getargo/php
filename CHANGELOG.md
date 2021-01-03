@@ -13,7 +13,7 @@ The previous `default` theme has been renamed to `argo/original`.
 
 Custom theme work in your `_theme` directory should now be in
 `_theme/custom/{$theme}`. For example, you should use
-`_theme/custom/argo/default` (instead of just `custom`). This allows you to
+`_theme/custom/argo/original` (instead of just `custom`). This allows you to
 switch between themes without having to re-edit your custom work each time you
 switch.
 
