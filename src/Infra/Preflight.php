@@ -204,12 +204,12 @@ class Preflight
 
     protected function upgrade() : void
     {
-        $this->configs();
         $version = $this->config->admin->version ?? '1.0.0';
         $method = 'upgradeFrom_' . str_replace('.', '_', $version);
         if (method_exists($this, $method)) {
             $this->$method();
         }
+        $this->configs();
     }
 
     protected function composer(string $command) : void
@@ -234,7 +234,7 @@ class Preflight
             'repositories' => [
                 [
                     'type' => 'path',
-                    'url' => $this->system->supportDir() . '/theme/default/',
+                    'url' => $this->system->supportDir() . '/theme/original/',
                     'options' => [
                         'symlink' => true,
                     ],
@@ -253,7 +253,7 @@ class Preflight
             ],
         ]));
 
-        $this->composer('install');
+        $this->composer('update');
     }
 
     protected function upgradeFrom_1_0_0() : void
@@ -267,7 +267,7 @@ class Preflight
 
         // copy the _argo/theme.json file to _argo/{$theme}.json;
         // e.g., from _argo/theme.json to _argo/theme/argo/original.json
-        $this->storage->forceDir("_argo/theme/{$theme}");
+        $this->storage->forceDir(dirname("_argo/theme/{$theme}"));
         $text = $this->storage->read('_argo/theme.json');
         $this->storage->write("_argo/theme/{$theme}.json", $text);
 
