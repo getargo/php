@@ -71,17 +71,17 @@ class Preflight
             return '/';
         }
 
-        $this->storage->forceDir('_trash');
-        $this->storage->forceDir('_theme');
-
         if ($this->config->admin->initialize ?? false) {
             $this->initialize();
-        } else {
-            $this->upgrade();
+            return '/';
         }
 
-        $this->dateTime->setTimezone($this->config->general->timezone);
+        if ($this->upgrade()) {
+            return '/';
+        }
 
+        $this->configs();
+        $this->dateTime->setTimezone($this->config->general->timezone);
         $this->server->start();
 
         return null;
@@ -106,6 +106,8 @@ class Preflight
 
     protected function configs() : void
     {
+        $this->storage->forceDir('_trash');
+
         $this->config('admin', '_argo/admin', [
             'lastBuild' => null,
             'lastSync' => null,
@@ -136,9 +138,6 @@ class Preflight
         ]);
 
         // load up the config for the theme as default values.
-        // when the time comes for composer-based themes,
-        // change to _theme/vendor/{$theme}/config/theme.json.
-        // and: how to look for local themes?
         $theme = $this->config->general->theme;
         $file = $this->system->docroot("_theme/vendor/{$theme}/config/theme.json");
         $json = file_exists($file) ? file_get_contents($file) : '{}';
@@ -202,14 +201,16 @@ class Preflight
         $this->configGateway->saveValues($this->config->admin);
     }
 
-    protected function upgrade() : void
+    protected function upgrade() : bool
     {
         $version = $this->config->admin->version ?? '1.0.0';
         $method = 'upgradeFrom_' . str_replace('.', '_', $version);
         if (method_exists($this, $method)) {
             $this->$method();
+            return true;
         }
-        $this->configs();
+
+        return false;
     }
 
     protected function composer(string $command) : void
@@ -226,6 +227,8 @@ class Preflight
         $target = $this->system->supportDir();
         $command = "cp -rf '$source' '$target'";
         $this->system->exec($command);
+
+        $this->storage->forceDir('_theme');
 
         $this->storage->write('_theme/composer.json', Json::encode([
             'name' => 'argo/themes',
@@ -258,12 +261,14 @@ class Preflight
 
     protected function upgradeFrom_1_0_0() : void
     {
-        // get the current theme name, and move it from _theme to _general
         $theme = $this->config->theme->name ?? 'argo/original';
-        unset($this->config->theme->name);
+
+        if ($theme == 'default') {
+            $theme = 'argo/original';
+        }
+
         $this->config->general->theme = $theme;
         $this->configGateway->saveValues($this->config->general);
-        $this->configGateway->saveValues($this->config->theme);
 
         // copy the _argo/theme.json file to _argo/{$theme}.json;
         // e.g., from _argo/theme.json to _argo/theme/argo/original.json
@@ -275,10 +280,17 @@ class Preflight
         $file = $this->storage->path('_argo/theme.json');
         $this->system->exec("rm {$file}");
 
-        // use composer for themes
+        $this->config->admin->version = '1.0.0.u1';
+        $this->configGateway->saveValues($this->config->admin);
+    }
+
+    protected function upgradeFrom_1_0_0_u1() : void
+    {
+        unset($this->config->theme->name);
+        $this->configGateway->saveValues($this->config->theme);
+
         $this->initializeComposerThemes();
 
-        // done
         $this->config->admin->version = '1.2.0';
         $this->configGateway->saveValues($this->config->admin);
     }

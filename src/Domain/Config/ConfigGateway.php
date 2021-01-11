@@ -29,8 +29,8 @@ class ConfigGateway
             $instances[$name] = $this->newValues($id, $data);
         }
 
-        if (isset($instances['general'])) {
-            $theme = $instances['general']->theme ?? 'default';
+        if (isset($instances['general']->theme)) {
+            $theme = $instances['general']->theme ?? 'argo/original';
             $id = "_argo/theme/{$theme}";
             $text = $this->storage->read("{$id}.json") ?? '{}';
             $data = Json::decode($text);
