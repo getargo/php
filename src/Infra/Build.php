@@ -216,13 +216,15 @@ class Build
         $theme = trim($this->config->general->theme);
 
         $dirs = [
-            $this->storage->path("_theme/vendor/{$theme}/public") => "theme/{$theme}",
-            $this->storage->path("_theme/custom/{$theme}/public") => "theme/{$theme}",
+            $this->storage->path("_theme/vendor/{$theme}/public"),
+            $this->storage->path("_theme/custom/{$theme}/public"),
         ];
 
-        foreach ($dirs as $sourceDir => $targetId) {
+        $targetId = "theme";
 
-            $this->log("Copy {$sourceDir} to {$targetId}");
+        foreach ($dirs as $sourceDir) {
+
+            $this->log("Copy {$sourceDir} to /{$targetId}");
 
             if (! is_dir($sourceDir)) {
                 $this->log("... {$sourceDir} does not exist.");
@@ -232,7 +234,8 @@ class Build
             $this->storage->copy($sourceDir, $targetId);
         }
 
-        $this->write("/theme/{$theme}/style.css", "theme/style.css");
+        // this ought to be theme-dependent
+        $this->write("/theme/style.css", "theme/style.css");
     }
 
     public function blogrollShtml() : void
