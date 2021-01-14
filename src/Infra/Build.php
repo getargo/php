@@ -233,9 +233,6 @@ class Build
 
             $this->storage->copy($sourceDir, $targetId);
         }
-
-        // this ought to be theme-dependent
-        $this->write("/theme/style.css", "theme/style.css");
     }
 
     public function blogrollShtml() : void

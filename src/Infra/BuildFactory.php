@@ -49,7 +49,13 @@ class BuildFactory
 
     public function new(string $level = 'info') : Build
     {
-        return new Build(
+        // foo/bar-baz => Foo\BarBaz\Build
+        $class = $this->config->general->theme;
+        $class = ucwords($class, '-/');
+        $class = str_replace('-', '', $class);
+        $class = str_replace('/', '\\', $class) . '\Build';
+
+        return new $class(
             $this->storage,
             $this->config,
             $this->configGateway,

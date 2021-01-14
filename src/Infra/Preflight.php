@@ -82,6 +82,10 @@ class Preflight
 
         $this->configs();
         $this->dateTime->setTimezone($this->config->general->timezone);
+
+        $themeAutoload = $this->storage->path('_theme/vendor/autoload.php');
+        require_once $themeAutoload;
+
         $this->server->start();
 
         return null;

@@ -2,5 +2,10 @@
     "name": "argo/original",
     "description": "Original theme for Argo.",
     "type": "argo-theme",
-    "license": "GPL-3.0-or-later"
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Argo\\Original\\": "src/"
+        }
+    }
 }
