@@ -80,6 +80,7 @@ class Preflight
             return '/';
         }
 
+        $this->relinkThemeRepos();
         $this->configs();
         $this->dateTime->setTimezone($this->config->general->timezone);
 
@@ -225,20 +226,19 @@ class Preflight
         $this->system->exec($command);
     }
 
-    protected function initializeComposerThemes() : void
+    protected function relinkThemeRepos() : void
     {
         $source = $this->system->approot('resources/theme');
         $target = $this->system->supportDir();
-
-        // Maybe we need not to copy the theme dir to support dir, but instead symlink it.
-        // didn't want to do that because it meant you can't have two instances running at
-        // the same time ... even so, launching argo will re-symlink, so maybe no biggie.
-
-        // the reason is, it makes development difficult when modifying themes.
-        $command = "cp -rf '$source' '$target'";
+        $command = "ln -sF '{$source}' '{$target}/theme'";
         $this->system->exec($command);
+    }
 
+    protected function initializeComposerThemes() : void
+    {
         $this->storage->forceDir('_theme');
+
+        $this->relinkThemeRepos();
 
         $this->storage->write('_theme/composer.json', Json::encode([
             'name' => 'argo/themes',
