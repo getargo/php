@@ -4,18 +4,18 @@ This package uses [Romantic Versioning](http://blog.legacyteam.info/2015/12/romv
 
 ## 1.2.0
 
-### UPGRADING
-
-This release comes with a new theme, "argo/bootstrap4". To try it, edit your
+This release comes with a new theme, `argo/bootstrap4`. To try it, edit your
 General Config to set `"theme": "argo/bootstrap4"`.
 
 The previous `default` theme has been renamed to `argo/original`.
 
-Custom theme work in your `_theme` directory should now be in
-`_theme/custom/{$theme}`. For example, you should use
-`_theme/custom/argo/original` (instead of just `custom`). This allows you to
-switch between themes without having to re-edit your custom work each time you
-switch.
+### UPGRADING
+
+Upgrading should be almost completely automatic. However, custom theme work in
+your `_theme` directory should be moved manually to `_theme/custom/{$theme}`.
+For example, you should use `_theme/custom/argo/original` (instead of just
+`custom`). The changed location allows you to switch between themes without
+having to re-edit your custom work each time you switch.
 
 ### Added
 
