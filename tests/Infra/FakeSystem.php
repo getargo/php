@@ -9,16 +9,9 @@ class FakeSystem extends System
 {
     public $timezone = 'UTC';
 
-    public $command;
-
     public function timezone() : string
     {
         return $this->timezone;
-    }
-
-    public function exec(string $cmd, Log $log = null, string $level = null) : void
-    {
-        $this->cmd = $cmd;
     }
 
     public function homeDir() : string
@@ -29,5 +22,10 @@ class FakeSystem extends System
     public function docroot() : string
     {
         return $this->sitesDir() . '/argo-test';
+    }
+
+    public function open(string $file) : void
+    {
+        // do nothing
     }
 }

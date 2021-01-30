@@ -59,18 +59,12 @@ class System
         }
     }
 
-    public function approot(string $subpath = '') : string
+    public function approot() : string
     {
-        $path = dirname(__DIR__, 2);
-
-        if ($subpath !== '') {
-            $path .= "/{$subpath}";
-        }
-
-        return $path;
+        return dirname(__DIR__, 2);
     }
 
-    public function docroot(string $subpath = '') : string
+    public function docroot() : string
     {
         $file = $this->supportDir() . '/docroot.php';
 
@@ -85,13 +79,7 @@ class System
             $this->putDocroot($docroot);
         }
 
-        $path = require $file;
-
-        if ($subpath !== '') {
-            $path .= "/{$subpath}";
-        }
-
-        return $path;
+        return require $file;
     }
 
     public function putDocroot(string $docroot) : void

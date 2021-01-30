@@ -9,6 +9,7 @@ use Argo\Domain\Config\Config;
 use Argo\Domain\Config\ConfigGateway;
 use Argo\Domain\DateTime;
 use Argo\Domain\Json;
+use Argo\Domain\Log;
 use Argo\Domain\Storage;
 use RuntimeException;
 
@@ -144,7 +145,7 @@ class Preflight
 
         // load up the config for the theme as default values.
         $theme = $this->config->general->theme;
-        $file = $this->system->docroot("_theme/vendor/{$theme}/config/theme.json");
+        $file = $this->system->docroot() ."/_theme/vendor/{$theme}/config/theme.json";
         $json = file_exists($file) ? file_get_contents($file) : '{}';
         $default = Json::decode($json, true);
         $this->config('theme', "_argo/theme/{$theme}", $default);
@@ -178,6 +179,9 @@ class Preflight
     protected function initialize()
     {
         $this->initializeComposerThemes();
+
+        $themeAutoload = $this->storage->path('_theme/vendor/autoload.php');
+        require_once $themeAutoload;
 
         $this->configs();
 
@@ -218,17 +222,20 @@ class Preflight
         return false;
     }
 
+    /**
+     * @todo show composer output in log, but not in tests
+     */
     protected function composer(string $command) : void
     {
-        $composer = $this->system->approot('bin/composer.phar');
-        $docroot = $this->system->docroot('_theme');
-        $command = "cd $docroot; php $composer $command";
+        $composer = $this->system->approot() . '/bin/composer.phar';
+        $docroot = $this->system->docroot() . '/_theme';
+        $command = "cd $docroot; php $composer $command 2>&1";
         $this->system->exec($command);
     }
 
     protected function relinkThemeRepos() : void
     {
-        $source = $this->system->approot('resources/theme');
+        $source = $this->system->approot() . '/resources/theme';
         $target = $this->system->supportDir();
         $command = "ln -sF '{$source}' '{$target}/theme'";
         $this->system->exec($command);
@@ -261,8 +268,8 @@ class Preflight
                 ],
             ],
             'require' => [
-                'argo/bootstrap4' => 'dev-master',
-                'argo/original' => 'dev-master',
+                'argo/bootstrap4' => '>0@dev',
+                'argo/original' => '>0@dev',
             ],
         ]));
 

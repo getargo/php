@@ -29,13 +29,14 @@ abstract class TestCase extends \Argo\TestCase
             'tagline' => 'Argo Blog Tagline',
             'author' => 'boshag',
             'url' => 'http://example.com',
-            'theme' => 'bootstrap4'
+            'theme' => 'argo/bootstrap4'
         ]);
 
         $this->configGateway->saveValues($this->config->general);
 
         $this->config->admin = $this->configGateway->newValues('_argo/admin', (object) [
             'initialize' => true,
+            'version' => '1.2.0',
         ]);
 
         $this->configGateway->saveValues($this->config->admin);
