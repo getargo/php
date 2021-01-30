@@ -237,7 +237,7 @@ class Preflight
     {
         $source = $this->system->approot() . '/resources/theme';
         $target = $this->system->supportDir();
-        $command = "ln -sF '{$source}' '{$target}/theme'";
+        $command = "ln -sfn '{$source}' '{$target}/theme'";
         $this->system->exec($command);
     }
 
