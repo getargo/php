@@ -18,7 +18,7 @@ use Argo\View\ViewFactory;
 use Aura\View\View;
 use Throwable;
 
-class Build
+abstract class Build
 {
     protected $storage;
 
