@@ -26,7 +26,7 @@ class Folio
 
         $penders = [];
         $theme = $folio->config->general->theme;
-        $dir = "_theme/{$theme}-custom/templates/penders";
+        $dir = "_theme/custom/{$theme}/templates/penders";
         foreach ($storage->glob("$dir/*/*.php") as $path) {
             $parts = explode('/', $path);
             $name = array_pop($parts);
