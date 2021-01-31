@@ -15,6 +15,7 @@ use Argo\Domain\Content\Tag\Tag;
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
 use Argo\View\ViewFactory;
+use Aura\View\View;
 use Throwable;
 
 class Build
@@ -423,7 +424,7 @@ class Build
         ]);
     }
 
-    protected function write(string $id, string $template, $data = []) : void
+    protected function write(string $id, string $template, array $data = []) : void
     {
         $data += [
             'config' => $this->config,
@@ -436,20 +437,7 @@ class Build
         $this->log($id);
 
         $theme = trim($this->config->general->theme);
-
-        $view = $this->viewFactory->new([
-            $this->storage->path("_theme/custom/{$theme}/templates"),
-            $this->storage->path("_theme/vendor/{$theme}/templates"),
-        ]);
-
-        $view->setData($data);
-        $view->setView($template);
-
-        $isHtml = strrchr($id, '.') === '.html';
-
-        if ($isHtml) {
-            $view->setLayout('layout/html');
-        }
+        $view = $this->newView($theme, $id, $template, $data);
 
         // php seems to dump the entire buffer to output if there
         // is an exception thrown within the view. so, this captures
@@ -466,6 +454,29 @@ class Build
         }
 
         $this->storage->write($id, $text);
+    }
+
+    protected function newView(
+        string $theme,
+        string $id,
+        string $template,
+        array $data = []
+    ) : View
+    {
+        $view = $this->viewFactory->new([
+            $this->storage->path("_theme/custom/{$theme}/templates"),
+            $this->storage->path("_theme/vendor/{$theme}/templates"),
+        ]);
+
+        $view->setData($data);
+        $view->setView($template);
+        $isHtml = strrchr($id, '.') === '.html';
+
+        if ($isHtml) {
+            $view->setLayout('layout/html');
+        }
+
+        return $view;
     }
 
     protected function log(/* string|array */ $message) : void
