@@ -17,7 +17,7 @@ class SystemTest extends \Argo\TestCase
      */
     public function test(string $os, string $method, string $expect)
     {
-        $system = new FakeSystem($os);
+        $system = new FakeSystem(new FakeLog(), $os);
         $actual = $system->$method();
         $this->assertSame($expect, $actual);
     }

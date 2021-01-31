@@ -63,7 +63,7 @@ class Sync
         }
 
         $cmd = $this->$type($sync);
-        $this->system->exec("{$cmd} 2>&1", $this->log, 'echo');
+        $this->system->exec("{$cmd} 2>&1", 'echo');
 
         $this->config->admin->lastSync = $this->dateTime->utc();
         $this->configGateway->saveValues($this->config->admin);

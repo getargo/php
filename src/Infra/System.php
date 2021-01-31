@@ -12,23 +12,21 @@ class System
 {
     protected $os;
 
-    public function __construct(string $os = PHP_OS_FAMILY)
+    protected $log;
+
+    public function __construct(Log $log, string $os = PHP_OS_FAMILY)
     {
+        $this->log = $log;
         $this->os = $os;
     }
 
-    public function exec(string $cmd, Log $log = null, string $level = null) : void
+    public function exec(string $cmd, string $level = 'info') : void
     {
-        if ($log !== null && $level !== null) {
-            $log->$level($cmd);
-        }
-
+        $this->log->$level($cmd);
         $handle = popen($cmd, 'r');
 
-        if ($log !== null && $level !== null) {
-            while (false !== $text = fgets($handle)) {
-                $log->$level(rtrim($text));
-            }
+        while (false !== $text = fgets($handle)) {
+            $this->log->$level(rtrim($text));
         }
 
         pclose($handle);

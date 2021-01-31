@@ -36,7 +36,7 @@ class Server
 
         if ($pid !== null) {
             $cmd = "kill {$pid}";
-            $this->system->exec($cmd, $this->log, 'info');
+            $this->system->exec($cmd);
         }
 
         if ($docroot !== null) {
