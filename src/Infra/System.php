@@ -40,7 +40,7 @@ class System
 
     public function timezone() : string
     {
-        $time = shell_exec('date');
+        $time = shell_exec('export LC_ALL=en;date');
         $date = new DateTimeImmutable($time);
         $zone = $date->getTimeZone()->getName();
         switch ($zone) {
