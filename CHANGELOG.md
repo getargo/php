@@ -77,6 +77,7 @@ having to re-edit your custom work each time you switch.
 - Action classes now get the explicit UseCase, not just the Container
 - Namepsace Argo\Infrastructure renamed to Argo\Infra
 - Preflight now handles in-place upgrades
+- Timezone discovery now sets local format to en_US, to suit DateTime expectations
 
 ## 1.1.0
 
