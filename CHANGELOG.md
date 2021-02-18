@@ -47,10 +47,36 @@ having to re-edit your custom work each time you switch.
 
 - Pages without tags now show up properly for editing.
 
-### Other
+### Internals
 
-Updated docs and tests.
-
+- Composer now included
+- Multi-level container configuration (domain, infra, app, ui)
+- No more "extra" in composer.json
+- Admin: post draft, post, page, tag, all now use bodyPreview(), not body()
+- Admin: generic item now shows the URL to which the item will be published
+- Admin: generic item now always shows a Delete button
+- Admin: sidebar now links to Featured Config
+- Admin: "Open Local Docroot" now in top right corner, displayed as folder path and name
+- Themes are now loaded via Composer
+- Themes now use "vendor/package" naming convention
+- Old theme "default" now named "argo/original"
+- New theme "argo/bootstrap4" is now the default for new sites
+- Themes now have their own Build.php code
+- Index-page posts now show a "More" link
+- Renamed Argo\UseCase namespace to Argo\App
+- Theme name is now part of General config
+- Pages now get tags
+- Tags can now be trashed
+- The _argo/admin.json config now carries an Argo version value
+- Themes now carry their own default configuration files
+- Each Post can now know which index page it is on; this makes index rebuilds faster.
+- The internal Folio now tracks custom prepend and append ("penders") templates
+- All content items get tags (except Tag items), as well as prev and next values
+- Invalid page names went from  ['author', 'authors', 'post', 'posts', 'tag', 'tags', 'theme'];
+  to ['author', 'authors', 'category', 'categories', 'post', 'posts', 'tag', 'tags', 'theme'];
+- Action classes now get the explicit UseCase, not just the Container
+- Namepsace Argo\Infrastructure renamed to Argo\Infra
+- Preflight now handles in-place upgrades
 
 ## 1.1.0
 
