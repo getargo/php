@@ -98,4 +98,3 @@ Drafts now show images properly.
 ## 1.0.0
 
 Initial release.
-
