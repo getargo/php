@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo;
 
-use Argo\App\AppContainerFactory;
+use Argo\Infra\InfraContainerFactory;
 use Argo\Domain\DateTime;
 use Argo\Domain\FakeDateTime;
 use Argo\Domain\Log;
@@ -15,7 +15,7 @@ use Argo\Infra\System;
 use Capsule\Di\Container;
 use Capsule\Di\Definitions;
 
-class TestContainerFactory extends AppContainerFactory
+class TestContainerFactory extends InfraContainerFactory
 {
     static protected function define() : Definitions
     {

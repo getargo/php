@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\DomainContainerFactory;
+use Argo\App\AppContainerFactory;
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
 use Capsule\Di\Container;
 use Capsule\Di\Definitions;
 use Capsule\Di\Lazy;
 
-class InfraContainerFactory extends DomainContainerFactory
+class InfraContainerFactory extends AppContainerFactory
 {
     static protected function define() : Definitions
     {
