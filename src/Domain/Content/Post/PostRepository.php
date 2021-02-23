@@ -35,7 +35,7 @@ class PostRepository extends ItemRepository
             }
         } else {
             $i = 0;
-            $perPage = $this->config->general->perPage;
+                $perPage = $this->config->general->perPage;
 
             foreach ($items as $item) {
                 $item->setPostIndexKey((int) ($i / $perPage));

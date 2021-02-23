@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Argo\App\Content\Page;
 
-use Argo\Domain\Config\Config;
 use Argo\Domain\DateTime;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Infra\BuildFactory;
@@ -12,18 +11,14 @@ use Argo\App\UseCase;
 
 class SavePage extends UseCase
 {
-    protected $config;
-
     protected $content;
 
     protected $buildFactory;
 
     public function __construct(
-        Config $config,
         ContentLocator $content,
         BuildFactory $buildFactory
     ) {
-        $this->config = $config;
         $this->content = $content;
         $this->buildFactory = $buildFactory;
     }
@@ -38,7 +33,6 @@ class SavePage extends UseCase
 
         $page->fill($data);
         $this->content->pages->save($page, $body);
-
         $this->buildFactory->new()->onePage($page);
 
         return Payload::updated(['item' => $page]);

@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\Config\Config;
-use Argo\Domain\Config\ConfigGateway;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Config\Values;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\DateTime;
@@ -14,11 +13,9 @@ use Argo\Infra\System;
 
 class Sync
 {
-    protected $config;
-
     protected $dateTime;
 
-    protected $configGateway;
+    protected $config;
 
     protected $log;
 
@@ -29,15 +26,13 @@ class Sync
     public function __construct(
         System $system,
         Storage $storage,
-        Config $config,
-        ConfigGateway $configGateway,
+        ConfigMapper $config,
         DateTime $dateTime,
         Log $log
     ) {
         $this->system = $system;
         $this->storage = $storage;
         $this->config = $config;
-        $this->configGateway = $configGateway;
         $this->dateTime = $dateTime;
         $this->log = $log;
     }
@@ -66,7 +61,7 @@ class Sync
         $this->system->exec("{$cmd} 2>&1", 'echo');
 
         $this->config->admin->lastSync = $this->dateTime->utc();
-        $this->configGateway->saveValues($this->config->admin);
+        $this->config->save($this->config->admin);
 
         $this->log->echo('Done!');
     }

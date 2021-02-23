@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\App;
 
-use Argo\Domain\Config\Config;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\Storage;
 use Argo\App\Payload;
@@ -19,7 +19,7 @@ class Dashboard extends UseCase
 
     public function __construct(
         Storage $storage,
-        Config $config,
+        ConfigMapper $config,
         ContentLocator $content
     ) {
         $this->storage = $storage;

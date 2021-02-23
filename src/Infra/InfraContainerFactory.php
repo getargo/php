@@ -10,11 +10,17 @@ use Capsule\Di\Container;
 use Capsule\Di\Definitions;
 use Capsule\Di\Lazy;
 
-class InfraContainerFactory extends AppContainerFactory
+class InfraContainerFactory
 {
+    static public function new() : Container
+    {
+        $def = static::define();
+        return $def->newContainer();
+    }
+
     static protected function define() : Definitions
     {
-        $def = parent::define();
+        $def = new Definitions();
 
         $def->object(Log::CLASS, Stdlog::CLASS);
 

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Argo\App\Content\Draft;
 
-use Argo\Domain\Config\Config;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\Content\Draft\Draft;
 use Argo\Domain\Content\Post\Post;
@@ -20,8 +19,6 @@ class PublishDraft extends UseCase
 
     protected $storage;
 
-    protected $config;
-
     protected $content;
 
     protected $buildFactory;
@@ -29,13 +26,11 @@ class PublishDraft extends UseCase
     public function __construct(
         DateTime $dateTime,
         Storage $storage,
-        Config $config,
         ContentLocator $content,
         BuildFactory $buildFactory
     ) {
         $this->dateTime = $dateTime;
         $this->storage = $storage;
-        $this->config = $config;
         $this->content = $content;
         $this->buildFactory = $buildFactory;
     }

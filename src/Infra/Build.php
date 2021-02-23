@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\Config\Config;
-use Argo\Domain\Config\ConfigGateway;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Content\Draft\Draft;
 use Argo\Domain\Content\Folio;
 use Argo\Domain\Content\Month;
@@ -38,8 +37,7 @@ abstract class Build
 
     public function __construct(
         Storage $storage,
-        Config $config,
-        ConfigGateway $configGateway,
+        ConfigMapper $config,
         Log $log,
         string $level,
         ViewFactory $viewFactory,
@@ -47,7 +45,6 @@ abstract class Build
     ) {
         $this->storage = $storage;
         $this->config = $config;
-        $this->configGateway = $configGateway;
         $this->log = $log;
         $this->level = $level;
         $this->viewFactory = $viewFactory;
@@ -79,7 +76,7 @@ abstract class Build
         $this->log("Done!");
 
         $this->config->admin->lastBuild = $this->folio->utc;
-        $this->configGateway->saveValues($this->config->admin);
+        $this->config->save($this->config->admin);
     }
 
     public function onePost(Post $post, bool $new = true) : void

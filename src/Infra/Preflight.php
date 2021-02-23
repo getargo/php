@@ -5,8 +5,7 @@ namespace Argo\Infra;
 
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\Content\Post\Post;
-use Argo\Domain\Config\Config;
-use Argo\Domain\Config\ConfigGateway;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\DateTime;
 use Argo\Domain\Json;
 use Argo\Domain\Log;
@@ -23,8 +22,6 @@ class Preflight
 
     protected $config;
 
-    protected $configGateway;
-
     protected $initialize;
 
     protected $server;
@@ -33,8 +30,7 @@ class Preflight
         System $system,
         DateTime $dateTime,
         Storage $storage,
-        Config $config,
-        ConfigGateway $configGateway,
+        ConfigMapper $config,
         Initialize $initialize,
         Server $server,
         ContentLocator $content,
@@ -44,7 +40,6 @@ class Preflight
         $this->dateTime = $dateTime;
         $this->storage = $storage;
         $this->config = $config;
-        $this->configGateway = $configGateway;
         $this->initialize = $initialize;
         $this->server = $server;
         $this->content = $content;
@@ -159,11 +154,10 @@ class Preflight
 
         if ($old === null) {
             // no existing config, create from default
-            $this->config->$name = $this->configGateway->newValues(
+            $this->config->save($this->config->new(
                 $id,
                 Json::recode($default)
-            );
-            $this->configGateway->saveValues($this->config->$name);
+            ));
             return;
         }
 
@@ -172,7 +166,7 @@ class Preflight
         if ($new !== $old) {
             // pre-existing config, write the changed values
             $this->config->$name->setData(Json::recode((object) $new));
-            $this->configGateway->saveValues($this->config->$name);
+            $this->config->save($this->config->$name);
         }
     }
 
@@ -207,7 +201,7 @@ class Preflight
         $this->buildFactory->new()->all();
 
         unset($this->config->admin->initialize);
-        $this->configGateway->saveValues($this->config->admin);
+        $this->config->save($this->config->admin);
     }
 
     protected function upgrade() : bool
@@ -285,7 +279,7 @@ class Preflight
         }
 
         $this->config->general->theme = $theme;
-        $this->configGateway->saveValues($this->config->general);
+        $this->config->save($this->config->general);
 
         // copy the _argo/theme.json file to _argo/{$theme}.json;
         // e.g., from _argo/theme.json to _argo/theme/argo/original.json
@@ -298,17 +292,17 @@ class Preflight
         $this->system->exec("rm {$file}");
 
         $this->config->admin->version = '1.0.0.u1';
-        $this->configGateway->saveValues($this->config->admin);
+        $this->config->save($this->config->admin);
     }
 
     protected function upgradeFrom_1_0_0_u1() : void
     {
         unset($this->config->theme->name);
-        $this->configGateway->saveValues($this->config->theme);
+        $this->config->save($this->config->theme);
 
         $this->initializeComposerThemes();
 
         $this->config->admin->version = '1.2.0';
-        $this->configGateway->saveValues($this->config->admin);
+        $this->config->save($this->config->admin);
     }
 }

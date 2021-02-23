@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\Config\Config;
-use Argo\Domain\Config\ConfigGateway;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\Content\Folio;
 use Argo\Domain\Content\Month;
@@ -32,8 +31,7 @@ class BuildFactory
     public function __construct(
         DateTime $dateTime,
         Storage $storage,
-        Config $config,
-        ConfigGateway $configGateway,
+        ConfigMapper $config,
         ContentLocator $content,
         Log $log,
         ViewFactory $viewFactory
@@ -41,7 +39,6 @@ class BuildFactory
         $this->dateTime = $dateTime;
         $this->storage = $storage;
         $this->config = $config;
-        $this->configGateway = $configGateway;
         $this->content = $content;
         $this->log = $log;
         $this->viewFactory = $viewFactory;
@@ -49,6 +46,7 @@ class BuildFactory
 
     public function new(string $level = 'info') : Build
     {
+
         // foo/bar-baz => Foo\BarBaz\Build
         $class = $this->config->general->theme;
         $class = ucwords($class, '-/');
@@ -58,7 +56,6 @@ class BuildFactory
         return new $class(
             $this->storage,
             $this->config,
-            $this->configGateway,
             $this->log,
             $level,
             $this->viewFactory,

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\App\Config;
 
-use Argo\Domain\Config\Config;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Json;
 use Argo\App\Payload;
 use Argo\App\UseCase;
@@ -12,7 +12,7 @@ class FetchConfig extends UseCase
 {
     protected $config;
 
-    public function __construct(Config $config)
+    public function __construct(ConfigMapper $config)
     {
         $this->config = $config;
     }

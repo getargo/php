@@ -3,18 +3,29 @@ declare(strict_types=1);
 
 namespace Argo\Domain\Content;
 
-use Argo\Domain\Config\Config;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\DateTime;
 use Argo\Domain\Storage;
 
 class Folio
 {
-    static public function new(Storage $storage, Config $config, ContentLocator $content, DateTime $dateTime) : Folio
+    static public function new(Storage $storage, ConfigMapper $config, ContentLocator $content, DateTime $dateTime) : Folio
     {
         $start = microtime(true);
         $folio = new Folio();
-        $folio->config = $config;
+
+        $folio->config = (object) [];
+        $files = $storage->glob('_argo/*.json');
+
+        foreach ($files as $file) {
+            $file = basename($file);
+            $name = substr($file, 0, strpos(basename($file), '.'));
+            $folio->config->$name = $config->$name;
+        }
+
+        $folio->config->theme = $config->theme;
+
         $folio->drafts = $content->drafts->getItems();
         $folio->posts = $content->posts->getItems();
         $folio->postIndexes = PostIndex::getAllFromPosts($folio->posts, $folio->config->general->perPage);

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\Config\Config;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\Content\Post\Post;
 use Argo\Domain\DateTime;
@@ -14,7 +14,7 @@ class Initialize
 {
     public function __construct(
         DateTime $dateTime,
-        Config $config,
+        ConfigMapper $config,
         ContentLocator $content,
         Storage $storage,
         BuildFactory $buildFactory

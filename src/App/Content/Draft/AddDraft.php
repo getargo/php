@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\App\Content\Draft;
 
-use Argo\Domain\Config\Config;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\Content\Draft\Draft;
 use Argo\Domain\DateTime;
@@ -21,7 +21,7 @@ class AddDraft extends UseCase
 
     public function __construct(
         DateTime $dateTime,
-        Config $config,
+        ConfigMapper $config,
         ContentLocator $content
     ) {
         $this->dateTime = $dateTime;

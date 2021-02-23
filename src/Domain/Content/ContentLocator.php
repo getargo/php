@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Domain\Content;
 
-use Argo\Domain\Config\Config;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Content\Draft\DraftRepository;
 use Argo\Domain\Content\Page\PageRepository;
 use Argo\Domain\Content\Post\PostRepository;
@@ -30,7 +30,7 @@ class ContentLocator
     public function __construct(
         DateTime $dateTime,
         Storage $storage,
-        Config $config
+        ConfigMapper $config
     ) {
         $this->dateTime = $dateTime;
         $this->storage = $storage;

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\App\Content\Post;
 
-use Argo\Domain\Config\Config;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Content\ContentLocator;
 use Argo\App\Payload;
 use Argo\App\UseCase;
@@ -14,7 +14,7 @@ class FetchPosts extends UseCase
 
     protected $content;
 
-    public function __construct(Config $config, ContentLocator $content)
+    public function __construct(ConfigMapper $config, ContentLocator $content)
     {
         $this->config = $config;
         $this->content = $content;

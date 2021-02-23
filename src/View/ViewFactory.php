@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Argo\View;
 
-use Argo\Domain\Config\Config;
 use Argo\Domain\Storage;
 use Argo\Domain\DateTime as DateTimeFormat;
 use Aura\Html\HelperLocatorFactory;

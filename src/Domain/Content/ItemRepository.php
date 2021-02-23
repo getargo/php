@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Domain\Content;
 
-use Argo\Domain\Config\Config;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\DateTime;
 use Argo\Domain\Exception;
@@ -26,7 +26,7 @@ abstract class ItemRepository
     public function __construct(
         DateTime $dateTime,
         Storage $storage,
-        Config $config,
+        ConfigMapper $config,
         ContentLocator $content
     ) {
         $this->dateTime = $dateTime;

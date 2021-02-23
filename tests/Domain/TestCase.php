@@ -11,13 +11,10 @@ abstract class TestCase extends \Argo\TestCase
     {
         parent::setUp();
 
-        $this->config->general = new Values(
-            '_argo/general',
-            (object) [
-                'perPage' => 10,
-                'author' => 'boshag',
-            ]
-        );
+        $this->config->save($this->config->new('_argo/general', (object) [
+            'perPage' => 10,
+            'author' => 'boshag',
+        ]));
     }
 
     protected function expectDomainException(string $message) : void

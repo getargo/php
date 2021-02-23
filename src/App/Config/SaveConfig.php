@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\App\Config;
 
-use Argo\Domain\Config\Config;
-use Argo\Domain\Config\ConfigGateway;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Json;
 use Argo\Infra\BuildFactory;
 use Argo\App\Payload;
@@ -14,17 +13,13 @@ class SaveConfig extends UseCase
 {
     protected $config;
 
-    protected $configGateway;
-
     protected $buildFactory;
 
     public function __construct(
-        Config $config,
-        ConfigGateway $configGateway,
+        ConfigMapper $config,
         BuildFactory $buildFactory
     ) {
         $this->config = $config;
-        $this->configGateway = $configGateway;
         $this->buildFactory = $buildFactory;
     }
 
@@ -42,7 +37,7 @@ class SaveConfig extends UseCase
 
         $data = Json::decode($text);
         $this->config->$name->setData($data);
-        $this->configGateway->saveValues($this->config->$name);
+        $this->config->save($this->config->$name);
 
         switch ($name) {
             case 'menu':

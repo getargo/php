@@ -3,44 +3,68 @@ declare(strict_types=1);
 
 namespace Argo\Domain\Config;
 
-use Argo\Domain\Exception;
+use Argo\Domain\Json;
+use ArrayIterator;
+use IteratorAggregate;
 
-class Config
+class Config implements IteratorAggregate
 {
-    protected $instances = [];
+    protected $id;
 
-    public function __construct(array $instances)
+    protected $data;
+
+    public function __construct(string $id, object $data = null)
     {
-        foreach ($instances as $key => $val) {
-            $this->$key = $val;
+        $this->id = $id;
+        $this->data = (object) [];
+
+        if ($data !== null) {
+            $this->setData($data);
         }
     }
 
     public function __get($key)
     {
-        return $this->instances[$key];
+        return $this->data->$key;
     }
 
     public function __set($key, $val)
     {
-        $this->assertValues($val);
-        $this->instances[$key] = $val;
+        $this->data->$key = $val;
     }
 
     public function __isset($key)
     {
-        return isset($this->instances[$key]);
+        return isset($this->data->$key);
     }
 
     public function __unset($key)
     {
-        unset($this->instances[$key]);
+        unset($this->data->$key);
     }
 
-    protected function assertValues($val) : void
+    public function getText() : string
     {
-        if (! $val instanceof Values) {
-            throw new Exception('Not an instance of ' . Values::CLASS);
-        }
+        return Json::encode($this->data);
+    }
+
+    public function setData(object $data) : void
+    {
+        $this->data = $data;
+    }
+
+    public function getData() : object
+    {
+        return $this->data;
+    }
+
+    public function getIterator()
+    {
+        return new ArrayIterator($this->data);
+    }
+
+    public function getId() : string
+    {
+        return $this->id;
     }
 }

@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace Argo;
 
-use Argo\Domain\Config\Config;
-use Argo\Domain\Config\ConfigGateway;
+use Argo\Domain\Config\ConfigMapper;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\DateTime;
 use Argo\Domain\Json;
@@ -18,8 +17,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     protected $storage;
 
     protected $config;
-
-    protected $configGateway;
 
     protected $content;
 
@@ -42,8 +39,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->dateTime = $this->container->get(DateTime::CLASS);
         $this->storage = $this->container->get(Storage::CLASS);
         $this->content = $this->container->get(ContentLocator::CLASS);
-        $this->config = $this->container->get(Config::CLASS);
-        $this->configGateway = $this->container->get(ConfigGateway::CLASS);
+        $this->config = $this->container->get(ConfigMapper::CLASS);
         $this->system = $this->container->get(System::CLASS);
 
         $this->setDateTimeNow('0001-02-03 12:34:56');
