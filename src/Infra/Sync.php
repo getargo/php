@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Infra;
 
 use Argo\Domain\Config\ConfigMapper;
-use Argo\Domain\Config\Values;
+use Argo\Domain\Config\Config;
 use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\DateTime;
 use Argo\Domain\Log;
@@ -66,7 +66,7 @@ class Sync
         $this->log->echo('Done!');
     }
 
-    protected function rsync(Values $sync) : string
+    protected function rsync(Config $sync) : string
     {
         return implode(" \\" . PHP_EOL . "  ", [
             "rsync",
@@ -86,7 +86,7 @@ class Sync
         ]);
     }
 
-    protected function git(Values $sync) : string
+    protected function git(Config $sync) : string
     {
         return implode(" \\" . PHP_EOL, [
             "cd " . $this->storage->path(),

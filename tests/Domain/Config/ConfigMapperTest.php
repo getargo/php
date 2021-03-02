@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Argo\Domain\Config;
 
-use Argo\Domain\Config\Values\Fake;
-
 class ConfigMapperTest extends \Argo\Domain\TestCase
 {
     protected $config;

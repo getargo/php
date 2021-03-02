@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Argo\Domain;
 
-use Argo\Domain\Config\Values;
-
 abstract class TestCase extends \Argo\TestCase
 {
     protected function setUp() : void
