@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Argo;
 
-use Argo\Infra\InfraContainerFactory;
 use Argo\Domain\DateTime;
 use Argo\Domain\FakeDateTime;
 use Argo\Domain\Log;
@@ -12,20 +11,16 @@ use Argo\Infra\FakeServer;
 use Argo\Infra\FakeSystem;
 use Argo\Infra\Server;
 use Argo\Infra\System;
-use Capsule\Di\Container;
 use Capsule\Di\Definitions;
+use Capsule\Di\Provider;
 
-class TestContainerFactory extends InfraContainerFactory
+class TestProvider implements Provider
 {
-    static protected function define() : Definitions
+    public function provide(Definitions $def) : void
     {
-        $def = parent::define();
-
         $def->object(DateTime::CLASS, FakeDateTime::CLASS);
         $def->object(System::CLASS, FakeSystem::CLASS);
         $def->object(Server::CLASS, FakeServer::CLASS);
         $def->object(Log::CLASS, FakeLog::CLASS);
-
-        return $def;
     }
 }

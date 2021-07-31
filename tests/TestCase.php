@@ -8,7 +8,9 @@ use Argo\Domain\Content\ContentLocator;
 use Argo\Domain\DateTime;
 use Argo\Domain\Json;
 use Argo\Domain\Storage;
+use Argo\Infra\InfraProvider;
 use Argo\Infra\System;
+use Capsule\Di\ContainerFactory;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -35,7 +37,11 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->stdout = fopen('php://memory', 'w+');
         $this->stderr = fopen('php://memory', 'w+');
 
-        $this->container = TestContainerFactory::new();
+        $this->container = ContainerFactory::new([
+            new InfraProvider(),
+            new TestProvider()
+        ]);
+
         $this->dateTime = $this->container->get(DateTime::CLASS);
         $this->storage = $this->container->get(Storage::CLASS);
         $this->content = $this->container->get(ContentLocator::CLASS);
