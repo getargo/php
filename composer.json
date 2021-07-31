@@ -17,7 +17,7 @@
     "require": {
         "aura/html": "~2.0",
         "aura/view": "~2.0",
-        "capsule/di": "~2.0",
+        "capsule/di": "2.x@dev",
         "league/commonmark": "~1.0",
         "payload-interop/payload-interop": "~1.0",
         "pmjones/auto-route": "~1.0",

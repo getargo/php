@@ -3,20 +3,18 @@ declare(strict_types=1);
 
 namespace Argo\Http;
 
-use Argo\Infra\InfraContainerFactory;
 use AutoRoute\AutoRoute;
 use AutoRoute\Generator;
 use AutoRoute\Router;
 use Capsule\Di\Container;
 use Capsule\Di\Definitions;
+use Capsule\Di\Provider;
 use SapiRequest;
 
-class HttpContainerFactory extends InfraContainerFactory
+class HttpProvider implements Provider
 {
-    static protected function define() : Definitions
+    public function provide(Definitions $def) : void
     {
-        $def = parent::define();
-
         $def->object(SapiRequest::CLASS)
             ->argument('globals', [
                 '_GET' => $_GET,
@@ -45,7 +43,5 @@ class HttpContainerFactory extends InfraContainerFactory
                 $generator = $container->get(AutoRoute::CLASS)->newGenerator();
                 return $generator;
             });
-
-        return $def;
     }
 }
