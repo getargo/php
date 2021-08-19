@@ -34,12 +34,16 @@ class HttpProvider implements Provider
 
         $def->{Router::CLASS}
             ->factory(function (Container $container) {
-                return $container->get(AutoRoute::CLASS)->newRouter();
+                return $container
+                    ->get(AutoRoute::CLASS)
+                    ->getRouter();
             });
 
         $def->{Generator::CLASS}
             ->factory(function (Container $container) {
-                return $container->get(AutoRoute::CLASS)->newGenerator();
+                return $container
+                    ->get(AutoRoute::CLASS)
+                    ->getGenerator();
             });
     }
 }

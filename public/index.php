@@ -31,6 +31,6 @@ if ($redirect !== null) {
 $router = $container->get(Router::CLASS);
 $route = $router->route($request->method, $request->url['path']);
 $action = $container->new($route->class);
-$response = call_user_func([$action, $route->method], ...$route->params);
+$response = call_user_func([$action, $route->method], ...$route->arguments);
 $sender = new SapiResponseSender();
 $sender->send($response);
