@@ -3,23 +3,25 @@ declare(strict_types=1);
 
 namespace Argo\Domain;
 
+use Stringable;
+
 interface Log
 {
-    public function emergency($message, array $context = []);
+    public function emergency(Stringable|string $message, array $context = []) : void;
 
-    public function alert($message, array $context = []);
+    public function alert(Stringable|string $message, array $context = []) : void;
 
-    public function critical($message, array $context = []);
+    public function critical(Stringable|string $message, array $context = []) : void;
 
-    public function error($message, array $context = []);
+    public function error(Stringable|string $message, array $context = []) : void;
 
-    public function warning($message, array $context = []);
+    public function warning(Stringable|string $message, array $context = []) : void;
 
-    public function notice($message, array $context = []);
+    public function notice(Stringable|string $message, array $context = []) : void;
 
-    public function info($message, array $context = []);
+    public function info(Stringable|string $message, array $context = []) : void;
 
-    public function debug($message, array $context = []);
+    public function debug(Stringable|string $message, array $context = []) : void;
 
-    public function echo($message, array $context = []);
+    public function echo(Stringable|string $message, array $context = []) : void;
 }

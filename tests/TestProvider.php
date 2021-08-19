@@ -18,9 +18,16 @@ class TestProvider implements Provider
 {
     public function provide(Definitions $def) : void
     {
-        $def->object(DateTime::CLASS, FakeDateTime::CLASS);
-        $def->object(System::CLASS, FakeSystem::CLASS);
-        $def->object(Server::CLASS, FakeServer::CLASS);
-        $def->object(Log::CLASS, FakeLog::CLASS);
+        $def->{DateTime::CLASS}
+            ->class(FakeDateTime::CLASS);
+
+        $def->{System::CLASS}
+            ->class(FakeSystem::CLASS);
+
+        $def->{Server::CLASS}
+            ->class(FakeServer::CLASS);
+
+        $def->{Log::CLASS}
+            ->class(FakeLog::CLASS);
     }
 }

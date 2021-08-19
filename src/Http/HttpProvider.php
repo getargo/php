@@ -15,7 +15,7 @@ class HttpProvider implements Provider
 {
     public function provide(Definitions $def) : void
     {
-        $def->object(SapiRequest::CLASS)
+        $def->{SapiRequest::CLASS}
             ->argument('globals', [
                 '_GET' => $_GET,
                 '_POST' => $_POST,
@@ -24,24 +24,22 @@ class HttpProvider implements Provider
                 '_SERVER' => $_SERVER,
             ]);
 
-        $def->object(AutoRoute::CLASS)
+        $def->{AutoRoute::CLASS}
             ->factory(function (Container $container) {
-                $autoRoute = new AutoRoute(
+                return new AutoRoute(
                     'Argo\\Http\\Action',
                     __DIR__ . '/Action'
                 );
-                return $autoRoute;
             });
 
-        $def->object(Router::CLASS)
+        $def->{Router::CLASS}
             ->factory(function (Container $container) {
                 return $container->get(AutoRoute::CLASS)->newRouter();
             });
 
-        $def->object(Generator::CLASS)
+        $def->{Generator::CLASS}
             ->factory(function (Container $container) {
-                $generator = $container->get(AutoRoute::CLASS)->newGenerator();
-                return $generator;
+                return $container->get(AutoRoute::CLASS)->newGenerator();
             });
     }
 }

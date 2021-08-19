@@ -13,12 +13,16 @@ class InfraProvider implements Provider
 {
     public function provide(Definitions $def) : void
     {
-        $def->object(Log::CLASS, Stdlog::CLASS);
+        $def->{Log::CLASS}
+            ->class(Stdlog::CLASS);
 
-        $def->object(Storage::CLASS, Fsio::CLASS)
+        $def->{Storage::CLASS}
+            ->class(Fsio::CLASS);
+
+        $def->{Fsio::CLASS}
             ->argument(
                 'docroot',
-                Lazy::getCall(System::CLASS, 'docroot')
+                $def->getCall(System::CLASS, 'docroot')
             );
     }
 }

@@ -8,12 +8,17 @@ use Argo\Http\HttpProvider;
 use Argo\Infra\InfraProvider;
 use Argo\Infra\Preflight;
 use AutoRoute\Router;
-use Capsule\Di\ContainerFactory;
+use Capsule\Di\Container;
+use Capsule\Di\Definitions;
 
-$container = ContainerFactory::new([
-    new InfraProvider(),
-    new HttpProvider()
-]);
+$container = new Container(
+    new Definitions(),
+    [
+        new InfraProvider(),
+        new HttpProvider(),
+    ]
+);
+
 $request = $container->get(SapiRequest::CLASS);
 $preflight = $container->get(Preflight::CLASS);
 $redirect = $preflight($request->url['path']);

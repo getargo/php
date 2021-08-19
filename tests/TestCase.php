@@ -10,7 +10,8 @@ use Argo\Domain\Json;
 use Argo\Domain\Storage;
 use Argo\Infra\InfraProvider;
 use Argo\Infra\System;
-use Capsule\Di\ContainerFactory;
+use Capsule\Di\Container;
+use Capsule\Di\Definitions;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -37,10 +38,13 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->stdout = fopen('php://memory', 'w+');
         $this->stderr = fopen('php://memory', 'w+');
 
-        $this->container = ContainerFactory::new([
-            new InfraProvider(),
-            new TestProvider()
-        ]);
+        $this->container = new Container(
+            new Definitions(),
+            [
+                new InfraProvider(),
+                new TestProvider(),
+            ]
+        );
 
         $this->dateTime = $this->container->get(DateTime::CLASS);
         $this->storage = $this->container->get(Storage::CLASS);

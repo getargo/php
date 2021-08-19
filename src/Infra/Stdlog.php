@@ -6,6 +6,7 @@ namespace Argo\Infra;
 use Argo\Domain\Log;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
+use Stringable;
 
 class Stdlog extends AbstractLogger implements Log
 {
@@ -35,13 +36,13 @@ class Stdlog extends AbstractLogger implements Log
         $this->stderr = $stderr ?? fopen('php://stderr', 'w');
     }
 
-    public function echo($message, array $context = [])
+    public function echo(Stringable|string $message, array $context = []) : void
     {
         echo $this->interpolate($message, $context);
         flush();
     }
 
-    public function log($level, $message, array $context = [])
+    public function log($level, Stringable|string $message, array $context = []) : void
     {
         $handle = $this->stdout;
 

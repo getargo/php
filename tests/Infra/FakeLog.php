@@ -6,6 +6,7 @@ namespace Argo\Infra;
 use Argo\Domain\Log;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
+use Stringable;
 
 class FakeLog extends Stdlog
 {
@@ -25,7 +26,7 @@ class FakeLog extends Stdlog
         return $this->stderr;
     }
 
-    public function echo($message, array $context = [])
+    public function echo(Stringable|string $message, array $context = []) : void
     {
         $handle = $this->stdout;
         fwrite($handle, $this->interpolate($message, $context));
