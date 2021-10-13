@@ -1,4 +1,4 @@
-                <?php foreach ($this->postIndex->posts as $post): ?>
+                {{ foreach $this->postIndex->posts as $post }}
 
                 <article class="PostArticle row">
                     <aside class="ArticleMeta col-3 text-right pt-1">
@@ -8,32 +8,32 @@
                             <?= $this->dateTime()->html($post->created, 'M Y') ?><br />
                         </time>
 
-                        <address rel="author"><?= $this->escape()->html($post->author) ?></address>
+                        <address rel="author">{{h $post->author }}</address>
 
-                        <ul class="list-unstyled"><?php foreach ($post->tags as $tag): ?>
-                            <li class="small"><?= $this->anchor($tag->href, $tag->title); ?></li>
-                        <?php endforeach; ?></ul>
+                        <ul class="list-unstyled">{{foreach $post->tags as $tag }}
+                            <li class="small">{{= anchor $tag->href, $tag->title }}</li>
+                        {{ endforeach }}</ul>
                     </aside>
                     <div class="col-9">
                         <header class="ArticleHeader">
-                            <h2><?= $this->anchor(
+                            <h2>{{= anchor
                                 $post->href,
                                 $post->title
-                            ) ?></h2>
+                            }}</h2>
                         </header>
                         <section class="ArticleBody">
-                            <?= $this->bodyLess($post); ?>
+                            {{= bodyLess $post }}
                         </section>
                     </div>
                 </article>
 
                 <hr />
 
-                <?php endforeach; ?>
+                {{ endforeach }}
 
                 <div class="row">
                     <div class="col-3"></div>
                     <div class="col-9">
-                        <?= $this->render('prevnext') ?>
+                        {{= render 'prevnext' }}
                     </div>
                 </div>

@@ -1,7 +1,7 @@
     <title><?php
-        $title = $this->escape()->html($this->config->general->title);
+        $title = $this->h($this->config->general->title);
         $title .= isset($this->item->title)
-            ? ' | ' . $this->escape()->html($this->item->title)
+            ? ' | ' . $this->h($this->item->title)
             : '';
         echo $title;
     ?></title>

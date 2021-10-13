@@ -10,7 +10,7 @@
         <title><?= $post->title ?></title>
         <link href="<?= $this->config->general->url . $post->href ?>" />
         <updated><?= $this->dateTime()->html($post->lastUpdated, DATE_ATOM) ?></updated>
-        <summary><?= $this->escape()->html(
+        <summary><?= $this->h(
             substr(
                 trim(strip_tags($this->body($post))),
                 0,

@@ -6,7 +6,7 @@
                         <div class="Article__MetaSmall"><?= $this->dateTime()->html($this->post->created, 'l') ?></div>
                         <div class="Article__MetaLarge"><?= $this->dateTime()->html($this->post->created, 'd') ?></div>
                         <div class="Article__MetaSmall"><?= $this->dateTime()->html($this->post->created, 'F Y') ?></div>
-                        <div class="Article__MetaSmall"><?= $this->escape()->html($this->post->author) ?></div>
+                        <div class="Article__MetaSmall"><?= $this->h($this->post->author) ?></div>
                         <div class="Article__MetaSmall">
                             <?php foreach ($this->post->tags as $k => $tag): ?>
                                 <?php if (isset($tag->href) && isset($tag->title)): ?>

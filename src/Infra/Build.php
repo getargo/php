@@ -14,7 +14,7 @@ use Argo\Domain\Content\Tag\Tag;
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
 use Argo\View\ViewFactory;
-use Aura\View\View;
+use Qiq\Template;
 use Throwable;
 
 abstract class Build
@@ -435,21 +435,7 @@ abstract class Build
 
         $theme = trim($this->config->general->theme);
         $view = $this->newView($theme, $id, $template, $data);
-
-        // php seems to dump the entire buffer to output if there
-        // is an exception thrown within the view. so, this captures
-        // the buffer around the view, and closes all of its own
-        // buffers regardless of exceptions.
-        try {
-            $obLevel = ob_get_level();
-            ob_start();
-            $text = $view();
-        } finally {
-            while (ob_get_level() > $obLevel) {
-                ob_end_clean();
-            }
-        }
-
+        $text = $view();
         $this->storage->write($id, $text);
     }
 
@@ -458,7 +444,7 @@ abstract class Build
         string $id,
         string $template,
         array $data = []
-    ) : View
+    ) : Template
     {
         $view = $this->viewFactory->new([
             $this->storage->path("_theme/custom/{$theme}/templates"),

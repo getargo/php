@@ -1,8 +1,7 @@
-<?php
-use Argo\Domain\Content\Tag\Tag;
-use Argo\Domain\Content\Draft\Draft;
-use Argo\Http\Action\Draft\Publish\PostDraftPublish;
-?>
+{{ use Argo\Domain\Content\Tag\Tag }}
+{{ use Argo\Domain\Content\Draft\Draft }}
+{{ use Argo\Http\Action\Draft\Publish\PostDraftPublish }}
+
 <form onsubmit="return false;">
 
     <div id="submit-failure"></div>
@@ -11,7 +10,7 @@ use Argo\Http\Action\Draft\Publish\PostDraftPublish;
         <div class="col col-1 text-right">
             <label>URL</label>
         </div>
-        <div class="col"><?= $this->escape()->html($item->href) ?></div>
+        <div class="col">{{h $item->href }}</div>
     </div>
 
     <div class="row mb-1 align-items-start">
@@ -19,14 +18,11 @@ use Argo\Http\Action\Draft\Publish\PostDraftPublish;
             <label for="title">Title</label>
         </div>
         <div class="col">
-            <?= $this->input([
-                'type' => 'text',
+            {{= formText ([
                 'name' => 'title',
                 'value' => $item->title,
-                'attribs' => [
-                    'class' => 'form-control',
-                ],
-            ]); ?>
+                'class' => 'form-control',
+            ]) }}
         </div>
     </div>
 
@@ -35,16 +31,13 @@ use Argo\Http\Action\Draft\Publish\PostDraftPublish;
             <label for="body">Body</label>
         </div>
         <div class="col">
-            <?= $this->input([
-                'type' => 'textarea',
+            {{= formTextarea ([
                 'name' => 'body',
                 'value' => $this->body,
-                'attribs' => [
-                    'class' => 'form-control h-100',
-                    'style' => 'font-size: 85%;',
-                    'rows' => '12',
-                ],
-            ]); ?>
+                'class' => 'form-control h-100',
+                'style' => 'font-size: 85%;',
+                'rows' => '12',
+            ]) }}
         </div>
     </div>
 
@@ -53,37 +46,32 @@ use Argo\Http\Action\Draft\Publish\PostDraftPublish;
             <label for="markup">Markup</label>
         </div>
         <div class="col">
-            <?= $this->input([
+            {{= formSelect ([
                 'type' => 'select',
                 'name' => 'markup',
+                'class' => 'form-control',
                 'value' => $item->markup,
                 'options' => [
                     'html' => 'HTML',
                     'markdown' => 'Markdown',
                     'wordpress' => 'WordPress',
                 ],
-                'attribs' => [
-                    'class' => 'form-control',
-                ],
-            ]); ?>
+            ]) }}
         </div>
     </div>
 
-    <?php if (! $item instanceof Tag): ?>
+    {{ if (! $item instanceof Tag): }}
 
     <div class="row mb-1 align-items-start">
         <div class="col col-1 text-right">
             <label for="tags">Tags</label>
         </div>
         <div class="col">
-            <?= $this->input([
-                'type' => 'text',
+            {{= formText ([
                 'name' => 'tags',
                 'value' => implode(', ', $item->tags),
-                'attribs' => [
-                    'class' => 'form-control',
-                ],
-            ]); ?>
+                'class' => 'form-control',
+            ]) }}
         </div>
     </div>
 
@@ -92,47 +80,43 @@ use Argo\Http\Action\Draft\Publish\PostDraftPublish;
             <label for="author">Author</label>
         </div>
         <div class="col">
-            <?= $this->input([
-                'type' => 'text',
+            {{= formText ([
                 'name' => 'author',
                 'value' => $item->author,
-                'attribs' => [
-                    'class' => 'form-control',
-                ],
-            ]); ?>
+                'class' => 'form-control',
+            ]) }}
         </div>
     </div>
 
-    <?php endif; ?>
+    {{ endif }}
 
     <div class="row mb-1 align-items-start">
         <div class="col col-1">
         </div>
         <div class="col">
-            <?= $this->routeSubmit(
+            {{= routeSubmit (
                 'Save',
                 $routeSubmitPost,
                 $item->relId
-            ); ?>
+            ) }}
 
-            <?php if ($item instanceof Draft): ?>
+            {{ if ($item instanceof Draft): }}
 
-            <?= $this->routeSubmit(
+            {{= routeSubmit (
                 'Publish',
                 PostDraftPublish::CLASS,
                 $this->draft->relId
-            ); ?>
+            ) }}
 
-            <?php endif; ?>
+            {{ endif }}
 
-            <?= $this->anchorOpenFolder($item->id); ?>
+            {{= anchorOpenFolder ($item->id) }}
 
-            <span style="float: right;"><?= $this->routeSubmit(
+            <span style="float: right;">{{= routeSubmit (
                 'Trash',
                 $routeSubmitDelete,
                 $item->relId
-            ); ?></span>
-
+            ) }}</span>
         </div>
     </div>
 </form>

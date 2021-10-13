@@ -3,22 +3,23 @@ declare(strict_types=1);
 
 namespace Argo\View\Helper;
 
-use Aura\Html\Escaper;
-use Aura\Html\Helper\Anchor;
+use Qiq\Escape;
+use Qiq\Helper\Anchor;
+use Qiq\Helper\Helper;
 
-class AnchorLocal
+class AnchorLocal extends Helper
 {
     protected $anchor;
 
     public function __construct(
-        Escaper $escaper,
+        Escape $escape,
         Anchor $anchor
     ) {
-        $this->escaper = $escaper;
+        parent::__construct($escape);
         $this->anchor = $anchor;
     }
 
-    public function __invoke(string $href, string $text, array $attr = [])
+    public function __invoke(string $href, string $text, array $attr = []) : string
     {
         $href = ltrim($href, '/');
         return ($this->anchor)("http://127.0.0.1:8081/{$href}", $text, $attr);

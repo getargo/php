@@ -1,25 +1,25 @@
-<?php
-use Argo\Http\Action\Tag\PostTag;
-use Argo\Http\Action\Tag\DeleteTag;
+{{ use
+    Argo\Http\Action\Tag\PostTag,
+    Argo\Http\Action\Tag\DeleteTag
+}}
+{{ $this->header = 'Tag' }}
 
-$this->header = 'Tag';
-?>
 <div class="card card-outline">
     <div class="card-header">
-        <h4><?= $this->escape()->html($this->tag->relId); ?></h4>
+        <h4>{{h $this->tag->relId) }}</h4>
     </div>
     <div class="card-body">
-        <?= $this->render('item', [
+        {{= render ('item', [
             'item' => $this->tag,
             'routeSubmitPost' => PostTag::CLASS,
             'routeSubmitDelete' => DeleteTag::CLASS,
-        ]); ?>
+        ]) }}
     </div>
 </div>
 
 <div class="card card-outline">
     <div class="card-body">
-        <h4><?= $this->tag->title ?></h4>
-        <?= $this->bodyPreview($this->tag); ?>
+        <h4>{{= $this->tag->title }}</h4>
+        {{= bodyPreview ($this->tag) }}
     </div>
 </div>

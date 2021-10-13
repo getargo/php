@@ -1,10 +1,10 @@
 <header class="Header">
-    <?= $this->penders('layout-header-prepend') ?>
+    {{= penders $this, 'layout-header-prepend' }}
 
-    <h1><?= $this->anchorRaw('/', $this->config->general->title); ?></h1>
-    <p><?= $this->config->general->tagline; ?></p>
+    <h1><a href="/">{{= $this->config->general->title }}</a></h1>
+    <p>{{= $this->config->general->tagline }}</p>
 
-    <?= $this->penders('layout-header-append') ?>
+    {{= penders $this, 'layout-header-append' }}
 </header>
 
-<?= $this->render('layout/body/nav'); ?>
+{{= render 'layout/body/nav' }}

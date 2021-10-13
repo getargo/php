@@ -1,4 +1,4 @@
-<?php $this->header = 'Building Local Site'; ?>
+{{ $this->header = 'Building Local Site' }}
 
 <div class="card card-outline">
     <div class="card-body">

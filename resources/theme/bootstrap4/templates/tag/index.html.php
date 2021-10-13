@@ -1,20 +1,20 @@
                 <article class="TagArticle">
                     <header class="ArticleHeader">
-                        <h1><?= $this->anchor(
+                        <h1>{{= anchor
                             $this->tag->href,
                             $this->tag->title
-                        ) ?></h1>
+                        }}</h1>
                     </header>
                     <section class="ArticleBody">
-                        <?= $this->body($this->tag) ?>
+                        {{= body $this->tag }}
 
-                        <dl><?php foreach ($this->tag->posts as $post): ?>
+                        <dl>{{ foreach $this->tag->posts as $post }}
 
                             <dt><?= $this->dateTime()->html($post->created, 'Y-m-d') ?></dt>
-                            <dd><?= $this->anchor($post->href, $post->title) ?></dd>
+                            <dd>{{= anchor $post->href, $post->title }}</dd>
 
-                        <?php endforeach; ?></dl>
+                        {{ endforeach }}</dl>
                     </section>
                 </article>
 
-                <?= $this->render('prevnext') ?>
+                {{= render 'prevnext' }}

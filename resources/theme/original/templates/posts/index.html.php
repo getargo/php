@@ -8,7 +8,7 @@
                         <div class="Article__MetaSmall"><?= $this->dateTime()->html($post->created, 'l') ?></div>
                         <div class="Article__MetaLarge"><?= $this->dateTime()->html($post->created, 'd') ?></div>
                         <div class="Article__MetaSmall"><?= $this->dateTime()->html($post->created, 'F Y') ?></div>
-                        <div class="Article__MetaSmall"><?= $this->escape()->html($post->author) ?></div>
+                        <div class="Article__MetaSmall"><?= $this->h($post->author) ?></div>
                         <div class="Article__MetaSmall"><?php foreach ($post->tags as $k => $tag): ?>
                             <?= $this->anchor($tag->href, $tag->title) . ($k + 1 < count($post->tags) ? ', ' : '') ?>
                         <?php endforeach; ?>

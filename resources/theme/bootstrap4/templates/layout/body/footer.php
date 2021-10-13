@@ -1,9 +1,9 @@
 <footer class="Footer p-4">
-    <?= $this->penders('layout-footer-prepend'); ?>
-    <p class="m-0 text-center">Built with <?= $this->anchor(
+    {{= penders $this, 'layout-footer-prepend' }}
+    <p class="m-0 text-center">Built with {{= anchor
         'https://github.com/getargo/app',
         'Argo',
         ['_target' => 'blank']
-    ); ?>.</p>
-    <?= $this->penders('layout-footer-append'); ?>
+    }}.</p>
+    {{= penders $this, 'layout-footer-append' }}
 </footer>

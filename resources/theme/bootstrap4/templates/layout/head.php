@@ -1,7 +1,7 @@
 <head>
-<?= $this->render('layout/head/meta'); ?>
-<?= $this->render('layout/head/title'); ?>
-<?= $this->render('layout/head/links'); ?>
-<?= $this->render('layout/head/styles'); ?>
-<?= $this->render('layout/head/scripts'); ?>
+{{= render 'layout/head/meta' }}
+{{= render 'layout/head/title' }}
+{{= render 'layout/head/links' }}
+{{= render 'layout/head/styles' }}
+{{= render 'layout/head/scripts' }}
 </head>

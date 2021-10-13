@@ -1,8 +1,5 @@
-<?php
-use Argo\Http\Action\Setup\PostSetup;
-
-$this->setLayout(null);
-?>
+{{ use Argo\Http\Action\Setup\PostSetup }}
+{{ setLayout (null) }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +7,7 @@ $this->setLayout(null);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <?= $this->title("Argo : Setup"); ?>
+  <title>Argo : Setup</title>
 
   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.css">
   <link rel="stylesheet" href="/dist/css/adminlte.css">
@@ -55,14 +52,11 @@ $this->setLayout(null);
                         <label for="name">Folder Name</label>
                     </div>
                     <div class="col">
-                        <?= $this->input([
-                            'type' => 'text',
+                        {{= formText ([
                             'name' => 'name',
                             'value' => '',
-                            'attribs' => [
-                                'class' => 'form-control',
-                            ],
-                        ]); ?>
+                            'class' => 'form-control',
+                        ]) }}
                     </div>
                 </div>
 
@@ -71,14 +65,11 @@ $this->setLayout(null);
                         <label for="title">Blog Title</label>
                     </div>
                     <div class="col">
-                        <?= $this->input([
-                            'type' => 'text',
+                        {{= formText ([
                             'name' => 'title',
                             'value' => '',
-                            'attribs' => [
-                                'class' => 'form-control',
-                            ],
-                        ]); ?>
+                            'class' => 'form-control',
+                        ]) }}
                     </div>
                 </div>
 
@@ -87,14 +78,11 @@ $this->setLayout(null);
                         <label for="tagline">Blog Tagline</label>
                     </div>
                     <div class="col">
-                        <?= $this->input([
-                            'type' => 'text',
+                        {{= formText ([
                             'name' => 'tagline',
                             'value' => '',
-                            'attribs' => [
-                                'class' => 'form-control',
-                            ],
-                        ]); ?>
+                            'class' => 'form-control',
+                        ]) }}
                     </div>
                 </div>
 
@@ -103,14 +91,11 @@ $this->setLayout(null);
                         <label for="author">Author Name</label>
                     </div>
                     <div class="col">
-                        <?= $this->input([
-                            'type' => 'text',
+                        {{= formText([
                             'name' => 'author',
                             'value' => $this->author,
-                            'attribs' => [
-                                'class' => 'form-control',
-                            ],
-                        ]); ?>
+                            'class' => 'form-control',
+                        ]) }}
                     </div>
                 </div>
 
@@ -119,14 +104,11 @@ $this->setLayout(null);
                         <label for="url">Site URL</label>
                     </div>
                     <div class="col">
-                        <?= $this->input([
-                            'type' => 'text',
+                        {{= formText ([
                             'name' => 'url',
                             'value' => '',
-                            'attribs' => [
-                                'class' => 'form-control',
-                            ],
-                        ]); ?>
+                            'class' => 'form-control',
+                        ]) }}
                     </div>
                 </div>
 
@@ -134,12 +116,10 @@ $this->setLayout(null);
                     <div class="col col-2 text-right">
                     </div>
                     <div class="col">
-                        <?= $this->routeSubmit(
+                        {{= routeSubmit (
                             'Create',
                             PostSetup::CLASS
-                        ); ?>
-                        &nbsp;
-                        <span id="submit-failure"></span>
+                        ) }}&nbsp;<span id="submit-failure"></span>
                     </div>
                 </div>
             </form>
@@ -158,7 +138,7 @@ $this->setLayout(null);
       Keep your content cancel-resistant.
     </div>
     <!-- Default to the left -->
-    Copyright &copy; 2019-2020, Paul M. Jones. All rights reserved.
+    Copyright &copy; 2019-2021, Paul M. Jones. All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->

@@ -1,14 +1,23 @@
                 <section class="my-4">
-                    <form action="https://duckduckgo.com/" method="get">
+                    {{ form [
+                        'action' => 'https://duckduckgo.com/',
+                        'method' => 'get',
+                    ] }}
                         <div class="input-group">
-                            <input type="hidden" name="sites" value="<?=
-                                $this->escape()->attr(
-                                    parse_url($this->config->general->url, PHP_URL_HOST)
-                                );
-                            ?>">
-                            <input type="search" name="q" class="form-control" placeholder="Search &hellip;">
+                            {{= formHidden [
+                                'name' => 'sites',
+                                'value' => parse_url($this->config->general->url, PHP_URL_HOST),
+                            ] }}
+                            {{= formSearch [
+                                'name' => 'q',
+                                'class' => 'form-control',
+                                'placeholder' => 'Search ...',
+                            ] }}
                             <span class="input-group-append">
-                                <input type="submit" class="btn btn-secondary" value="Go!"></input>
+                                {{= formSubmit [
+                                    'class' => 'btn btn-secondary',
+                                    'value' => 'Go!',
+                                ] }}
                             </span>
                         </div>
                     </form>

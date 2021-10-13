@@ -1,9 +1,9 @@
-<?php
-use Argo\Http\Action\Post\GetPost;
-use Argo\Http\Action\Posts\GetPosts;
+{{ use
+    Argo\Http\Action\Post\GetPost,
+    Argo\Http\Action\Posts\GetPosts
+}}
+{{ $this->header = 'Posts' }}
 
-$this->header = 'Posts';
-?>
 <div class="card card-outline">
     <div class="card-body">
         <table class="table">
@@ -15,40 +15,56 @@ $this->header = 'Posts';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($this->posts as $post): ?>
+                {{ foreach ($this->posts as $post): }}
                 <tr>
-                    <td><?= $this->dateTime()->html($post->created, 'Y-m-d'); ?></td>
-                    <td><?php
-                        echo $this->escape()->html($post->title);
-                        echo "<br />";
-                        echo "<em>" . $this->escape()->html(implode(', ', $post->tags)) . "</em>";
-                    ?></td>
+                    <td><?= $this->dateTime()->html($post->created, 'Y-m-d') ?></td>
                     <td>
-                        <?= $this->anchorLocal($post->href, 'View', ['target' => '_blank']); ?>
-                        &nbsp;
-                        <?= $this->anchor(
+                        {{h $post->title}}<br />
+                        <em>{{h implode(', ', $post->tags) }}</em>
+                    </td>
+                    <td>
+                        {{= anchorLocal (
+                            $post->href,
+                            'View',
+                            [
+                                'target' => '_blank'
+                            ]
+                        ) }}&nbsp;{{= anchor (
                             $this->route(GetPost::CLASS, $post->relId),
                             'Edit'
-                        ); ?>
+                        ) }}
                     </td>
                 </tr>
-                <?php endforeach; ?>
+                {{ endforeach }}
             </tbody>
         </table>
 
         <p>
-            <span><?= ($this->pageNum == 1)
-                ? 'First'
-                : $this->anchor($this->route(GetPosts::CLASS, $this->pageNum - 1), 'Previous');
-            ?></span>
+            <span>{{=
+                $this->pageNum == 1
+                    ? 'First'
+                    : $this->anchor(
+                        $this->route(
+                            GetPosts::CLASS,
+                            $this->pageNum - 1
+                        ),
+                        'Previous'
+                    );
+            }}</span>
 
-            <span>(Page <?= $this->escape()->html($this->pageNum); ?>
-            of <?= $this->escape()->html($this->pageCount); ?>)</span>
+            <span>(Page {{h ($this->pageNum }} of {{h $this->pageCount }})</span>
 
-            <span><?= ($this->pageNum == $this->pageCount)
-                ? 'Last'
-                : $this->anchor($this->route(GetPosts::CLASS, $this->pageNum + 1), 'Next');
-            ?></span>
+            <span>{{=
+                $this->pageNum == $this->pageCount
+                    ? 'Last'
+                    : $this->anchor(
+                        $this->route(
+                            GetPosts::CLASS,
+                            $this->pageNum + 1
+                        ),
+                        'Next'
+                    );
+            }}</span>
         </p>
     </div>
 </div>

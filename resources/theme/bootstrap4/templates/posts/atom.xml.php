@@ -5,12 +5,12 @@
     <link href="<?= $this->config->general->url ?>" />
     <updated><?= $this->dateTime()->html('now', DATE_ATOM) ?></updated>
 
-    <?php foreach ($this->postIndex->posts as $post): ?>
+    {{ foreach $this->postIndex->posts as $post }}
     <entry>
         <title><?= $post->title ?></title>
         <link href="<?= $this->config->general->url . $post->href ?>" />
         <updated><?= $this->dateTime()->html($post->lastUpdated, DATE_ATOM) ?></updated>
-        <summary><?= $this->escape()->html(
+        <summary><?= $this->h(
             substr(
                 trim(strip_tags($this->body($post))),
                 0,
@@ -18,6 +18,6 @@
             )
         ) ?>...</summary>
     </entry>
-    <?php endforeach; ?>
+    {{ endforeach }}
 
 </feed>

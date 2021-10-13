@@ -1,5 +1,5 @@
 <body>
-<?= $this->render('layout/body/header'); ?>
-<?= $this->render('layout/body/main'); ?>
-<?= $this->render('layout/body/footer'); ?>
+{{= render 'layout/body/header' }}
+{{= render 'layout/body/main' }}
+{{= render 'layout/body/footer' }}
 </body>

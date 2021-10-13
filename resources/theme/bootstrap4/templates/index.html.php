@@ -1,1 +1,1 @@
-<?php require __DIR__ . '/posts/index.html.php';
+{{= render 'posts/index.html' }}

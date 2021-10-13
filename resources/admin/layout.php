@@ -1,12 +1,11 @@
-<?php
-use Argo\Http\Action\Config\GetConfig;
-use Argo\Http\Action\Get;
-use Argo\Http\Action\Import\GetImport;
-use Argo\Http\Action\Tags\GetTags;
-use Argo\Http\Action\Pages\GetPages;
-use Argo\Http\Action\Posts\GetPosts;
-use Argo\Http\Action\Sites\GetSites;
-?>
+{{ use Argo\Http\Action\Config\GetConfig }}
+{{ use Argo\Http\Action\Get }}
+{{ use Argo\Http\Action\Import\GetImport }}
+{{ use Argo\Http\Action\Tags\GetTags }}
+{{ use Argo\Http\Action\Pages\GetPages }}
+{{ use Argo\Http\Action\Posts\GetPosts }}
+{{ use Argo\Http\Action\Sites\GetSites }}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@ use Argo\Http\Action\Sites\GetSites;
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <?= $this->title("Argo : {$this->header}"); ?>
+  <title><{{h "Argo : {$this->header}" }}</title>
 
   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.css">
   <link rel="stylesheet" href="/dist/css/adminlte.css">
@@ -45,72 +44,72 @@ use Argo\Http\Action\Sites\GetSites;
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="<?= $this->route(Get::CLASS); ?>" class="nav-link">
+            <a href="{{a route (Get::CLASS) }}" class="nav-link">
               <p>Dashboard</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="<?= $this->route(GetPosts::CLASS); ?>" class="nav-link">
+            <a href="{{a route (GetPosts::CLASS) }}" class="nav-link">
               <p>Posts</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="<?= $this->route(GetPages::CLASS); ?>" class="nav-link">
+            <a href="{{a route (GetPages::CLASS) }}" class="nav-link">
               <p>Pages</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="<?= $this->route(GetTags::CLASS); ?>" class="nav-link">
+            <a href="{{a route (GetTags::CLASS) }}" class="nav-link">
               <p>Tags</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="<?= $this->route(GetConfig::CLASS, 'general'); ?>" class="nav-link">
+            <a href="{{a route (GetConfig::CLASS, 'general') }}" class="nav-link">
               <p>General Config</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="<?= $this->route(GetConfig::CLASS, 'theme'); ?>" class="nav-link">
+            <a href="{{a route (GetConfig::CLASS, 'theme') }}" class="nav-link">
               <p>Theme Config</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="<?= $this->route(GetConfig::CLASS, 'menu'); ?>" class="nav-link">
+            <a href="{{a route (GetConfig::CLASS, 'menu') }}" class="nav-link">
               <p>Menu Config</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="<?= $this->route(GetConfig::CLASS, 'blogroll'); ?>" class="nav-link">
+            <a href="{{a route (GetConfig::CLASS, 'blogroll') }}" class="nav-link">
               <p>Blogroll Config</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="<?= $this->route(GetConfig::CLASS, 'featured'); ?>" class="nav-link">
+            <a href="{{a route (GetConfig::CLASS, 'featured') }}" class="nav-link">
               <p>Featured Config</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="<?= $this->route(GetConfig::CLASS, 'sync'); ?>" class="nav-link">
+            <a href="{{a route (GetConfig::CLASS, 'sync') }}" class="nav-link">
               <p>Sync Config</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="<?= $this->route(GetImport::CLASS); ?>" class="nav-link">
+            <a href="{{a route (GetImport::CLASS) }}" class="nav-link">
               <p>Import</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= $this->route(GetSites::CLASS); ?>" class="nav-link">
+            <a href="{{a route (GetSites::CLASS) }}" class="nav-link">
               <p>Sites</p>
             </a>
           </li>
@@ -129,13 +128,13 @@ use Argo\Http\Action\Sites\GetSites;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"><?= $this->header ?? ''; ?></h1>
+            <h1 class="m-0 text-dark">{{= $this->header ?? '' }}</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <p class="float-right"><?= $this->anchor(
+            <p class="float-right">{{= anchor (
                 "javascript:openFolder('{$this->docroot}');",
                 $this->docroot
-            ); ?></p>
+            ) }}</p>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -147,7 +146,7 @@ use Argo\Http\Action\Sites\GetSites;
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
-            <?= $this->getContent(); ?>
+            {{= getContent() }}
           </div>
 
 <!--
@@ -178,7 +177,7 @@ use Argo\Http\Action\Sites\GetSites;
       Keep your content cancel-resistant.
     </div>
     <!-- Default to the left -->
-    Copyright &copy; 2019-2020, Paul M. Jones. All rights reserved.
+    Copyright &copy; 2019-2021, Paul M. Jones. All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->

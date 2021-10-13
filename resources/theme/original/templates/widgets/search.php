@@ -5,7 +5,7 @@
                     class="Search"
                     onsubmit="
                         document.getElementById('search-q').value
-                            = 'site:<?= $this->escape()->js(parse_url($this->config->general->url, PHP_URL_HOST)) ?> '
+                            = 'site:<?= $this->j(parse_url($this->config->general->url, PHP_URL_HOST)) ?> '
                             +  document.getElementById('search-input').value;
                     "
                 >

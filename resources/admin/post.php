@@ -6,17 +6,16 @@ $this->header = 'Post';
 ?>
 <div class="card card-outline">
     <div class="card-body">
-        <?= $this->render('item', [
+        {{= render ('item', [
             'item' => $this->post,
             'routeSubmitPost' => PostPost::CLASS,
             'routeSubmitDelete' => DeletePost::CLASS,
-        ]); ?>
-    </div>
+        ]) }}
 </div>
 
 <div class="card card-outline">
     <div class="card-body">
-        <h4><?= $this->post->title ?></h4>
-        <?= $this->bodyPreview($this->post); ?>
+        <h4>{{= $this->post->title }}</h4>
+        {{= bodyPreview ($this->post) }}
     </div>
 </div>

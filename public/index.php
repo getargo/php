@@ -6,6 +6,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 use Argo\Http\HttpProvider;
 use Argo\Infra\InfraProvider;
+use Argo\Infra\QiqProvider;
 use Argo\Infra\Preflight;
 use AutoRoute\Router;
 use Capsule\Di\Container;
@@ -14,6 +15,7 @@ use Capsule\Di\Definitions;
 $container = new Container(
     new Definitions(),
     [
+        new QiqProvider(),
         new InfraProvider(),
         new HttpProvider(),
     ]

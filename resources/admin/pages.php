@@ -1,10 +1,10 @@
-<?php
-use Argo\Http\Action\Page\GetPage;
-use Argo\Http\Action\Page\Add\PostPageAdd;
-use Argo\Http\Action\Pages\GetPages;
+{{ use
+    Argo\Http\Action\Page\GetPage,
+    Argo\Http\Action\Page\Add\PostPageAdd,
+    Argo\Http\Action\Pages\GetPages
+}}
+{{ $this->header = 'Pages' }}
 
-$this->header = 'Pages';
-?>
 <div class="card card-outline">
     <div class="card-body">
         <table class="table">
@@ -16,20 +16,24 @@ $this->header = 'Pages';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($this->pages as $page): ?>
+                {{ foreach ($this->pages as $page): }}
                 <tr>
-                    <td><?= $this->escape()->html($page->href); ?></td>
-                    <td><?= $this->escape()->html($page->title); ?></td>
+                    <td>{{h $page->href }}</td>
+                    <td>{{h $page->title }}</td>
                     <td>
-                        <?= $this->anchorLocal($page->href, 'View', ['target' => '_blank']); ?>
-                        &nbsp;
-                        <?= $this->anchor(
+                        {{= anchorLocal (
+                            $page->href,
+                            'View',
+                            [
+                                'target' => '_blank'
+                            ]
+                        }}&nbsp;{{= anchor (
                             $this->route(GetPage::CLASS, $page->id),
                             'Edit'
-                        ); ?>
+                        ) }}
                     </td>
                 </tr>
-                <?php endforeach; ?>
+                {{ endforeach }}
             </tbody>
         </table>
     </div>
@@ -39,19 +43,16 @@ $this->header = 'Pages';
     <div class="card-body">
         <form onsubmit="return false;">
             <p>
-                <label>Create New Page At: <?= $this->input([
-                    'type' => 'text',
+                <label>Create New Page At: {{= formText([
                     'name' => 'id',
                     'value' => '',
-                    'attribs' => [
-                        'size' => 60,
-                    ],
-                ]); ?></label>
+                    'size' => 60,
+                ]) }}</label>
 
-                <?= $this->routeSubmit(
+                {{= routeSubmit (
                     'Create',
                     PostPageAdd::CLASS
-                ); ?>
+                ) }}
             </p>
 
             <div id="submit-failure"></div>

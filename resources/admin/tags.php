@@ -1,12 +1,11 @@
-<?php
-use Argo\Http\Action\Tag\GetTag;
-use Argo\Http\Action\Tag\Add\PostTagAdd;
+{{ use
+    Argo\Http\Action\Tag\GetTag,
+    Argo\Http\Action\Tag\Add\PostTagAdd
+}}
+{{ $this->header = 'Tags' }}
 
-$this->header = 'Tags';
-?>
 <div class="card card-outline">
     <div class="card-body">
-
         <table class="table">
             <thead>
                 <tr>
@@ -16,22 +15,24 @@ $this->header = 'Tags';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($this->tags as $tag): ?>
+                {{ foreach ($this->tags as $tag): ?>
                 <tr>
-                    <td><?= $this->escape()->html($tag->relId); ?></td>
-                    <td><?= $this->escape()->html($tag->title); ?></td>
+                    <td>{{h $tag->relId) }}</td>
+                    <td>{{h $tag->title) }}</td>
                     <td>
-                        <?= $this->anchorLocal($tag->href, 'View', ['target' => '_blank']); ?>
-
-                        &nbsp;
-
-                        <?= $this->anchor(
+                        {{= anchorLocal (
+                            $tag->href,
+                            'View',
+                            [
+                                'target' => '_blank'
+                            ]
+                        ) }}&nbsp;{{= anchor (
                             $this->route(GetTag::CLASS, $tag->relId),
                             'Edit'
-                        ); ?>
+                        ) }}
                     </td>
                 </tr>
-                <?php endforeach; ?>
+                {{ endforeach }}
             </tbody>
         </table>
     </div>
@@ -41,21 +42,17 @@ $this->header = 'Tags';
     <div class="card-body">
         <form onsubmit="return false;">
             <p>
-                <label>Create New Tag Named: <?= $this->input([
-                    'type' => 'text',
+                <label>Create New Tag Named: {{= formText ([
                     'name' => 'relId',
                     'value' => '',
-                    'attribs' => [
-                        'size' => 60,
-                    ],
-                ]); ?></label>
+                    'size' => 60,
+                ]) }}</label>
 
-                <?= $this->routeSubmit(
+                {{= routeSubmit (
                     'Create',
                     PostTagAdd::CLASS
-                ); ?>
+                ) }}
             </p>
-
             <div id="submit-failure"></div>
         </form>
     </div>

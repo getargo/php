@@ -1,1 +1,1 @@
-<?= $this->escape()->html($this->invalid) ?>
+{{h $this->invalid }}

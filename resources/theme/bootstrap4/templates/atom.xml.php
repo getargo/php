@@ -1,1 +1,1 @@
-<?php require __DIR__ . '/posts/atom.xml.php';
+<?= $this->render('posts/atom.xml');

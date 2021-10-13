@@ -1,1 +1,1 @@
-<pre><?= $this->escape()->html($this->error); ?></pre>
+<pre>{{h $this->error }}</pre>
