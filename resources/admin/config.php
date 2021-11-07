@@ -4,7 +4,7 @@
 <div class="card card-outline">
     <div class="card-body">
         <form onsubmit="return false;">
-            <p>{{= formTextarea ([
+            <p>{{= textarea ([
                 'name' => 'text',
                 'value' => $this->text,
                 'class' => 'form-control h-100',

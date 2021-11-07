@@ -1,5 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-{{= render 'layout/head' }}
-{{= render 'layout/body' }}
+{{= render ('layout/head') }}
+{{= render ('layout/body') }}
 </html>

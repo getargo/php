@@ -1,3 +1,3 @@
-<?= $this->month->toJson([
+{{= $this->month->toJson([
     'posts' => $this->month->posts
-]);
+]) }}

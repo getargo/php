@@ -7,8 +7,8 @@ use Argo\Domain\Storage;
 use Argo\App\Payload;
 use Argo\App\Status;
 use Argo\View\ViewFactory;
-use SapiRequest;
-use SapiResponse;
+use Sapien\Request;
+use Sapien\Response;
 
 class Responder
 {
@@ -25,11 +25,11 @@ class Responder
     }
 
     public function respond(
-        SapiRequest $request,
+        Request $request,
         Payload $payload
-    ) : SapiResponse
+    ) : Response
     {
-        $response = new SapiResponse();
+        $response = new Response();
         $response->setHeader('Access-Control-Allow-Origin', '*');
 
         $status = $payload->getStatus();
@@ -90,7 +90,7 @@ class Responder
                 break;
 
             case Status::SUCCESS:
-                $label = $request->method === 'GET'
+                $label = $request->method->is('GET')
                     ? 'Location'
                     : 'X-Argo-Forward';
 
@@ -111,13 +111,13 @@ class Responder
         return $response;
     }
 
-    protected function getViewTemplate(SapiRequest $request) : string
+    protected function getViewTemplate(Request $request) : string
     {
-        if ($request->method === 'HEAD') {
+        if ($request->method->is('HEAD')) {
             return '';
         }
 
-        $path = trim($request->url['path'], '/');
+        $path = trim($request->url->path, '/');
         if (trim($path) === '') {
             return 'dashboard';
         }
@@ -126,7 +126,7 @@ class Responder
     }
 
     protected function renderIntoResponse(
-        SapiResponse $response,
+        Response $response,
         Payload $payload,
         string $viewTemplate,
         ?string $layoutTemplate = null

@@ -8,7 +8,7 @@ use Throwable;
 
 abstract class UseCase
 {
-    public function __invoke(/* mixed */ ...$args) : Payload
+    public function __invoke(mixed ...$args) : Payload
     {
         try {
             return $this->exec(...$args);

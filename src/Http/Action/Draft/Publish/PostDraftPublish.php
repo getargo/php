@@ -6,20 +6,20 @@ namespace Argo\Http\Action\Draft\Publish;
 use Argo\App\Content\Draft\PublishDraft;
 use Argo\Http\Action;
 use Argo\Http\Responder;
-use SapiRequest;
-use SapiResponse;
+use Sapien\Request;
+use Sapien\Response;
 
 class PostDraftPublish extends Action
 {
     public function __construct(
-        SapiRequest $request,
+        Request $request,
         Responder $responder,
         PublishDraft $domain
     ) {
         parent::__construct($request, $responder, $domain);
     }
 
-    public function __invoke(string $relId) : SapiResponse
+    public function __invoke(string $relId) : Response
     {
         $payload = $this->domain(
             $relId,

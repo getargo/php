@@ -6,20 +6,20 @@ namespace Argo\Http\Action\Draft;
 use Argo\App\Content\Draft\FetchDraft;
 use Argo\Http\Action;
 use Argo\Http\Responder;
-use SapiRequest;
-use SapiResponse;
+use Sapien\Request;
+use Sapien\Response;
 
 class GetDraft extends Action
 {
     public function __construct(
-        SapiRequest $request,
+        Request $request,
         Responder $responder,
         FetchDraft $domain
     ) {
         parent::__construct($request, $responder, $domain);
     }
 
-    public function __invoke(string $relId) : SapiResponse
+    public function __invoke(string $relId) : Response
     {
         $payload = $this->domain($relId);
         return $this->response($this->request, $payload);

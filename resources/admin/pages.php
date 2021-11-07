@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{ foreach ($this->pages as $page): }}
+                {{~ foreach ($this->pages as $page): }}
                 <tr>
                     <td>{{h $page->href }}</td>
                     <td>{{h $page->title }}</td>
@@ -27,13 +27,13 @@
                             [
                                 'target' => '_blank'
                             ]
-                        }}&nbsp;{{= anchor (
+                        ) }}&nbsp;{{= anchor (
                             $this->route(GetPage::CLASS, $page->id),
                             'Edit'
                         ) }}
                     </td>
                 </tr>
-                {{ endforeach }}
+                {{~ endforeach }}
             </tbody>
         </table>
     </div>
@@ -43,7 +43,7 @@
     <div class="card-body">
         <form onsubmit="return false;">
             <p>
-                <label>Create New Page At: {{= formText([
+                <label>Create New Page At: {{= textField([
                     'name' => 'id',
                     'value' => '',
                     'size' => 60,

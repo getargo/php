@@ -6,20 +6,20 @@ namespace Argo\Http\Action\Post;
 use Argo\App\Content\Post\SavePost;
 use Argo\Http\Action;
 use Argo\Http\Responder;
-use SapiRequest;
-use SapiResponse;
+use Sapien\Request;
+use Sapien\Response;
 
 class PostPost extends Action
 {
     public function __construct(
-        SapiRequest $request,
+        Request $request,
         Responder $responder,
         SavePost $domain
     ) {
         parent::__construct($request, $responder, $domain);
     }
 
-    public function __invoke(string ...$relId) : SapiResponse
+    public function __invoke(string ...$relId) : Response
     {
 
         $payload = $this->domain(

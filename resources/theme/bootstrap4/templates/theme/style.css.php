@@ -1,16 +1,9 @@
-:root {<?php
-    echo PHP_EOL;
-    foreach ($this->config->theme->style ?? [] as $key => $val) {
-        $val = trim($val);
-
-        if ($val === '') {
-            continue;
-        }
-
-        $key = str_replace('_', '-', $key);
-        echo "    --{$key}: {$val};" . PHP_EOL;
-    }
-?>}
+:root {
+{{ foreach ($this->config->theme->style ?? [] as $key => $val): }}
+{{ if (trim($val) === '') continue }}
+    --{{= str_replace ('_', '-', $key) }}: {{= trim ($val) }};
+{{ endforeach }}
+}
 
 a,
 a.page-link {

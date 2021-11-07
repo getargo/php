@@ -5,22 +5,21 @@
 {{ use Argo\Http\Action\Pages\GetPages }}
 {{ use Argo\Http\Action\Posts\GetPosts }}
 {{ use Argo\Http\Action\Sites\GetSites }}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  {{= meta (['charset' => 'utf-8']) }}
+  {{= metaName ("viewport", "width=device-width, initial-scale=1") }}
+  {{= metaHttp ("x-ua-compatible", "ie=edge") }}
 
-  <title><{{h "Argo : {$this->header}" }}</title>
+  <title>{{h "Argo : {$this->header}" }}</title>
 
-  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.css">
-  <link rel="stylesheet" href="/dist/css/adminlte.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
-  <link rel="stylesheet" href="/style.css">
+  {{= linkStylesheet ("/plugins/fontawesome-free/css/all.css") }}
+  {{= linkStylesheet ("/dist/css/adminlte.css") }}
+  {{= linkStylesheet ("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700") }}
+  {{= linkStylesheet ("/style.css") }}
 
-  <script src="/scripts.js"></script>
+  {{= script ("/scripts.js") }}
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

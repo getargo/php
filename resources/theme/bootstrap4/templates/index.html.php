@@ -1,1 +1,1 @@
-{{= render 'posts/index.html' }}
+{{= render ('posts/index.html') }}

@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{ foreach ($this->tags as $tag): ?>
+                {{~ foreach ($this->tags as $tag): }}
                 <tr>
                     <td>{{h $tag->relId) }}</td>
                     <td>{{h $tag->title) }}</td>
@@ -32,7 +32,7 @@
                         ) }}
                     </td>
                 </tr>
-                {{ endforeach }}
+                {{~ endforeach }}
             </tbody>
         </table>
     </div>
@@ -42,7 +42,7 @@
     <div class="card-body">
         <form onsubmit="return false;">
             <p>
-                <label>Create New Tag Named: {{= formText ([
+                <label>Create New Tag Named: {{= textField ([
                     'name' => 'relId',
                     'value' => '',
                     'size' => 60,

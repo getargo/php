@@ -106,7 +106,7 @@ abstract class Item implements JsonSerializable
         return isset($this->$key) || isset($this->data->$key);
     }
 
-    public function __set(string $key, /* mixed */ $val)
+    public function __set(string $key, mixed $val)
     {
         throw new Exception("Cannot set \$$key on content object.");
     }
@@ -179,7 +179,7 @@ abstract class Item implements JsonSerializable
         return "{$this->id}/argo.{$this->data->markup}";
     }
 
-    public function jsonSerialize() /* : mixed */
+    public function jsonSerialize() : mixed
     {
         $base = ['href' => $this->href, 'relId' => $this->relId];
         return $base + (array) $this->data;

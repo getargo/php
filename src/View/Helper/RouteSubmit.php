@@ -4,13 +4,13 @@ declare(strict_types=1);
 namespace Argo\View\Helper;
 
 use Argo\View\Helper\Route;
-use Qiq\Helper\Form\Button;
+use Qiq\Helper\Button;
 
 class RouteSubmit
 {
     protected $route;
 
-    protected $input;
+    protected $button;
 
     public function __construct(
         Route $route,

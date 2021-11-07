@@ -6,6 +6,7 @@ namespace Argo\Domain\Config;
 use Argo\Domain\Json;
 use ArrayIterator;
 use IteratorAggregate;
+use Traversable;
 
 class Config implements IteratorAggregate
 {
@@ -58,7 +59,7 @@ class Config implements IteratorAggregate
         return $this->data;
     }
 
-    public function getIterator()
+    public function getIterator() : Traversable
     {
         return new ArrayIterator($this->data);
     }

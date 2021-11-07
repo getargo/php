@@ -19,14 +19,10 @@ class ViewFactory
         $this->container = $container;
     }
 
-    /**
-     * @var array $dirs These need to be absolute, not relative, directories.
-     */
     public function new(array $paths) : Template
     {
         $tpl = $this->container->new(Template::CLASS);
-        $tpl->getViewLocator()->setPaths($paths);
-        $tpl->getLayoutLocator()->setPaths($paths);
+        $tpl->getTemplateLocator()->setPaths($paths);
         return $tpl;
     }
 }

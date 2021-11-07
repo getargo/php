@@ -8,7 +8,7 @@
         <form onsubmit="return false;">
             <div id="submit-failure"></div>
 
-            <p>{{= formFile ([
+            <p>{{= fileField ([
                 'name' => 'wpxml',
             ]) }}</p>
 

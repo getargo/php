@@ -18,7 +18,7 @@
             <label for="title">Title</label>
         </div>
         <div class="col">
-            {{= formText ([
+            {{= textField ([
                 'name' => 'title',
                 'value' => $item->title,
                 'class' => 'form-control',
@@ -31,7 +31,7 @@
             <label for="body">Body</label>
         </div>
         <div class="col">
-            {{= formTextarea ([
+            {{= textarea ([
                 'name' => 'body',
                 'value' => $this->body,
                 'class' => 'form-control h-100',
@@ -46,12 +46,12 @@
             <label for="markup">Markup</label>
         </div>
         <div class="col">
-            {{= formSelect ([
+            {{= select ([
                 'type' => 'select',
                 'name' => 'markup',
                 'class' => 'form-control',
                 'value' => $item->markup,
-                'options' => [
+                '_options' => [
                     'html' => 'HTML',
                     'markdown' => 'Markdown',
                     'wordpress' => 'WordPress',
@@ -67,7 +67,7 @@
             <label for="tags">Tags</label>
         </div>
         <div class="col">
-            {{= formText ([
+            {{= textField ([
                 'name' => 'tags',
                 'value' => implode(', ', $item->tags),
                 'class' => 'form-control',
@@ -80,7 +80,7 @@
             <label for="author">Author</label>
         </div>
         <div class="col">
-            {{= formText ([
+            {{= textField ([
                 'name' => 'author',
                 'value' => $item->author,
                 'class' => 'form-control',

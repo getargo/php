@@ -32,8 +32,13 @@ class ConfigMapper
     public function __isset(string $name)
     {
         $id = "_argo/{$name}";
+
+        $storageId = ($id === '_argo/theme')
+            ? "_argo/theme/{$this->general->theme}"
+            : $id;
+
         return isset($this->identityMap[$id])
-            || $this->storage->exists("{$id}.json");
+            || $this->storage->exists("{$storageId}.json");
     }
 
     protected function read(string $id) : object
@@ -54,9 +59,12 @@ class ConfigMapper
     public function save(Config $values) : void
     {
         $id = $values->getId();
+        $storageId = ($id === '_argo/theme')
+            ? "_argo/theme/{$this->general->theme}"
+            : $id;
         $data = $values->getData();
         $text = Json::encode($data);
-        $this->storage->write("{$id}.json", $text);
+        $this->storage->write("{$storageId}.json", $text);
         $this->identityMap[$id] = $values;
     }
 }

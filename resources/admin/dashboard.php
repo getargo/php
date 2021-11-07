@@ -16,7 +16,7 @@
                     'method' => 'get',
                     'action' => $this->route(GetBuild::CLASS),
                 ]) }}
-                    {{= formSubmit ([
+                    {{= submitButton ([
                         'name' => 'build',
                         'value' => 'Build Local',
                     ]) }}
@@ -42,7 +42,7 @@
                     'method' => 'get',
                     'action' => $this->route(GetSync::CLASS),
                 ]) }}
-                    {{= formSubmit ([
+                    {{= submitButton ([
                         'name' => 'sync',
                         'value' => 'Sync Remote',
                     ]) }}
@@ -71,19 +71,19 @@
     </div>
     <div class="card-body">
         <ol>
-            {{ foreach ($this->drafts as $id => $draft): }}
+            {{~ foreach ($this->drafts as $id => $draft): }}
             <li>{{= anchor (
                     $this->route(GetDraft::CLASS, $draft->relId),
                     $draft->title ?? $draft->relId
                 ) }}{{h
                     " ({$draft->id})"
                 }}</li>
-            {{ endforeach }}
+            {{~ endforeach }}
         </ol>
 
         <form onsubmit="return false;">
             <p>
-                <label>Create New Draft Titled: {{= formText ([
+                <label>Create New Draft Titled: {{= textField ([
                     'name' => 'title',
                     'value' => '',
                     'size' => 60,
@@ -109,9 +109,9 @@
                 </tr>
             </thead>
             <tbody>
-                {{ foreach ($this->posts as $post): }}
+                {{~ foreach ($this->posts as $post): }}
                 <tr>
-                    <td><?= $this->dateTime()->html($post->created, 'Y-m-d') ?></td>
+                    <td>{{= dateTime ($post->created, 'Y-m-d') }}</td>
                     <td>
                         {{h $post->title }}
                         <br />
@@ -130,7 +130,7 @@
                         ) }}
                     </td>
                 </tr>
-                {{ endforeach }}
+                {{~ endforeach }}
             </tbody>
         </table>
 

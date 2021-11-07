@@ -1,9 +1,9 @@
-<?php
-use Argo\Http\Action\Post\DeletePost;
-use Argo\Http\Action\Post\PostPost;
+{{ use
+    Argo\Http\Action\Post\DeletePost,
+    Argo\Http\Action\Post\PostPost
+}}
+{{ $this->header = 'Post' }}
 
-$this->header = 'Post';
-?>
 <div class="card card-outline">
     <div class="card-body">
         {{= render ('item', [

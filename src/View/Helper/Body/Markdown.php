@@ -16,6 +16,6 @@ class Markdown extends Markup
 
     public function toHtml(string $body) : string
     {
-        return $this->markdown->convertToHtml($body);
+        return (string) @$this->markdown->convertToHtml($body);
     }
 }

@@ -1,7 +1,7 @@
-<title><?php
-    $title = $this->h($this->config->general->title);
-    $title .= isset($this->item->title)
-        ? ' | ' . $this->h($this->item->title)
-        : '';
-    echo $title;
-?></title>
+<title>{{h
+    $this->config->general->title
+}}{{h
+    isset($this->item->title)
+        ? ' | ' . $this->item->title
+        : ''
+}}</title>

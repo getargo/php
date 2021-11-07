@@ -6,20 +6,20 @@ namespace Argo\Http\Action\Config;
 use Argo\App\Config\SaveConfig;
 use Argo\Http\Action;
 use Argo\Http\Responder;
-use SapiRequest;
-use SapiResponse;
+use Sapien\Request;
+use Sapien\Response;
 
 class PostConfig extends Action
 {
     public function __construct(
-        SapiRequest $request,
+        Request $request,
         Responder $responder,
         SaveConfig $domain
     ) {
         parent::__construct($request, $responder, $domain);
     }
 
-    public function __invoke(string $name) : SapiResponse
+    public function __invoke(string $name) : Response
     {
         $payload = $this->domain($name, $this->request->input['text'] ?? '');
         return $this->response($this->request, $payload);

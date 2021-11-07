@@ -5,8 +5,8 @@ namespace Argo\Http;
 
 use Argo\App\Payload;
 use Argo\App\UseCase;
-use SapiRequest;
-use SapiResponse;
+use Sapien\Request;
+use Sapien\Response;
 
 abstract class Action
 {
@@ -17,7 +17,7 @@ abstract class Action
     protected $domain;
 
     public function __construct(
-        SapiRequest $request,
+        Request $request,
         Responder $responder,
         ?UseCase $domain = null
     ) {
@@ -32,9 +32,9 @@ abstract class Action
     }
 
     protected function response(
-        SapiRequest $request,
+        Request $request,
         Payload $payload = null
-    ) : SapiResponse
+    ) : Response
     {
         if ($payload === null) {
             $payload = Payload::found();

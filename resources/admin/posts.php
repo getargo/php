@@ -15,9 +15,9 @@
                 </tr>
             </thead>
             <tbody>
-                {{ foreach ($this->posts as $post): }}
+                {{~ foreach ($this->posts as $post): }}
                 <tr>
-                    <td><?= $this->dateTime()->html($post->created, 'Y-m-d') ?></td>
+                    <td>{{= dateTime ($post->created, 'Y-m-d') }}</td>
                     <td>
                         {{h $post->title}}<br />
                         <em>{{h implode(', ', $post->tags) }}</em>
@@ -35,7 +35,8 @@
                         ) }}
                     </td>
                 </tr>
-                {{ endforeach }}
+                {{~ endforeach }}
+
             </tbody>
         </table>
 
@@ -51,9 +52,7 @@
                         'Previous'
                     );
             }}</span>
-
-            <span>(Page {{h ($this->pageNum }} of {{h $this->pageCount }})</span>
-
+            <span>(Page {{h $this->pageNum }} of {{h $this->pageCount }})</span>
             <span>{{=
                 $this->pageNum == $this->pageCount
                     ? 'Last'

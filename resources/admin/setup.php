@@ -52,7 +52,7 @@
                         <label for="name">Folder Name</label>
                     </div>
                     <div class="col">
-                        {{= formText ([
+                        {{= textField ([
                             'name' => 'name',
                             'value' => '',
                             'class' => 'form-control',
@@ -65,7 +65,7 @@
                         <label for="title">Blog Title</label>
                     </div>
                     <div class="col">
-                        {{= formText ([
+                        {{= textField ([
                             'name' => 'title',
                             'value' => '',
                             'class' => 'form-control',
@@ -78,7 +78,7 @@
                         <label for="tagline">Blog Tagline</label>
                     </div>
                     <div class="col">
-                        {{= formText ([
+                        {{= textField ([
                             'name' => 'tagline',
                             'value' => '',
                             'class' => 'form-control',
@@ -91,7 +91,7 @@
                         <label for="author">Author Name</label>
                     </div>
                     <div class="col">
-                        {{= formText([
+                        {{= textField([
                             'name' => 'author',
                             'value' => $this->author,
                             'class' => 'form-control',
@@ -104,7 +104,7 @@
                         <label for="url">Site URL</label>
                     </div>
                     <div class="col">
-                        {{= formText ([
+                        {{= textField ([
                             'name' => 'url',
                             'value' => '',
                             'class' => 'form-control',

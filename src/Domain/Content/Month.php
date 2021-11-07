@@ -67,7 +67,7 @@ class Month implements JsonSerializable
         $this->next = $next;
     }
 
-    public function jsonSerialize() /* : mixed */
+    public function jsonSerialize() : mixed
     {
         return [
             'href' => $this->href,

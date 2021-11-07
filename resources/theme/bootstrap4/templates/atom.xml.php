@@ -1,1 +1,1 @@
-<?= $this->render('posts/atom.xml');
+{{= render ('posts/atom.xml') }}

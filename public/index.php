@@ -11,6 +11,7 @@ use Argo\Infra\Preflight;
 use AutoRoute\Router;
 use Capsule\Di\Container;
 use Capsule\Di\Definitions;
+use Sapien\Request;
 
 $container = new Container(
     new Definitions(),
@@ -21,9 +22,9 @@ $container = new Container(
     ]
 );
 
-$request = $container->get(SapiRequest::CLASS);
+$request = $container->get(Request::CLASS);
 $preflight = $container->get(Preflight::CLASS);
-$redirect = $preflight($request->url['path']);
+$redirect = $preflight($request->url->path);
 
 if ($redirect !== null) {
     header("Location: {$redirect}");
@@ -31,8 +32,7 @@ if ($redirect !== null) {
 }
 
 $router = $container->get(Router::CLASS);
-$route = $router->route($request->method, $request->url['path']);
+$route = $router->route($request->method->name, $request->url->path);
 $action = $container->new($route->class);
 $response = call_user_func([$action, $route->method], ...$route->arguments);
-$sender = new SapiResponseSender();
-$sender->send($response);
+$response->send();
