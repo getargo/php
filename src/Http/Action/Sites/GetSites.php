@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Sites;
 
 use Argo\App\Site\FetchSites;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class GetSites extends Action
+class GetSites
 {
     public function __construct(
         protected Request $request,

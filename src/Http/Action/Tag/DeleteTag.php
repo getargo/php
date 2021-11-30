@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Tag;
 
 use Argo\App\Content\Tag\TrashTag;
-use Argo\Http\Action;
+use Argo\Http\Input;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class DeleteTag extends Action
+class DeleteTag
 {
     public function __construct(
         protected Request $request,
@@ -20,7 +20,7 @@ class DeleteTag extends Action
 
     public function __invoke(string ...$relId) : Response
     {
-        $payload = ($this->domain)($this->implode($relId));
+        $payload = ($this->domain)(Input::implode($relId));
         return ($this->responder)($payload);
     }
 }

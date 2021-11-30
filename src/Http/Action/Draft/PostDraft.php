@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Draft;
 
 use Argo\App\Content\Draft\SaveDraft;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
@@ -12,7 +11,7 @@ use Sapien\Response;
 /**
  * this should probably be `PATCH /draft/$relId`
  */
-class PostDraft extends Action
+class PostDraft
 {
     public function __construct(
         protected Request $request,

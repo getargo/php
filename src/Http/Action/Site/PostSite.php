@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Site;
 
 use Argo\App\Site\AddSite;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostSite extends Action
+class PostSite
 {
     public function __construct(
         protected Request $request,

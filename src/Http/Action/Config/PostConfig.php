@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Config;
 
 use Argo\App\Config\SaveConfig;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostConfig extends Action
+class PostConfig
 {
     public function __construct(
         protected Request $request,

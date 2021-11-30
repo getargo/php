@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Build\Process;
 
 use Argo\App\Site\BuildSite;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostBuildProcess extends Action
+class PostBuildProcess
 {
     public function __construct(
         protected Request $request,

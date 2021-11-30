@@ -3,12 +3,11 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Build;
 
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class GetBuild extends Action
+class GetBuild
 {
     public function __construct(
         protected Request $request,

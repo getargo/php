@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Draft;
 
 use Argo\App\Content\Draft\TrashDraft;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class DeleteDraft extends Action
+class DeleteDraft
 {
     public function __construct(
         protected Request $request,

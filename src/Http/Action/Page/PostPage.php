@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Page;
 
 use Argo\App\Content\Page\SavePage;
-use Argo\Http\Action;
+use Argo\Http\Input;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostPage extends Action
+class PostPage
 {
     public function __construct(
         protected Request $request,
@@ -21,7 +21,7 @@ class PostPage extends Action
     public function __invoke(string ...$idParts) : Response
     {
         $payload = ($this->domain)(
-            $this->implode($idParts),
+            Input::implode($idParts),
             [
                 'title' => $this->request->input['title'] ?? null,
                 'author' => $this->request->input['author'] ?? null,

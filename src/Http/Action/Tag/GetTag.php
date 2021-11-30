@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Tag;
 
 use Argo\App\Content\Tag\FetchTag;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class GetTag extends Action
+class GetTag
 {
     public function __construct(
         protected Request $request,

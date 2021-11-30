@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Tag;
 
 use Argo\App\Content\Tag\SaveTag;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostTag extends Action
+class PostTag
 {
     public function __construct(
         protected Request $request,

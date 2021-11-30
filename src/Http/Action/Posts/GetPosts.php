@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Posts;
 
 use Argo\App\Content\Post\FetchPosts;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class GetPosts extends Action
+class GetPosts
 {
     public function __construct(
         protected Request $request,

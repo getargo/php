@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Draft\Add;
 
 use Argo\App\Content\Draft\AddDraft;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostDraftAdd extends Action
+class PostDraftAdd
 {
     public function __construct(
         protected Request $request,

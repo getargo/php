@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Post;
 
 use Argo\App\Content\Post\SavePost;
-use Argo\Http\Action;
+use Argo\Http\Input;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostPost extends Action
+class PostPost
 {
     public function __construct(
         protected Request $request,
@@ -22,7 +22,7 @@ class PostPost extends Action
     {
 
         $payload = ($this->domain)(
-            $this->implode($relId),
+            Input::implode($relId),
             [
                 'title' => $this->request->input['title'] ?? null,
                 'author' => $this->request->input['author'] ?? null,

@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Argo\Http\Action\Import;
 
 use Argo\App\Import\Import;
-use Argo\Http\Action;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostImport extends Action
+class PostImport
 {
     public function __construct(
         protected Request $request,
