@@ -11,14 +11,13 @@ use Sapien\Response;
 class GetBuild extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder
+        protected Request $request,
+        protected Responder $responder
     ) {
-        parent::__construct($request, $responder);
     }
 
     public function __invoke() : Response
     {
-        return $this->response($this->request);
+        return ($this->responder)();
     }
 }

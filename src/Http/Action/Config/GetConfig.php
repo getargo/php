@@ -12,16 +12,15 @@ use Sapien\Response;
 class GetConfig extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder,
-        FetchConfig $domain
+        protected Request $request,
+        protected Responder $responder,
+        protected FetchConfig $domain
     ) {
-        parent::__construct($request, $responder, $domain);
     }
 
     public function __invoke(string $name) : Response
     {
-        $payload = $this->domain($name);
-        return $this->response($this->request, $payload);
+        $payload = ($this->domain)($name);
+        return ($this->responder)($payload);
     }
 }

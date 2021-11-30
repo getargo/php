@@ -12,16 +12,15 @@ use Sapien\Response;
 class PostSite extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder,
-        AddSite $domain
+        protected Request $request,
+        protected Responder $responder,
+        protected AddSite $domain
     ) {
-        parent::__construct($request, $responder, $domain);
     }
 
     public function __invoke() : Response
     {
-        $payload = $this->domain($this->request->input);
-        return $this->response($this->request, $payload);
+        $payload = ($this->domain)($this->request->input);
+        return ($this->responder)($payload);
     }
 }

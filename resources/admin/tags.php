@@ -17,8 +17,8 @@
             <tbody>
                 {{~ foreach ($this->tags as $tag): }}
                 <tr>
-                    <td>{{h $tag->relId) }}</td>
-                    <td>{{h $tag->title) }}</td>
+                    <td>{{h $tag->relId }}</td>
+                    <td>{{h $tag->title }}</td>
                     <td>
                         {{= anchorLocal (
                             $tag->href,

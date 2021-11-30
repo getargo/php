@@ -19,6 +19,6 @@ class GetSync extends Action
 
     public function __invoke() : Response
     {
-        return $this->response($this->request);
+        return ($this->responder)($this->request);
     }
 }

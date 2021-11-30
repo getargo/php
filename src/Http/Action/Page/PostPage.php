@@ -12,16 +12,15 @@ use Sapien\Response;
 class PostPage extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder,
-        SavePage $domain
+        protected Request $request,
+        protected Responder $responder,
+        protected SavePage $domain
     ) {
-        parent::__construct($request, $responder, $domain);
     }
 
     public function __invoke(string ...$idParts) : Response
     {
-        $payload = $this->domain(
+        $payload = ($this->domain)(
             $this->implode($idParts),
             [
                 'title' => $this->request->input['title'] ?? null,
@@ -32,6 +31,6 @@ class PostPage extends Action
             $this->request->input['body'] ?? '',
         );
 
-        return $this->response($this->request, $payload);
+        return ($this->responder)($payload);
     }
 }

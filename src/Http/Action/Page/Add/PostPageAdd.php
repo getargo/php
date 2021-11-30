@@ -12,16 +12,15 @@ use Sapien\Response;
 class PostPageAdd extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder,
-        AddPage $domain
+        protected Request $request,
+        protected Responder $responder,
+        protected AddPage $domain
     ) {
-        parent::__construct($request, $responder, $domain);
     }
 
     public function __invoke() : Response
     {
-        $payload = $this->domain($this->request->input['id'] ?? '');
-        return $this->response($this->request, $payload);
+        $payload = ($this->domain)($this->request->input['id'] ?? '');
+        return ($this->responder)($payload);
     }
 }

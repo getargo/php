@@ -12,16 +12,15 @@ use Sapien\Response;
 class GetPage extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder,
-        FetchPage $domain
+        protected Request $request,
+        protected Responder $responder,
+        protected FetchPage $domain
     ) {
-        parent::__construct($request, $responder, $domain);
     }
 
     public function __invoke(string ...$idParts) : Response
     {
-        $payload = $this->domain($this->implode($idParts));
-        return $this->response($this->request, $payload);
+        $payload = ($this->domain)($this->implode($idParts));
+        return ($this->responder)($payload);
     }
 }

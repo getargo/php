@@ -12,16 +12,15 @@ use Sapien\Response;
 class PostTagAdd extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder,
-        AddTag $domain
+        protected Request $request,
+        protected Responder $responder,
+        protected AddTag $domain
     ) {
-        parent::__construct($request, $responder, $domain);
     }
 
     public function __invoke() : Response
     {
-        $payload = $this->domain($this->request->input['relId'] ?? '');
-        return $this->response($this->request, $payload);
+        $payload = ($this->domain)($this->request->input['relId'] ?? '');
+        return ($this->responder)($payload);
     }
 }

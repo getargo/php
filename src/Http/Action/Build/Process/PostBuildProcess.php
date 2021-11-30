@@ -12,16 +12,15 @@ use Sapien\Response;
 class PostBuildProcess extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder,
-        BuildSite $domain
+        protected Request $request,
+        protected Responder $responder,
+        protected BuildSite $domain
     ) {
-        parent::__construct($request, $responder, $domain);
     }
 
     public function __invoke() : Response
     {
-        $payload = $this->domain();
-        return $this->response($this->request, $payload);
+        $payload = ($this->domain)();
+        return ($this->responder)($payload);
     }
 }

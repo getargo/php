@@ -12,16 +12,15 @@ use Sapien\Response;
 class PostImport extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder,
-        Import $domain
+        protected Request $request,
+        protected Responder $responder,
+        protected Import $domain
     ) {
-        parent::__construct($request, $responder, $domain);
     }
 
     public function __invoke() : Response
     {
-        $payload = $this->domain($this->request->uploads['wpxml'] ?? null);
-        return $this->response($this->request, $payload);
+        $payload = ($this->domain)($this->request->uploads['wpxml'] ?? null);
+        return ($this->responder)($payload);
     }
 }

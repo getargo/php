@@ -12,16 +12,15 @@ use Sapien\Response;
 class PostDraftAdd extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder,
-        AddDraft $domain
+        protected Request $request,
+        protected Responder $responder,
+        protected AddDraft $domain
     ) {
-        parent::__construct($request, $responder, $domain);
     }
 
     public function __invoke() : Response
     {
-        $payload = $this->domain($this->request->input['title'] ?? 'Untitled');
-        return $this->response($this->request, $payload);
+        $payload = ($this->domain)($this->request->input['title'] ?? 'Untitled');
+        return ($this->responder)($payload);
     }
 }

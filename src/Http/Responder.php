@@ -12,23 +12,19 @@ use Sapien\Response;
 
 class Responder
 {
-    protected $viewFactory;
-
-    protected $storage;
-
     public function __construct(
-        ViewFactory $viewFactory,
-        Storage $storage
+        protected Request $request,
+        protected ViewFactory $viewFactory,
+        protected Storage $storage
     ) {
-        $this->viewFactory = $viewFactory;
-        $this->storage = $storage;
     }
 
-    public function respond(
-        Request $request,
-        Payload $payload
-    ) : Response
+    public function __invoke(Payload $payload = null) : Response
     {
+        if ($payload === null) {
+            $payload = Payload::found();
+        }
+
         $response = new Response();
         $response->setHeader('Access-Control-Allow-Origin', '*');
 
@@ -41,7 +37,7 @@ class Responder
                 $this->renderIntoResponse(
                     $response,
                     $payload,
-                    $this->getViewTemplate($request),
+                    $this->getViewTemplate(),
                     'layout'
                 );
                 break;
@@ -90,7 +86,7 @@ class Responder
                 break;
 
             case Status::SUCCESS:
-                $label = $request->method->is('GET')
+                $label = $this->request->method->is('GET')
                     ? 'Location'
                     : 'X-Argo-Forward';
 
@@ -111,13 +107,13 @@ class Responder
         return $response;
     }
 
-    protected function getViewTemplate(Request $request) : string
+    protected function getViewTemplate() : string
     {
-        if ($request->method->is('HEAD')) {
+        if ($this->request->method->is('HEAD')) {
             return '';
         }
 
-        $path = trim($request->url->path, '/');
+        $path = trim($this->request->url->path, '/');
         if (trim($path) === '') {
             return 'dashboard';
         }

@@ -10,39 +10,6 @@ use Sapien\Response;
 
 abstract class Action
 {
-    protected $request;
-
-    protected $responder;
-
-    protected $domain;
-
-    public function __construct(
-        Request $request,
-        Responder $responder,
-        ?UseCase $domain = null
-    ) {
-        $this->request = $request;
-        $this->responder = $responder;
-        $this->domain = $domain;
-    }
-
-    protected function domain(...$args) : Payload
-    {
-        return $this->domain->__invoke(...$args);
-    }
-
-    protected function response(
-        Request $request,
-        Payload $payload = null
-    ) : Response
-    {
-        if ($payload === null) {
-            $payload = Payload::found();
-        }
-
-        return $this->responder->respond($request, $payload);
-    }
-
     protected function implode(array $parts) : string
     {
         return trim(implode('/', $parts), '/');

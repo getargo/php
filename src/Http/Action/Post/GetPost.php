@@ -12,16 +12,15 @@ use Sapien\Response;
 class GetPost extends Action
 {
     public function __construct(
-        Request $request,
-        Responder $responder,
-        FetchPost $domain
+        protected Request $request,
+        protected Responder $responder,
+        protected FetchPost $domain
     ) {
-        parent::__construct($request, $responder, $domain);
     }
 
     public function __invoke(string ...$relId) : Response
     {
-        $payload = $this->domain($this->implode($relId));
-        return $this->response($this->request, $payload);
+        $payload = ($this->domain)($this->implode($relId));
+        return ($this->responder)($payload);
     }
 }
