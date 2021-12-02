@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Build\Process;
 
-use Argo\App\Site\BuildSite;
+use Argo\Domain\App\Site\BuildSite;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;

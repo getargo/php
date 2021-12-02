@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Config;
+namespace Argo\Domain\Model\Config;
 
 class ConfigMapperTest extends \Argo\Domain\TestCase
 {

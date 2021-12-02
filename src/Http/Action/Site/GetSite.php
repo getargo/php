@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Site;
 
-use Argo\App\Site\SwapSite;
+use Argo\Domain\App\Site\SwapSite;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;

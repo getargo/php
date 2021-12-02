@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Config;
+namespace Argo\Domain\Model\Config;
 
 class ConfigTest extends \Argo\Domain\TestCase
 {

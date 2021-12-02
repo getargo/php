@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App\Content\Post;
+namespace Argo\Domain\App\Content\Post;
 
-class FetchPostTest extends \Argo\App\TestCase
+class FetchPostTest extends \Argo\Domain\App\TestCase
 {
     protected function setUp() : void
     {

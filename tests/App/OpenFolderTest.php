@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App;
+namespace Argo\Domain\App;
 
-class OpenFolderTest extends \Argo\App\TestCase
+class OpenFolderTest extends \Argo\Domain\App\TestCase
 {
     public function testError()
     {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Content\Draft;
+namespace Argo\Domain\Model\Content\Draft;
 
 class DraftTest extends \Argo\Domain\TestCase
 {

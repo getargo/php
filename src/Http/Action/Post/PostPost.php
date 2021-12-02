@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Post;
 
-use Argo\App\Content\Post\SavePost;
+use Argo\Domain\App\Content\Post\SavePost;
 use Argo\Http\Input;
 use Argo\Http\Responder;
 use Sapien\Request;

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App\Import;
+namespace Argo\Domain\App\Import;
 
 use SapiUpload;
 
-class ImportTest extends \Argo\App\TestCase
+class ImportTest extends \Argo\Domain\App\TestCase
 {
     protected function setUp() : void
     {

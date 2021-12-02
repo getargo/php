@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Import;
 
-use Argo\App\Payload;
+use Argo\Domain\Payload;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;

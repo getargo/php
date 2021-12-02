@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App\Site;
+namespace Argo\Domain\App\Site;
 
-class AddSiteTest extends \Argo\App\TestCase
+class AddSiteTest extends \Argo\Domain\App\TestCase
 {
     public function testInitialSetup()
     {

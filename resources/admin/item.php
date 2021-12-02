@@ -1,5 +1,5 @@
-{{ use Argo\Domain\Content\Tag\Tag }}
-{{ use Argo\Domain\Content\Draft\Draft }}
+{{ use Argo\Domain\Model\Content\Tag\Tag }}
+{{ use Argo\Domain\Model\Content\Draft\Draft }}
 {{ use Argo\Http\Action\Draft\Publish\PostDraftPublish }}
 
 <form onsubmit="return false;">

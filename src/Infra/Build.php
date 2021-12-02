@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\Config\ConfigMapper;
-use Argo\Domain\Content\Draft\Draft;
-use Argo\Domain\Content\Folio;
-use Argo\Domain\Content\Month;
-use Argo\Domain\Content\Page\Page;
-use Argo\Domain\Content\Post\Post;
-use Argo\Domain\Content\PostIndex;
-use Argo\Domain\Content\Tag\Tag;
+use Argo\Domain\Model\Config\ConfigMapper;
+use Argo\Domain\Model\Content\Draft\Draft;
+use Argo\Domain\Model\Content\Folio;
+use Argo\Domain\Model\Content\Month;
+use Argo\Domain\Model\Content\Page\Page;
+use Argo\Domain\Model\Content\Post\Post;
+use Argo\Domain\Model\Content\PostIndex;
+use Argo\Domain\Model\Content\Tag\Tag;
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
 use Argo\View\ViewFactory;

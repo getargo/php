@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Page\Add;
 
-use Argo\App\Content\Page\AddPage;
+use Argo\Domain\App\Content\Page\AddPage;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;

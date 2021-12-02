@@ -1,10 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Content\Draft;
-
-use Argo\Domain\DateTime;
-use Argo\Domain\Content\Post\Post;
+namespace Argo\Domain\Model\Content\Draft;
 
 class DraftRepositoryTest extends \Argo\Domain\TestCase
 {

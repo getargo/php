@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App\Config;
+namespace Argo\Domain\App\Config;
 
 use Argo\Domain\Json;
 
-class SaveConfigTest extends \Argo\App\TestCase
+class SaveConfigTest extends \Argo\Domain\App\TestCase
 {
     protected function setUp() : void
     {

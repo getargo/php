@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Argo;
 
-use Argo\Domain\Config\ConfigMapper;
-use Argo\Domain\Content\ContentLocator;
-use Argo\Domain\DateTime;
+use Argo\Domain\Model\Config\ConfigMapper;
+use Argo\Domain\Model\Content\ContentLocator;
+use Argo\Domain\Model\DateTime;
 use Argo\Domain\Json;
 use Argo\Domain\Storage;
 use Argo\Infra\InfraProvider;

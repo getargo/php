@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\View;
 
 use Argo\Domain\Storage;
-use Argo\Domain\DateTime as DateTimeFormat;
+use Argo\Domain\Model\DateTime as DateTimeFormat;
 use AutoRoute\Generator;
 use Capsule\Di\Container;
 use League\CommonMark\CommonMarkConverter;

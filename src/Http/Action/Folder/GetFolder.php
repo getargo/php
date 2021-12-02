@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Folder;
 
-use Argo\App\OpenFolder;
+use Argo\Domain\App\OpenFolder;
 use Argo\Http\Input;
 use Argo\Http\Responder;
 use Sapien\Request;

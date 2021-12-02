@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Content\Post;
+namespace Argo\Domain\Model\Content\Post;
 
-use Argo\Domain\Content\Draft\Draft;
+use Argo\Domain\Model\Content\Draft\Draft;
 
 class PostTest extends \Argo\Domain\TestCase
 {

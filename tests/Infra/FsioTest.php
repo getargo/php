@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\DateTime;
+use Argo\Domain\Model\DateTime;
 use RuntimeException;
 
 class FsioTest extends \Argo\TestCase

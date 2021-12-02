@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Infra\Import;
 
-use Argo\Domain\Content\ContentLocator;
+use Argo\Domain\Model\Content\ContentLocator;
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
 use DomDocument;
@@ -60,7 +60,7 @@ class ImportWordpress
         }
 
         $uctype = ucfirst($type);
-        $class = "Argo\Domain\Content\\{$uctype}\\{$uctype}";
+        $class = "Argo\Domain\Model\Content\\{$uctype}\\{$uctype}";
         $item = new $class($id);
         $data = [
             'title' => (string) $wpItem->title,

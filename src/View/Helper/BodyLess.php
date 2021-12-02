@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\View\Helper;
 
-use Argo\Domain\Content\Item;
+use Argo\Domain\Model\Content\Item;
 
 class BodyLess extends Body
 {

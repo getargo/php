@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App;
+namespace Argo\Domain\App;
 
 use Exception;
 
-class FakeUseCase extends UseCase
+class FakeUseCase extends App
 {
     public function exec()
     {

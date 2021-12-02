@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo;
 
-use Argo\Domain\DateTime;
+use Argo\Domain\Model\DateTime;
 use Argo\Domain\FakeDateTime;
 use Argo\Domain\Log;
 use Argo\Infra\FakeLog;

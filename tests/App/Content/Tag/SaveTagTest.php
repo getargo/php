@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App\Content\Tag;
+namespace Argo\Domain\App\Content\Tag;
 
-class SaveTagTest extends \Argo\App\TestCase
+class SaveTagTest extends \Argo\Domain\App\TestCase
 {
     protected function setUp() : void
     {

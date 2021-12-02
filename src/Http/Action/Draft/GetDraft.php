@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Draft;
 
-use Argo\App\Content\Draft\FetchDraft;
+use Argo\Domain\App\Content\Draft\FetchDraft;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;

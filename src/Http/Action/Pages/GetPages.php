@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Pages;
 
-use Argo\App\Content\Page\FetchPages;
+use Argo\Domain\App\Content\Page\FetchPages;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;

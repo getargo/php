@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Content;
+namespace Argo\Domain\Model\Content;
 
-use Argo\Domain\Content\Post\Post;
+use Argo\Domain\Model\Content\Post\Post;
 use Argo\Domain\Json;
 
 class MonthTest extends \Argo\Domain\TestCase

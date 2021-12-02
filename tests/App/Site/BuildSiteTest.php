@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App\Site;
+namespace Argo\Domain\App\Site;
 
 use Argo\Infra\System;
 
-class BuildSiteTest extends \Argo\App\TestCase
+class BuildSiteTest extends \Argo\Domain\App\TestCase
 {
     protected function setUp() : void
     {

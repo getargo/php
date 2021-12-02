@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Content\Page;
+namespace Argo\Domain\Model\Content\Page;
 
 class PageRepositoryTest extends \Argo\Domain\TestCase
 {

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App\Content\Post;
+namespace Argo\Domain\App\Content\Post;
 
-use Argo\Domain\Content\Post\Post;
+use Argo\Domain\Model\Content\Post\Post;
 use Argo\Infra\BuildFactory;
 
-class FetchPostsTest extends \Argo\App\TestCase
+class FetchPostsTest extends \Argo\Domain\App\TestCase
 {
     protected function setUp() : void
     {

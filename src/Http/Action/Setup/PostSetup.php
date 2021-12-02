@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Setup;
 
-use Argo\App\Site\AddSite;
+use Argo\Domain\App\Site\AddSite;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;

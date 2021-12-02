@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\Config\ConfigMapper;
-use Argo\Domain\Content\ContentLocator;
-use Argo\Domain\Content\Folio;
-use Argo\Domain\Content\Month;
-use Argo\Domain\DateTime;
+use Argo\Domain\Model\Config\ConfigMapper;
+use Argo\Domain\Model\Content\ContentLocator;
+use Argo\Domain\Model\Content\Folio;
+use Argo\Domain\Model\Content\Month;
+use Argo\Domain\Model\DateTime;
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
 use Argo\View\ViewFactory;

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Tag;
 
-use Argo\App\Content\Tag\TrashTag;
+use Argo\Domain\App\Content\Tag\TrashTag;
 use Argo\Http\Input;
 use Argo\Http\Responder;
 use Sapien\Request;

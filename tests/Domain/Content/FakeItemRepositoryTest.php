@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Content;
+namespace Argo\Domain\Model\Content;
 
-use Argo\Domain\Content\Page\Page;
+use Argo\Domain\Model\Content\Page\Page;
 
 class FakeItemRepositoryTest extends \Argo\Domain\TestCase
 {

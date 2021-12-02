@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Page;
 
-use Argo\App\Content\Page\TrashPage;
+use Argo\Domain\App\Content\Page\TrashPage;
 use Argo\Http\Input;
 use Argo\Http\Responder;
 use Sapien\Request;

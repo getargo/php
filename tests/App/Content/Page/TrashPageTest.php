@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App\Content\Page;
+namespace Argo\Domain\App\Content\Page;
 
-class TrashPageTest extends \Argo\App\TestCase
+class TrashPageTest extends \Argo\Domain\App\TestCase
 {
     protected function setUp() : void
     {

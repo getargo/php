@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Content;
+namespace Argo\Domain\Model\Content;
 
-use Argo\Domain\Content\Draft\DraftRepository;
-use Argo\Domain\Content\Page\PageRepository;
-use Argo\Domain\Content\Tag\TagRepository;
-use Argo\Domain\Content\Post\PostRepository;
+use Argo\Domain\Model\Content\Draft\DraftRepository;
+use Argo\Domain\Model\Content\Page\PageRepository;
+use Argo\Domain\Model\Content\Tag\TagRepository;
+use Argo\Domain\Model\Content\Post\PostRepository;
 use Argo\Domain\Storage;
 use RuntimeException;
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Content;
+namespace Argo\Domain\Model\Content;
 
 use Argo\Domain\Exception;
 

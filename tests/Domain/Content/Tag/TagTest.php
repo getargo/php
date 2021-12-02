@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\Content\Tag;
+namespace Argo\Domain\Model\Content\Tag;
 
-use Argo\Domain\Content\Post\Post;
+use Argo\Domain\Model\Content\Post\Post;
 
 class TagTest extends \Argo\Domain\TestCase
 {

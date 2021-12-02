@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Http\Action\Tags;
 
-use Argo\App\Content\Tag\FetchTags;
+use Argo\Domain\App\Content\Tag\FetchTags;
 use Argo\Http\Responder;
 use Sapien\Request;
 use Sapien\Response;

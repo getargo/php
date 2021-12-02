@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\View\Helper;
 
-use Argo\Domain\DateTime as DateTimeFormat;
+use Argo\Domain\Model\DateTime as DateTimeFormat;
 use Qiq\Escape;
 use Qiq\Helper\Helper;
 

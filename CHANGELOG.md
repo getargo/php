@@ -63,7 +63,7 @@ having to re-edit your custom work each time you switch.
 - New theme "argo/bootstrap4" is now the default for new sites
 - Themes now have their own Build.php code
 - Index-page posts now show a "More" link
-- Renamed Argo\UseCase namespace to Argo\App
+- Renamed Argo\UseCase namespace to Argo\Domain\App
 - Theme name is now part of General config
 - Pages now get tags
 - Tags can now be trashed
