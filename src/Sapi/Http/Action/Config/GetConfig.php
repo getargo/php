@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Sapi\Http\Action\Config;
 
 use Argo\Domain\App\Config\FetchConfig;
-use Otto\Sapi\Http\Responder\ActionResponder;
+use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 

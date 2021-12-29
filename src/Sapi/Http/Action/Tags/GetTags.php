@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Sapi\Http\Action\Tags;
 
 use Argo\Domain\App\Content\Tag\FetchTags;
-use Otto\Sapi\Http\Responder\ActionResponder;
+use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 

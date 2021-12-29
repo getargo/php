@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Sapi\Http\Action\Pages;
 
 use Argo\Domain\App\Content\Page\FetchPages;
-use Otto\Sapi\Http\Responder\ActionResponder;
+use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 

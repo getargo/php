@@ -1,1 +1,1 @@
-{{= render ('action:Draft/GetDraft.php') }}
+{{= render ('action:Draft/GetDraft') }}

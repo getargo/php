@@ -5,7 +5,7 @@ namespace Argo\Sapi\Http\Action\Folder;
 
 use Argo\Domain\App\OpenFolder;
 use Argo\Sapi\Http\Input;
-use Otto\Sapi\Http\Responder\ActionResponder;
+use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 

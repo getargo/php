@@ -5,7 +5,7 @@ namespace Argo\Sapi\Http\Action\Page;
 
 use Argo\Domain\App\Content\Page\SavePage;
 use Argo\Sapi\Http\Input;
-use Otto\Sapi\Http\Responder\ActionResponder;
+use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 

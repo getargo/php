@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Sapi\Http\Action\Import;
 
 use Argo\Domain\Payload;
-use Otto\Sapi\Http\Responder\ActionResponder;
+use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
@@ -12,7 +12,7 @@ class GetImport implements \Otto\Sapi\Http\Action
 {
     public function __construct(
         protected Request $request,
-        protected Responder $responder
+        protected ActionResponder $responder
     ) {
     }
 

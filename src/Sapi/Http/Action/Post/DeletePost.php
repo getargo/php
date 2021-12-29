@@ -5,7 +5,7 @@ namespace Argo\Sapi\Http\Action\Post;
 
 use Argo\Domain\App\Content\Post\TrashPost;
 use Argo\Sapi\Http\Input;
-use Otto\Sapi\Http\Responder\ActionResponder;
+use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
