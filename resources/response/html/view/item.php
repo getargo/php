@@ -4,8 +4,6 @@
 
 <form onsubmit="return false;">
 
-    <div id="submit-failure"></div>
-
     <div class="row mb-1 align-items-start">
         <div class="col col-1 text-right">
             <label>URL</label>
@@ -89,6 +87,13 @@
     </div>
 
     {{ endif }}
+
+    <div class="row mb-1 align-items-start">
+        <div class="col col-1 text-right">
+        </div>
+        <div id="submit-failure">
+        </div>
+    </div>
 
     <div class="row mb-1 align-items-start">
         <div class="col col-1">

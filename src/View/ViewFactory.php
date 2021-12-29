@@ -23,6 +23,11 @@ class ViewFactory
     {
         $tpl = $this->container->new(Template::CLASS);
         $tpl->getTemplateLocator()->setPaths($paths);
+        $helpers = $tpl->getHelperLocator();
+        $helpers->set('body', $this->container->callableGet(Helper\Body::CLASS));
+        $helpers->set('bodyLess', $this->container->callableGet(Helper\BodyLess::CLASS));
+        $helpers->set('penders', $this->container->callableGet(Helper\Penders::CLASS));
+        $helpers->set('dateTime', $this->container->callableGet(Helper\DateTime::CLASS));
         return $tpl;
     }
 }

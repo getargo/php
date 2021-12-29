@@ -1,1 +1,1 @@
-{{h $this->invalid }}
+<p>{{h $this->invalid }}</p>

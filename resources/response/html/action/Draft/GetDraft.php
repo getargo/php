@@ -2,6 +2,7 @@
     Argo\Sapi\Http\Action\Draft\DeleteDraft,
     Argo\Sapi\Http\Action\Draft\PostDraft
 }}
+
 {{ $this->header = 'Draft' }}
 
 <div class="card card-outline">
