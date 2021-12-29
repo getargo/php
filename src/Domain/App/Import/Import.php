@@ -7,7 +7,7 @@ use Argo\Infra\BuildFactory;
 use Argo\Infra\Import\ImportWordpress;
 use Argo\Domain\Payload;
 use Argo\Domain\App;
-use SapiUpload;
+use Sapien\Request\Upload;
 
 class Import extends App
 {
@@ -27,7 +27,7 @@ class Import extends App
         $this->buildFactory = $buildFactory;
     }
 
-    protected function exec(SapiUpload $upload) : Payload
+    protected function exec(Upload $upload) : Payload
     {
         if ($upload->error !== 0) {
             return Payload::error([

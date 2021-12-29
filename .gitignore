@@ -3,3 +3,4 @@
 /tests/tmp/
 !/tests/tmp/.gitkeep
 /vendor/
+/tmp/

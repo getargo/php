@@ -14,15 +14,22 @@
             "Argo\\": ["src/", "tests/"]
         }
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/Users/pmjones/Code/otto/core"
+        }
+    ],
     "require": {
-        "capsule/di": "^3.0",
+        "capsule/di": "^3.0@dev",
         "league/commonmark": "^2.0",
         "payload-interop/payload-interop": "^1.0",
-        "pmjones/auto-route": "^2.0",
+        "pmjones/auto-route": "^2.0@dev",
         "psr/log": "^3.0",
         "seld/jsonlint": "^1.0",
         "sapien/sapien": "1.x@dev",
-        "qiq/qiq": "^1.0"
+        "qiq/qiq": "^1.0",
+        "otto/core": "*@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
