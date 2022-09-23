@@ -18,7 +18,7 @@ class SyncSite extends App
 
     protected function exec() : Payload
     {
-        return Payload::processing([
+        return Payload::accepted([
             'callable' => $this->sync,
         ]);
     }

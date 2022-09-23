@@ -35,7 +35,7 @@ class Import extends App
             ]);
         }
 
-        return Payload::processing([
+        return Payload::accepted([
             'callable' => function () use ($upload) {
                 $old = ini_get('max_execution_time');
                 ini_set('max_execution_time', '0');

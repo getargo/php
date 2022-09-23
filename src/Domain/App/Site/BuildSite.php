@@ -19,7 +19,7 @@ class BuildSite extends App
 
     protected function exec() : Payload
     {
-        return Payload::processing([
+        return Payload::accepted([
             'callable' => function () {
                 $this->buildFactory->new('echo')->all();
             },

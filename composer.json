@@ -29,6 +29,7 @@
         "seld/jsonlint": "^1.0",
         "sapien/sapien": "1.x@dev",
         "qiq/qiq": "^1.0",
+        "qiq/helper-sapien": "^1.0",
         "ottophp/core": "*@dev"
     },
     "require-dev": {

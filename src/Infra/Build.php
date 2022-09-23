@@ -31,7 +31,7 @@ abstract class Build
 
     protected $view;
 
-    protected $viewFactory;
+    protected $template;
 
     protected $folio;
 
@@ -40,14 +40,14 @@ abstract class Build
         ConfigMapper $config,
         Log $log,
         string $level,
-        ViewFactory $viewFactory,
+        Template $template,
         Folio $folio
     ) {
         $this->storage = $storage;
         $this->config = $config;
         $this->log = $log;
         $this->level = $level;
-        $this->viewFactory = $viewFactory;
+        $this->template = $template;
         $this->folio = $folio;
     }
 
@@ -446,20 +446,20 @@ abstract class Build
         array $data = []
     ) : Template
     {
-        $view = $this->viewFactory->new([
+        $this->template->getTemplateLocator()->setPaths([
             $this->storage->path("_theme/custom/{$theme}/templates"),
             $this->storage->path("_theme/vendor/{$theme}/templates"),
         ]);
 
-        $view->setData($data);
-        $view->setView($template);
+        $this->template->setData($data);
+        $this->template->setView($template);
         $isHtml = strrchr($id, '.') === '.html';
 
         if ($isHtml) {
-            $view->setLayout('layout/html');
+            $this->template->setLayout('layout/html');
         }
 
-        return $view;
+        return $this->template;
     }
 
     protected function log(/* string|array */ $message) : void

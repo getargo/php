@@ -5,7 +5,7 @@ namespace Argo\Infra;
 
 use Argo\Domain\Log;
 use Argo\Domain\Storage;
-use Argo\View\Helper;
+use Argo\Infra\Template\Helper;
 use Capsule\Di\Definitions;
 use Capsule\Di\Lazy;
 use Capsule\Di\Provider;

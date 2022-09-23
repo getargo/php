@@ -4,120 +4,27 @@ declare(strict_types=1);
 namespace Argo\Sapi\Http\Responder;
 
 use Otto\Sapi\Http\Responder\ActionResponder as OttoActionResponder;
-use Sapien\Response;
-use Argo\Domain\Status;
+use PayloadInterop\DomainStatus;
 
 class ActionResponder extends OttoActionResponder
 {
-    protected function respondAccepted() : Response
-    {
-        return $this->render(
-            code: 202,
-            view: false,
-            layout: false
-        );
-    }
+	protected function getView() : string
+	{
+		if ($this->payload === null) {
+			return parent::getView();
+		}
 
-    protected function respondCreated() : Response
-    {
-        // newly-created posts go back to the dashboard;
-        // everything else goes to its own editing page
-        $item = $this->payload->getResult()['item'];
-        $forward = ($item->type === 'post')
-            ? '/'
-            : "/{$item->type}/{$item->relId}/";
+        $view = match ($this->payload->getStatus()) {
+            DomainStatus::ACCEPTED => 'status:Accepted',
+            DomainStatus::CREATED => 'status:Created',
+            DomainStatus::DELETED => 'status:Deleted',
+            DomainStatus::ERROR => 'status:Error',
+            DomainStatus::INVALID => 'status:Invalid',
+            DomainStatus::NOT_FOUND => 'status:NotFound',
+            DomainStatus::UPDATED => 'status:Updated',
+            default => null,
+        };
 
-        return $this
-            ->render(
-                code: 201,
-                view: false,
-                layout: false
-            )
-            ->setHeader('X-Argo-Forward', $forward);
-    }
-
-    protected function respondDeleted() : Response
-    {
-        $item = $this->payload->getResult()['item'];
-        $forward = in_array($item->type, ['draft', 'post'])
-            ? '/'
-            : "/{$item->type}s/";
-
-        return $this
-            ->render(
-                code: 200,
-                view: false,
-                layout: false
-            )
-            ->setHeader('X-Argo-Forward', $forward);
-    }
-
-    protected function respondError() : Response
-    {
-        return $this->render(
-            code: 500,
-            view: 'status:Error',
-            layout: false
-        );
-    }
-
-    protected function respondInvalid() : Response
-    {
-        return $this->render(
-            code: 422,
-            view: 'status:Invalid',
-            layout: false,
-        );
-    }
-
-    protected function respondNotFound() : Response
-    {
-        return $this->render(
-            code: 404,
-            view: 'status:NotFound',
-        );
-    }
-
-    protected function respondProcessing() : Response
-    {
-        $callable = $this->payload->getResult()['callable'];
-
-        return $this
-            ->render(
-                code: 200,
-                view: false,
-                layout: false
-            )
-            ->setHeader('Content-Type', 'text/plain')
-            ->setContent($callable);
-    }
-
-    protected function respondSuccess() : Response
-    {
-        $label = $this->request->method->is('GET')
-            ? 'Location'
-            : 'X-Argo-Forward';
-
-        return $this
-            ->render(
-                code: 200,
-                view: false,
-                layout: false
-            )
-            ->setHeader($label, '/');
-    }
-
-    protected function respondUpdated() : Response
-    {
-        $item = $this->payload->getResult()['item'];
-        $forward = "/{$item->type}/{$item->relId}/";
-
-        return $this
-            ->render(
-                code: 200,
-                view: false,
-                layout: false
-            )
-            ->setHeader('X-Argo-Forward', $forward);
-    }
+        return $view ?? parent::getView();
+	}
 }
