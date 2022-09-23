@@ -9,7 +9,7 @@ use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostPost implements \Otto\Sapi\Http\Action
+class PostPost
 {
     public function __construct(
         protected Request $request,

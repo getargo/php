@@ -7,7 +7,7 @@ use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
-class GetSync implements \Otto\Sapi\Http\Action
+class GetSync
 {
     public function __construct(
         protected Request $request,

@@ -11,7 +11,7 @@ use Sapien\Response;
 /**
  * this should probably be `PATCH /draft/$relId`
  */
-class PostDraft implements \Otto\Sapi\Http\Action
+class PostDraft
 {
     public function __construct(
         protected Request $request,

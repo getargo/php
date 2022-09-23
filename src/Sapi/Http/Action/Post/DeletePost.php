@@ -9,7 +9,7 @@ use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
-class DeletePost implements \Otto\Sapi\Http\Action
+class DeletePost
 {
     public function __construct(
         protected Request $request,

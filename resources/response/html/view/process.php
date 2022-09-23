@@ -1,1 +1,0 @@
-{{h $this->message ?? '' }}

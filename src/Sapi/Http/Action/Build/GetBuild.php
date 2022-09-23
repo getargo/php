@@ -7,7 +7,7 @@ use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
-class GetBuild implements \Otto\Sapi\Http\Action
+class GetBuild
 {
     public function __construct(
         protected Request $request,

@@ -8,7 +8,7 @@ use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostPageAdd implements \Otto\Sapi\Http\Action
+class PostPageAdd
 {
     public function __construct(
         protected Request $request,

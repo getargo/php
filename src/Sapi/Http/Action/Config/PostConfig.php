@@ -8,7 +8,7 @@ use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
-class PostConfig implements \Otto\Sapi\Http\Action
+class PostConfig
 {
     public function __construct(
         protected Request $request,

@@ -8,7 +8,7 @@ use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
-class GetSetup implements \Otto\Sapi\Http\Action
+class GetSetup
 {
     public function __construct(
         protected Request $request,

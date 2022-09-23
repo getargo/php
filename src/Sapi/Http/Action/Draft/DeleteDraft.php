@@ -8,7 +8,7 @@ use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
-class DeleteDraft implements \Otto\Sapi\Http\Action
+class DeleteDraft
 {
     public function __construct(
         protected Request $request,

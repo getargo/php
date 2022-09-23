@@ -11,7 +11,7 @@ class ActionResponder extends OttoActionResponder
 {
     protected function respondAccepted() : Response
     {
-        return $this->newResponse(
+        return $this->render(
             code: 202,
             view: false,
             layout: false
@@ -28,7 +28,7 @@ class ActionResponder extends OttoActionResponder
             : "/{$item->type}/{$item->relId}/";
 
         return $this
-            ->newResponse(
+            ->render(
                 code: 201,
                 view: false,
                 layout: false
@@ -44,7 +44,7 @@ class ActionResponder extends OttoActionResponder
             : "/{$item->type}s/";
 
         return $this
-            ->newResponse(
+            ->render(
                 code: 200,
                 view: false,
                 layout: false
@@ -54,7 +54,7 @@ class ActionResponder extends OttoActionResponder
 
     protected function respondError() : Response
     {
-        return $this->newResponse(
+        return $this->render(
             code: 500,
             view: 'status:Error',
             layout: false
@@ -63,7 +63,7 @@ class ActionResponder extends OttoActionResponder
 
     protected function respondInvalid() : Response
     {
-        return $this->newResponse(
+        return $this->render(
             code: 422,
             view: 'status:Invalid',
             layout: false,
@@ -72,7 +72,7 @@ class ActionResponder extends OttoActionResponder
 
     protected function respondNotFound() : Response
     {
-        return $this->newResponse(
+        return $this->render(
             code: 404,
             view: 'status:NotFound',
         );
@@ -83,7 +83,7 @@ class ActionResponder extends OttoActionResponder
         $callable = $this->payload->getResult()['callable'];
 
         return $this
-            ->newResponse(
+            ->render(
                 code: 200,
                 view: false,
                 layout: false
@@ -99,7 +99,7 @@ class ActionResponder extends OttoActionResponder
             : 'X-Argo-Forward';
 
         return $this
-            ->newResponse(
+            ->render(
                 code: 200,
                 view: false,
                 layout: false
@@ -113,7 +113,7 @@ class ActionResponder extends OttoActionResponder
         $forward = "/{$item->type}/{$item->relId}/";
 
         return $this
-            ->newResponse(
+            ->render(
                 code: 200,
                 view: false,
                 layout: false

@@ -1,1 +1,0 @@
-{{= render ('action:Config/GetConfig') }}

@@ -1,4 +1,4 @@
-{{= '<\?' }}xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>{{= $this->config->general->title . ' | ' . $this->tag->title }}</title>
     <link href="{{a $this->config->general->url . $this->tag->href }}" />

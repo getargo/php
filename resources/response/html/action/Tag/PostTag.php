@@ -1,1 +1,0 @@
-{{= render ('action:Tag/GetTag') }}

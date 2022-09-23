@@ -8,7 +8,7 @@ use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
 
-class GetSites implements \Otto\Sapi\Http\Action
+class GetSites
 {
     public function __construct(
         protected Request $request,
