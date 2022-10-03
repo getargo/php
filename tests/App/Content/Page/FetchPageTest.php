@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\App\Content\Page;
+namespace Argo\App\Content\Page;
 
-class FetchPageTest extends \Argo\Domain\App\TestCase
+class FetchPageTest extends \Argo\App\TestCase
 {
     protected $page;
 

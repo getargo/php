@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Sapi\Http\Action\Post;
 
-use Argo\Domain\App\Content\Post\FetchPost;
+use Argo\App\Content\Post\FetchPost;
 use Argo\Sapi\Http\Input;
 use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;

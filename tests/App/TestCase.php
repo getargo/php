@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\App;
+namespace Argo\App;
 
 use Argo\Domain\FakeDateTime;
 use Argo\Domain\Json;

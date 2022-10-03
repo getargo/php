@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Sapi\Http\Action\Config;
 
-use Argo\Domain\App\Config\SaveConfig;
+use Argo\App\Config\SaveConfig;
 use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;

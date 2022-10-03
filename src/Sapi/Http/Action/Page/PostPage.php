@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Sapi\Http\Action\Page;
 
-use Argo\Domain\App\Content\Page\SavePage;
+use Argo\App\Content\Page\SavePage;
 use Argo\Sapi\Http\Input;
 use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\App\Content\Post;
+namespace Argo\App\Content\Post;
 
-class SavePostTest extends \Argo\Domain\App\TestCase
+class SavePostTest extends \Argo\App\TestCase
 {
     protected function setUp() : void
     {

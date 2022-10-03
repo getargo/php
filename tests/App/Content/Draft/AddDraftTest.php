@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\App\Content\Draft;
+namespace Argo\App\Content\Draft;
 
-class AddDraftTest extends \Argo\Domain\App\TestCase
+class AddDraftTest extends \Argo\App\TestCase
 {
     protected function setUp() : void
     {

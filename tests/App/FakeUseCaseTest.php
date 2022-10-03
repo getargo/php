@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\App;
+namespace Argo\App;
 
-class FakeUseCaseTest extends \Argo\Domain\App\TestCase
+class FakeUseCaseTest extends \Argo\App\TestCase
 {
     public function test()
     {

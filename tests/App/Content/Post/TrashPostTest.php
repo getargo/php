@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\App\Content\Post;
+namespace Argo\App\Content\Post;
 
-class TrashPostTest extends \Argo\Domain\App\TestCase
+class TrashPostTest extends \Argo\App\TestCase
 {
     protected $post;
 

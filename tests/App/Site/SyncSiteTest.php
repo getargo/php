@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Domain\App\Site;
+namespace Argo\App\Site;
 
 use Argo\Infra\System;
 
-class SyncSiteTest extends \Argo\Domain\App\TestCase
+class SyncSiteTest extends \Argo\App\TestCase
 {
     protected function setUp() : void
     {

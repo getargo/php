@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Sapi\Http\Action\Post;
 
-use Argo\Domain\App\Content\Post\TrashPost;
+use Argo\App\Content\Post\TrashPost;
 use Argo\Sapi\Http\Input;
 use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;

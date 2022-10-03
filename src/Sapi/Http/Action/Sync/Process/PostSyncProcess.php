@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Sapi\Http\Action\Sync\Process;
 
-use Argo\Domain\App\Site\SyncSite;
+use Argo\App\Site\SyncSite;
 use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;

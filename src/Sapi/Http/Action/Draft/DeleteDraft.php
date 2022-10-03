@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Sapi\Http\Action\Draft;
 
-use Argo\Domain\App\Content\Draft\TrashDraft;
+use Argo\App\Content\Draft\TrashDraft;
 use Argo\Sapi\Http\Responder\ActionResponder;
 use Sapien\Request;
 use Sapien\Response;
