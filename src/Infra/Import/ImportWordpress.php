@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Argo\Infra\Import;
 
 use Argo\Domain\Model\Content\ContentLocator;
-use Argo\Domain\Log;
+use Argo\Infra\Log;
 use Argo\Domain\Storage;
 use DomDocument;
 use DomXpath;

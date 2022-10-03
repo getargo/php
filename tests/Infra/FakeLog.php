@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\Log;
+use Argo\Infra\Log;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use Stringable;

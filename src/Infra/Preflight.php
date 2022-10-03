@@ -8,7 +8,7 @@ use Argo\Domain\Model\Content\Post\Post;
 use Argo\Domain\Model\Config\ConfigMapper;
 use Argo\Domain\Model\DateTime;
 use Argo\Domain\Json;
-use Argo\Domain\Log;
+use Argo\Infra\Log;
 use Argo\Domain\Storage;
 use RuntimeException;
 

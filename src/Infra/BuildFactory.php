@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\Infra;
 
-use Argo\Domain\Log;
+use Argo\Infra\Log;
 use Argo\Domain\Model\Config\ConfigMapper;
 use Argo\Domain\Model\Content\ContentLocator;
 use Argo\Domain\Model\Content\Folio;

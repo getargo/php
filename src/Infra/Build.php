@@ -11,7 +11,7 @@ use Argo\Domain\Model\Content\Page\Page;
 use Argo\Domain\Model\Content\Post\Post;
 use Argo\Domain\Model\Content\PostIndex;
 use Argo\Domain\Model\Content\Tag\Tag;
-use Argo\Domain\Log;
+use Argo\Infra\Log;
 use Argo\Domain\Storage;
 use Argo\View\ViewFactory;
 use Qiq\Template;

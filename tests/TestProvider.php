@@ -5,7 +5,7 @@ namespace Argo;
 
 use Argo\Domain\Model\DateTime;
 use Argo\Domain\FakeDateTime;
-use Argo\Domain\Log;
+use Argo\Infra\Log;
 use Argo\Infra\FakeLog;
 use Argo\Infra\FakeServer;
 use Argo\Infra\FakeSystem;
