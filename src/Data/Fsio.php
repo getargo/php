@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Infra;
+namespace Argo\Data;
 
 use Argo\Domain\Model\DateTime;
 use Argo\Domain\Storage;
+use Argo\Infra\System;
 use RuntimeException;
 
 class Fsio implements Storage
