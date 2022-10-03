@@ -1,16 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Infra;
+namespace Argo;
 
-use Argo\Infra\Log;
+use Argo\Data\Fsio;
 use Argo\Domain\Storage;
-use Argo\Infra\Template\Helper;
+use Argo\Infra\Log;
+use Argo\Infra\Stdlog;
+use Argo\Infra\System;
 use Capsule\Di\Definitions;
-use Capsule\Di\Lazy;
 use Capsule\Di\Provider;
 
-class InfraProvider implements Provider
+class ArgoProvider implements Provider
 {
     public function provide(Definitions $def) : void
     {

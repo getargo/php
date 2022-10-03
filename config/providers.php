@@ -8,7 +8,6 @@ return [
         directory: $directory,
     ),
     new Otto\Infra\InfraProvider(),
-    new Argo\Infra\InfraProvider(),
     new Otto\Sapi\Http\HttpProvider(
         format: 'html',
         layout: 'layout:main',
@@ -20,4 +19,5 @@ return [
             'submitAction' => Argo\Infra\Template\Helper\SubmitAction::CLASS,
         ],
     ),
+    new Argo\ArgoProvider(),
 ];
