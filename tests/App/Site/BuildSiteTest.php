@@ -16,7 +16,7 @@ class BuildSiteTest extends \Argo\App\TestCase
     public function testSuccess() : void
     {
         $payload = $this->invoke();
-        $this->assertProcessing($payload);
+        $this->assertAccepted($payload);
         // @todo assert the callable
     }
 }

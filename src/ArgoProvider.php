@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Argo;
 
 use Argo\Domain\Storage;
+use Argo\Infra\Build;
 use Argo\Infra\Log;
 use Argo\Infra\Stdlog;
 use Argo\Infra\System;
@@ -26,5 +27,8 @@ class ArgoProvider implements Provider
                 'docroot',
                 $def->getCall(System::CLASS, 'docroot')
             );
+
+        $def->{Build\Catalog::CLASS}
+            ->argument('extension', '.qiq.php');
     }
 }

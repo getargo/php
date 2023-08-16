@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App;
+namespace Argo\App\Folder;
 
 class OpenFolderTest extends \Argo\App\TestCase
 {

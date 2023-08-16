@@ -1,9 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\Infra;
+namespace Argo\Persistence;
 
 use Argo\Domain\Model\DateTime;
+use Argo\Infra\FakeLog;
+use Argo\Infra\System;
 use RuntimeException;
 
 class FsioTest extends \Argo\TestCase

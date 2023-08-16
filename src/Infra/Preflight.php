@@ -248,13 +248,6 @@ class Preflight
             'repositories' => [
                 [
                     'type' => 'path',
-                    'url' => $this->system->supportDir() . '/theme/original/',
-                    'options' => [
-                        'symlink' => true,
-                    ],
-                ],
-                [
-                    'type' => 'path',
                     'url' => $this->system->supportDir() . '/theme/bootstrap4/',
                     'options' => [
                         'symlink' => true,
@@ -263,7 +256,6 @@ class Preflight
             ],
             'require' => [
                 'argo/bootstrap4' => '>0@dev',
-                'argo/original' => '>0@dev',
             ],
         ]));
 
@@ -282,7 +274,7 @@ class Preflight
         $this->config->save($this->config->general);
 
         // copy the _argo/theme.json file to _argo/{$theme}.json;
-        // e.g., from _argo/theme.json to _argo/theme/argo/original.json
+        // e.g., from _argo/theme.json to _argo/theme/argo/bootstrap4.json
         $this->storage->forceDir(dirname("_argo/theme/{$theme}"));
         $text = $this->storage->read('_argo/theme.json');
         $this->storage->write("_argo/theme/{$theme}.json", $text);

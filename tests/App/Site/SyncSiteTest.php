@@ -41,7 +41,7 @@ class SyncSiteTest extends \Argo\App\TestCase
         $this->config->sync->type = 'git';
 
         $payload = $this->invoke();
-        $this->assertProcessing($payload);
+        $this->assertAccepted($payload);
 
         // @todo: review $result->command value?
     }
@@ -54,7 +54,7 @@ class SyncSiteTest extends \Argo\App\TestCase
         $this->config->sync->path = '/var/www/html';
 
         $payload = $this->invoke();
-        $this->assertProcessing($payload);
+        $this->assertAccepted($payload);
 
         // @todo: review $result->command value?
     }

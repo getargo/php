@@ -22,6 +22,6 @@ class DateTimeTest extends \Argo\Domain\TestCase
     public function testUtc() : void
     {
         $utc = $this->dateTime->utc();
-        $this->assertRegexp('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC$/', $utc);
+        $this->assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} UTC$/', $utc);
     }
 }

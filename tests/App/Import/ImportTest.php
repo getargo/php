@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Argo\App\Import;
 
-use SapiUpload;
+use Sapien\Request\Upload;
 
 class ImportTest extends \Argo\App\TestCase
 {
@@ -16,8 +16,9 @@ class ImportTest extends \Argo\App\TestCase
     public function testError() : void
     {
         $file = __DIR__ . '/wordpress.export.xml';
-        $upload = new SapiUpload(
+        $upload = new Upload(
             basename($file),
+            $file,
             'application/xml',
             filesize($file),
             $file,
@@ -31,8 +32,9 @@ class ImportTest extends \Argo\App\TestCase
     public function testSuccess() : void
     {
         $file = __DIR__ . '/wordpress.export.xml';
-        $upload = new SapiUpload(
+        $upload = new Upload(
             basename($file),
+            $file,
             'application/xml',
             filesize($file),
             $file,
@@ -40,6 +42,6 @@ class ImportTest extends \Argo\App\TestCase
         );
 
         $payload = $this->invoke($upload);
-        $this->assertProcessing($payload);
+        $this->assertAccepted($payload);
     }
 }

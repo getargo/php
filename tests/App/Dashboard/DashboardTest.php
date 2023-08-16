@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Argo\App;
+namespace Argo\App\Dashboard;
 
-class DashboardTest extends \Argo\App\TestCase
+class FetchDashboardTest extends \Argo\App\TestCase
 {
     protected function setUp() : void
     {
