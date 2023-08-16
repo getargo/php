@@ -11,10 +11,10 @@ use Argo\Domain\Model\Content\Page\Page;
 use Argo\Domain\Model\Content\Post\Post;
 use Argo\Domain\Model\Content\PostIndex;
 use Argo\Domain\Model\Content\Tag\Tag;
-use Argo\Infra\Log;
 use Argo\Domain\Storage;
+use Argo\Infra\Build\Template;
+use Argo\Infra\Log;
 use Argo\View\ViewFactory;
-use Qiq\Template;
 use Throwable;
 
 abstract class Build
@@ -446,7 +446,7 @@ abstract class Build
         array $data = []
     ) : Template
     {
-        $this->template->getTemplateLocator()->setPaths([
+        $this->template->getCatalog()->setPaths([
             $this->storage->path("_theme/custom/{$theme}/templates"),
             $this->storage->path("_theme/vendor/{$theme}/templates"),
         ]);

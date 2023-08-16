@@ -21,17 +21,15 @@
         }
     ],
     "require": {
-        "capsule/di": "^3.0@dev",
+        "capsule/di": "^3.0",
         "league/commonmark": "^2.0",
         "payload-interop/payload-interop": "^1.0",
-        "pmjones/auto-route": "^2.0@dev",
+        "pmjones/auto-route": "^2.0",
         "psr/log": "^3.0",
         "seld/jsonlint": "^1.0",
-        "sapien/sapien": "1.x@dev",
-        "qiq/qiq": "^1.0",
-        "qiq/helper-sapien": "^1.0",
         "ottophp/core": "*@dev"
     },
+    "minimum-stability": "dev",
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     }

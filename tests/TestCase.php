@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Argo;
 
+use Argo\ArgoProvider;
 use Argo\Domain\Model\Config\ConfigMapper;
 use Argo\Domain\Model\Content\ContentLocator;
 use Argo\Domain\Model\DateTime;
 use Argo\Domain\Json;
 use Argo\Domain\Storage;
-use Argo\Infra\InfraProvider;
 use Argo\Infra\System;
 use Capsule\Di\Container;
 use Capsule\Di\Definitions;
@@ -41,7 +41,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->container = new Container(
             new Definitions(),
             [
-                new InfraProvider(),
+                new ArgoProvider(),
                 new TestProvider(),
             ]
         );

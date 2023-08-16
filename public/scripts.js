@@ -70,7 +70,7 @@ function xhrSubmit(method, form, action) {
             if (xhr.status < 400) {
                 window.location.href = xhr.getResponseHeader("X-Argo-Forward");
             } else if (submitFailure) {
-                submitFailure.innerHTML = xhr.response;
+                submitFailure.innerHTML = "<pre>" + xhr.response + "</pre>";
             }
         };
     }

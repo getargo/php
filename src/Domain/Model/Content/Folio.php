@@ -38,11 +38,11 @@ class Folio
         $penders = [];
         $theme = $folio->config->general->theme;
         $dir = "_theme/custom/{$theme}/templates/penders";
-        foreach ($storage->glob("$dir/*/*.php") as $path) {
+        foreach ($storage->glob("$dir/*/*.qiq.php") as $path) {
             $parts = explode('/', $path);
             $name = array_pop($parts);
             $type = array_pop($parts);
-            $penders[$type][] = substr($name, 0, -4);
+            $penders[$type][] = substr($name, 0, -8);
         }
         $folio->penders = $penders;
 

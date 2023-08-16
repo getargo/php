@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Argo;
 
-use Argo\Data\Fsio;
 use Argo\Domain\Storage;
 use Argo\Infra\Log;
 use Argo\Infra\Stdlog;
 use Argo\Infra\System;
+use Argo\Persistence\Fsio;
 use Capsule\Di\Definitions;
 use Capsule\Di\Provider;
 

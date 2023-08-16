@@ -8,11 +8,11 @@ use PayloadInterop\DomainStatus;
 
 class ActionResponder extends OttoActionResponder
 {
-	protected function getView() : string
-	{
-		if ($this->payload === null) {
-			return parent::getView();
-		}
+    protected function getView() : string
+    {
+        if ($this->payload === null) {
+            return parent::getView();
+        }
 
         $view = match ($this->payload->getStatus()) {
             DomainStatus::ACCEPTED => 'status:Accepted',
@@ -26,5 +26,5 @@ class ActionResponder extends OttoActionResponder
         };
 
         return $view ?? parent::getView();
-	}
+    }
 }
